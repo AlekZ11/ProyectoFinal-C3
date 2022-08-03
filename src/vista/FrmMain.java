@@ -227,39 +227,39 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre :");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(50, 40, 60, 16);
+        jLabel3.setBounds(50, 40, 60, 14);
 
         txtNombre.setEditable(false);
         jPanel2.add(txtNombre);
-        txtNombre.setBounds(120, 40, 130, 22);
+        txtNombre.setBounds(120, 40, 130, 20);
 
         jLabel4.setText("Apellido :");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(280, 40, 60, 16);
+        jLabel4.setBounds(280, 40, 60, 14);
 
         txtApellido.setEditable(false);
         jPanel2.add(txtApellido);
-        txtApellido.setBounds(350, 40, 130, 22);
+        txtApellido.setBounds(350, 40, 130, 20);
 
         jLabel5.setText("Identificacion :");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 90, 80, 16);
+        jLabel5.setBounds(30, 90, 80, 14);
 
         txtDireccion.setEditable(false);
         jPanel2.add(txtDireccion);
-        txtDireccion.setBounds(350, 90, 130, 22);
+        txtDireccion.setBounds(350, 90, 130, 20);
 
         jLabel6.setText("Direccion:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(280, 90, 60, 16);
+        jLabel6.setBounds(280, 90, 60, 14);
 
         jLabel7.setText("Ciudad :");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(50, 140, 60, 16);
+        jLabel7.setBounds(50, 140, 60, 14);
 
         jLabel8.setText("Provincia :");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(280, 140, 60, 16);
+        jLabel8.setBounds(280, 140, 60, 14);
 
         btnCancelarP.setText("CANCELAR");
         btnCancelarP.setEnabled(false);
@@ -267,6 +267,11 @@ public class FrmMain extends javax.swing.JFrame {
         btnCancelarP.setBounds(360, 200, 130, 30);
 
         btnModificarP.setText("MODIFICAR");
+        btnModificarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnModificarP);
         btnModificarP.setBounds(40, 200, 130, 30);
 
@@ -277,15 +282,15 @@ public class FrmMain extends javax.swing.JFrame {
 
         txtProvincia.setEditable(false);
         jPanel2.add(txtProvincia);
-        txtProvincia.setBounds(350, 140, 130, 22);
+        txtProvincia.setBounds(350, 140, 130, 20);
 
         txtIdentificacion.setEditable(false);
         jPanel2.add(txtIdentificacion);
-        txtIdentificacion.setBounds(120, 90, 130, 22);
+        txtIdentificacion.setBounds(120, 90, 130, 20);
 
         txtCiudad.setEditable(false);
         jPanel2.add(txtCiudad);
-        txtCiudad.setBounds(120, 140, 130, 22);
+        txtCiudad.setBounds(120, 140, 130, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 60, 540, 270);
@@ -295,27 +300,27 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel15.setText("Tipo 3");
         jPanel3.add(jLabel15);
-        jLabel15.setBounds(460, 30, 50, 16);
+        jLabel15.setBounds(460, 30, 50, 14);
 
         jLabel16.setText("OK");
         jPanel3.add(jLabel16);
-        jLabel16.setBounds(170, 30, 50, 16);
+        jLabel16.setBounds(170, 30, 50, 14);
 
         jLabel17.setText("Tipo 1");
         jPanel3.add(jLabel17);
-        jLabel17.setBounds(260, 30, 50, 16);
+        jLabel17.setBounds(260, 30, 50, 14);
 
         jLabel18.setText("Tipo 2");
         jPanel3.add(jLabel18);
-        jLabel18.setBounds(360, 30, 50, 16);
+        jLabel18.setBounds(360, 30, 50, 14);
         jPanel3.add(jSpinner1);
-        jSpinner1.setBounds(450, 70, 64, 22);
+        jSpinner1.setBounds(450, 70, 30, 20);
         jPanel3.add(jSpinner2);
-        jSpinner2.setBounds(150, 70, 64, 22);
+        jSpinner2.setBounds(150, 70, 30, 20);
         jPanel3.add(jSpinner3);
-        jSpinner3.setBounds(250, 70, 64, 22);
+        jSpinner3.setBounds(250, 70, 30, 20);
         jPanel3.add(jSpinner4);
-        jSpinner4.setBounds(350, 70, 64, 22);
+        jSpinner4.setBounds(350, 70, 30, 20);
 
         jLabel19.setText("Holguras :");
         jPanel3.add(jLabel19);
@@ -325,113 +330,113 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel3.add(jLabel20);
         jLabel20.setBounds(40, 120, 90, 20);
         jPanel3.add(jSpinner5);
-        jSpinner5.setBounds(150, 120, 64, 22);
+        jSpinner5.setBounds(150, 120, 30, 20);
         jPanel3.add(jSpinner6);
-        jSpinner6.setBounds(250, 120, 64, 22);
+        jSpinner6.setBounds(250, 120, 30, 20);
         jPanel3.add(jSpinner7);
-        jSpinner7.setBounds(350, 120, 64, 22);
+        jSpinner7.setBounds(350, 120, 30, 20);
         jPanel3.add(jSpinner8);
-        jSpinner8.setBounds(450, 120, 64, 22);
+        jSpinner8.setBounds(450, 120, 30, 20);
 
         jLabel21.setText("Sonometro :");
         jPanel3.add(jLabel21);
         jLabel21.setBounds(40, 170, 90, 20);
         jPanel3.add(jSpinner9);
-        jSpinner9.setBounds(150, 170, 64, 22);
+        jSpinner9.setBounds(150, 170, 30, 20);
         jPanel3.add(jSpinner10);
-        jSpinner10.setBounds(250, 170, 64, 22);
+        jSpinner10.setBounds(250, 170, 30, 20);
         jPanel3.add(jSpinner11);
-        jSpinner11.setBounds(350, 170, 64, 22);
+        jSpinner11.setBounds(350, 170, 30, 20);
         jPanel3.add(jSpinner12);
-        jSpinner12.setBounds(450, 170, 64, 22);
+        jSpinner12.setBounds(450, 170, 30, 20);
 
         jLabel22.setText("Gases :");
         jPanel3.add(jLabel22);
         jLabel22.setBounds(40, 220, 90, 20);
         jPanel3.add(jSpinner13);
-        jSpinner13.setBounds(150, 220, 64, 22);
+        jSpinner13.setBounds(150, 220, 30, 20);
         jPanel3.add(jSpinner14);
-        jSpinner14.setBounds(250, 220, 64, 22);
+        jSpinner14.setBounds(250, 220, 30, 20);
         jPanel3.add(jSpinner15);
-        jSpinner15.setBounds(350, 220, 64, 22);
+        jSpinner15.setBounds(350, 220, 30, 20);
         jPanel3.add(jSpinner16);
-        jSpinner16.setBounds(450, 220, 64, 22);
+        jSpinner16.setBounds(450, 220, 30, 20);
 
         jLabel23.setText("Opacimetro :");
         jPanel3.add(jLabel23);
         jLabel23.setBounds(40, 270, 90, 20);
         jPanel3.add(jSpinner17);
-        jSpinner17.setBounds(150, 270, 64, 22);
+        jSpinner17.setBounds(150, 270, 30, 20);
         jPanel3.add(jSpinner18);
-        jSpinner18.setBounds(250, 270, 64, 22);
+        jSpinner18.setBounds(250, 270, 30, 20);
         jPanel3.add(jSpinner19);
-        jSpinner19.setBounds(350, 270, 64, 22);
+        jSpinner19.setBounds(350, 270, 30, 20);
         jPanel3.add(jSpinner20);
-        jSpinner20.setBounds(450, 270, 64, 22);
+        jSpinner20.setBounds(450, 270, 30, 20);
 
         jLabel24.setText("Alineador :");
         jPanel3.add(jLabel24);
         jLabel24.setBounds(40, 320, 90, 20);
         jPanel3.add(jSpinner21);
-        jSpinner21.setBounds(150, 320, 64, 22);
+        jSpinner21.setBounds(150, 320, 30, 20);
         jPanel3.add(jSpinner22);
-        jSpinner22.setBounds(250, 320, 64, 22);
+        jSpinner22.setBounds(250, 320, 30, 20);
         jPanel3.add(jSpinner23);
-        jSpinner23.setBounds(350, 320, 64, 22);
+        jSpinner23.setBounds(350, 320, 30, 20);
         jPanel3.add(jSpinner24);
-        jSpinner24.setBounds(450, 320, 64, 22);
+        jSpinner24.setBounds(450, 320, 30, 20);
         jPanel3.add(jSpinner25);
-        jSpinner25.setBounds(450, 370, 64, 22);
+        jSpinner25.setBounds(450, 370, 30, 20);
         jPanel3.add(jSpinner26);
-        jSpinner26.setBounds(350, 370, 64, 22);
+        jSpinner26.setBounds(350, 370, 30, 20);
         jPanel3.add(jSpinner27);
-        jSpinner27.setBounds(150, 370, 64, 22);
+        jSpinner27.setBounds(150, 370, 30, 20);
         jPanel3.add(jSpinner28);
-        jSpinner28.setBounds(250, 370, 64, 22);
+        jSpinner28.setBounds(250, 370, 30, 20);
 
         jLabel25.setText("Suspension :");
         jPanel3.add(jLabel25);
         jLabel25.setBounds(40, 370, 90, 20);
         jPanel3.add(jSpinner29);
-        jSpinner29.setBounds(150, 420, 64, 22);
+        jSpinner29.setBounds(150, 420, 30, 20);
         jPanel3.add(jSpinner30);
-        jSpinner30.setBounds(450, 420, 64, 22);
+        jSpinner30.setBounds(450, 420, 30, 20);
         jPanel3.add(jSpinner31);
-        jSpinner31.setBounds(350, 420, 64, 22);
+        jSpinner31.setBounds(350, 420, 30, 20);
         jPanel3.add(jSpinner32);
-        jSpinner32.setBounds(250, 420, 64, 22);
+        jSpinner32.setBounds(250, 420, 30, 20);
 
         jLabel26.setText("Frenos :");
         jPanel3.add(jLabel26);
         jLabel26.setBounds(40, 420, 90, 20);
         jPanel3.add(jSpinner33);
-        jSpinner33.setBounds(250, 470, 64, 22);
+        jSpinner33.setBounds(250, 470, 30, 20);
 
         jLabel27.setText("Rodadura :");
         jPanel3.add(jLabel27);
         jLabel27.setBounds(40, 470, 90, 20);
         jPanel3.add(jSpinner34);
-        jSpinner34.setBounds(150, 470, 64, 22);
+        jSpinner34.setBounds(150, 470, 30, 20);
         jPanel3.add(jSpinner35);
-        jSpinner35.setBounds(450, 470, 64, 22);
+        jSpinner35.setBounds(450, 470, 30, 20);
         jPanel3.add(jSpinner36);
-        jSpinner36.setBounds(350, 470, 64, 22);
+        jSpinner36.setBounds(350, 470, 30, 20);
 
         jLabel28.setText("Neumaticos");
         jPanel3.add(jLabel28);
         jLabel28.setBounds(40, 520, 90, 20);
         jPanel3.add(jSpinner37);
-        jSpinner37.setBounds(150, 520, 64, 22);
+        jSpinner37.setBounds(150, 520, 30, 20);
         jPanel3.add(jSpinner38);
-        jSpinner38.setBounds(450, 520, 64, 22);
+        jSpinner38.setBounds(450, 520, 30, 20);
         jPanel3.add(jSpinner39);
-        jSpinner39.setBounds(350, 520, 64, 22);
+        jSpinner39.setBounds(350, 520, 30, 20);
         jPanel3.add(jSpinner40);
-        jSpinner40.setBounds(250, 520, 64, 22);
+        jSpinner40.setBounds(250, 520, 30, 20);
 
         jLabel29.setText("Pruebas");
         jPanel3.add(jLabel29);
-        jLabel29.setBounds(50, 30, 42, 16);
+        jLabel29.setBounds(50, 30, 39, 14);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(560, 60, 550, 570);
@@ -441,15 +446,15 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel14.setText("Combusitble :");
         jPanel4.add(jLabel14);
-        jLabel14.setBounds(30, 150, 80, 16);
+        jLabel14.setBounds(30, 150, 80, 14);
 
         jLabel12.setText("Modelo :");
         jPanel4.add(jLabel12);
-        jLabel12.setBounds(280, 50, 60, 16);
+        jLabel12.setBounds(280, 50, 60, 14);
 
         jLabel9.setText("Marca :");
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(50, 50, 60, 16);
+        jLabel9.setBounds(50, 50, 60, 14);
 
         btnModificarV.setText("MODIFICAR");
         jPanel4.add(btnModificarV);
@@ -462,15 +467,15 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel10.setText("Placa :");
         jPanel4.add(jLabel10);
-        jLabel10.setBounds(50, 100, 50, 16);
+        jLabel10.setBounds(50, 100, 50, 14);
 
         jLabel13.setText("Año :");
         jPanel4.add(jLabel13);
-        jLabel13.setBounds(280, 100, 60, 16);
+        jLabel13.setBounds(280, 100, 60, 14);
 
         jLabel11.setText("Tipo :");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(280, 150, 60, 16);
+        jLabel11.setBounds(280, 150, 60, 14);
 
         btnCancelarV.setText("CANCELAR");
         btnCancelarV.setEnabled(false);
@@ -479,27 +484,27 @@ public class FrmMain extends javax.swing.JFrame {
 
         txtAnio.setEditable(false);
         jPanel4.add(txtAnio);
-        txtAnio.setBounds(350, 100, 130, 22);
+        txtAnio.setBounds(350, 100, 130, 20);
 
         txtMarca.setEditable(false);
         jPanel4.add(txtMarca);
-        txtMarca.setBounds(120, 50, 130, 22);
+        txtMarca.setBounds(120, 50, 130, 20);
 
         txtTipo.setEditable(false);
         jPanel4.add(txtTipo);
-        txtTipo.setBounds(350, 150, 130, 22);
+        txtTipo.setBounds(350, 150, 130, 20);
 
         txtCombustible.setEditable(false);
         jPanel4.add(txtCombustible);
-        txtCombustible.setBounds(120, 150, 130, 22);
+        txtCombustible.setBounds(120, 150, 130, 20);
 
         txtModelo.setEditable(false);
         jPanel4.add(txtModelo);
-        txtModelo.setBounds(350, 50, 130, 22);
+        txtModelo.setBounds(350, 50, 130, 20);
 
         txtPlaca.setEditable(false);
         jPanel4.add(txtPlaca);
-        txtPlaca.setBounds(120, 100, 130, 22);
+        txtPlaca.setBounds(120, 100, 130, 20);
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 350, 540, 280);
@@ -515,11 +520,11 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel1.setText("Archivo Seleccionado :");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(260, 30, 120, 16);
+        jLabel1.setBounds(260, 30, 120, 14);
 
         jLabel2.setText("Ejemplo.txt");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(400, 30, 70, 16);
+        jLabel2.setBounds(400, 30, 70, 14);
 
         btnInforme.setText("Generar Informe");
         jPanel1.add(btnInforme);
@@ -546,6 +551,10 @@ public class FrmMain extends javax.swing.JFrame {
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
         cargarDatos();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCargarDatosActionPerformed
+
+    private void btnModificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPActionPerformed
 
     /**
      * @param args the command line arguments
