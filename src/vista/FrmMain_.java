@@ -562,7 +562,7 @@ public class FrmMain_ extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        pack();
+        setBounds(0, 0, 1154, 689);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
