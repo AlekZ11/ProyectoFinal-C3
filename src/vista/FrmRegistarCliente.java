@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.dao.ClienteDao;
 import controlador.modelos.ControladorClientes;
 import controlador.tda.lista.ListaEnlazada;
 import controlador.tda.lista.ListaEnlazadaServices;
@@ -22,6 +23,9 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
     private Integer numClientes = 0;
     private ControladorClientes cc = new ControladorClientes();
     private ListaEnlazada<Cliente> listaClientes = new ListaEnlazada<>();
+    
+    //Para Obtener la lista de personas de la base de datos
+    //private ListaEnlazada<Cliente> listaClientes = new ClienteDao().listar();
 
     /**
      * Creates new form FrmRegistarCliente
@@ -175,21 +179,26 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
     }
 
     private void registrar() {
-        Cliente c = new Cliente();
-        c.setId(numClientes);
-        c.setNombre(txtNombre.getText());
-        c.setApellido(txtApellido.getText());
-        c.setCiudad(txtCiudad.getText());
-        c.setDireccion(txtDireccion.getText());
-        c.setIdentificacion(txtIdentificacion.getText());
-        c.setProvincia(txtProvincia.getText());
-
-        if (!estaRegistrado()) {
-            listaClientes.insertar(c);
-            cc.setListaClientes(listaClientes);
-            cc.guardarClientes();
+        try {
+            Cliente c = new Cliente();
+            c.setId(numClientes);
+            c.setNombre(txtNombre.getText());
+            c.setApellido(txtApellido.getText());
+            c.setCiudad(txtCiudad.getText());
+            c.setDireccion(txtDireccion.getText());
+            c.setIdentificacion(txtIdentificacion.getText());
+            c.setProvincia(txtProvincia.getText());
+            
+            if (!estaRegistrado()) {
+                listaClientes.insertar(c);
+                cc.setListaClientes(listaClientes);
+                cc.guardarClientes();
+            }
+            //Para guardar en la base de datos
+            //new ClienteDao().guardar(c);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar en base de datos: \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public Boolean estaRegistrado() {
