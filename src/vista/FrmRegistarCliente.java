@@ -5,10 +5,8 @@
  */
 package vista;
 
-import controlador.dao.ClienteDao;
 import controlador.modelos.ControladorClientes;
 import controlador.tda.lista.ListaEnlazada;
-import controlador.tda.lista.ListaEnlazadaServices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,8 +19,8 @@ import modelo.Cliente;
 public class FrmRegistarCliente extends javax.swing.JFrame {
 
     private Integer numClientes = 0;
-    private ControladorClientes cc = new ControladorClientes();
-    private ListaEnlazada<Cliente> listaClientes = new ListaEnlazada<>();
+    private final ControladorClientes cc = new ControladorClientes();
+    private final ListaEnlazada<Cliente> listaClientes = new ListaEnlazada<>();
     
     //Para Obtener la lista de personas de la base de datos
     //private ListaEnlazada<Cliente> listaClientes = new ClienteDao().listar();
@@ -69,19 +67,19 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(50, 40, 60, 14);
         jPanel2.add(txtNombre);
-        txtNombre.setBounds(120, 40, 130, 20);
+        txtNombre.setBounds(120, 40, 130, 30);
 
         jLabel4.setText("Apellido :");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(280, 40, 60, 14);
         jPanel2.add(txtApellido);
-        txtApellido.setBounds(350, 40, 130, 20);
+        txtApellido.setBounds(350, 40, 130, 30);
 
         jLabel5.setText("Identificacion :");
         jPanel2.add(jLabel5);
         jLabel5.setBounds(30, 90, 80, 14);
         jPanel2.add(txtDireccion);
-        txtDireccion.setBounds(350, 90, 130, 20);
+        txtDireccion.setBounds(350, 90, 130, 30);
 
         jLabel6.setText("Direccion:");
         jPanel2.add(jLabel6);
@@ -113,11 +111,11 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
         jPanel2.add(btnModificarP);
         btnModificarP.setBounds(40, 200, 130, 30);
         jPanel2.add(txtProvincia);
-        txtProvincia.setBounds(350, 140, 130, 20);
+        txtProvincia.setBounds(350, 140, 130, 30);
         jPanel2.add(txtIdentificacion);
-        txtIdentificacion.setBounds(120, 90, 130, 20);
+        txtIdentificacion.setBounds(120, 90, 130, 30);
         jPanel2.add(txtCiudad);
-        txtCiudad.setBounds(120, 140, 130, 20);
+        txtCiudad.setBounds(120, 140, 130, 30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Formulario de Registro");
@@ -155,6 +153,7 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
         } else {
             numClientes++;
             try {
+                Integer.valueOf(txtIdentificacion.getText());
                 registrar();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "La identificacion solo puede contener numeros", "Error", JOptionPane.ERROR_MESSAGE);

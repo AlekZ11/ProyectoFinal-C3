@@ -5,18 +5,14 @@
  */
 package vista;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.HeadlessException;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import controlador.dao.ClienteDao;
+import controlador.dao.VehiculoDao;
+import controlador.dao.pdf.ReportePDF;
+import controlador.tda.lista.ListaEnlazada;
 import javax.swing.JOptionPane;
+import modelo.Cliente;
+import modelo.Reporte;
+import modelo.Vehiculo;
 
 /**
  *
@@ -24,11 +20,23 @@ import javax.swing.JOptionPane;
  */
 public class FrmReporte extends javax.swing.JFrame {
 
+    private Reporte reporte;
+    private final ClienteDao cliente = new ClienteDao();
+    private final VehiculoDao vehiculo = new VehiculoDao();
+
     /**
      * Creates new form FrmReporte
+     * @param reporte
      */
-    public FrmReporte() {
+    public FrmReporte(Reporte reporte) {
         initComponents();
+        this.reporte = reporte;
+        obtenerDatos();
+        cargar();
+    }
+
+    private FrmReporte() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -44,7 +52,6 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -54,7 +61,6 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -97,10 +103,6 @@ public class FrmReporte extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(20, 30, 60, 14);
 
-        jLabel4.setText("Modelo:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(240, 30, 60, 14);
-
         jLabel5.setText("Modelo:");
         jPanel2.add(jLabel5);
         jLabel5.setBounds(20, 60, 50, 14);
@@ -119,7 +121,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel20.setText("Combustible:");
         jPanel2.add(jLabel20);
-        jLabel20.setBounds(20, 120, 70, 14);
+        jLabel20.setBounds(240, 30, 70, 14);
 
         jLabel21.setText("jLabel21");
         jPanel2.add(jLabel21);
@@ -135,11 +137,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel24.setText("jLabel24");
         jPanel2.add(jLabel24);
-        jLabel24.setBounds(100, 120, 130, 14);
-
-        jLabel25.setText("jLabel25");
-        jPanel2.add(jLabel25);
-        jLabel25.setBounds(330, 30, 130, 14);
+        jLabel24.setBounds(330, 30, 130, 14);
 
         jLabel26.setText("jLabel26");
         jPanel2.add(jLabel26);
@@ -292,28 +290,47 @@ public class FrmReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Document documento = new Document();
-       
-        try {
-            String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Umbrales.pdf"));
-            documento.open();
-            
-            PdfPTable tabla = new PdfPTable(3);
-            tabla.addCell("Código");
-            tabla.addCell("Nombre del Alumno");
-            tabla.addCell("Grupo");
-            
-            tabla.addCell("BolitasQueso02");
-            tabla.addCell("Pepe el Mago");
-            tabla.addCell("04");
-            
-            documento.add(tabla); 
-            documento.close();
-            
-        } catch (Exception e) {
-        }
+        ReportePDF pdf = new ReportePDF(reporte);
+        pdf.generarPDF();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cargar(){
+        Cliente c = cliente.getCliente();
+        Vehiculo v = vehiculo.getVehiculo();
+        jLabel29.setText(reporte.getFecha().toString());
+        jLabel31.setText(String.valueOf(reporte.getId()));
+        
+        jLabel2.setText(c.getNombre());
+        jLabel15.setText(c.getIdentificacion());
+        jLabel16.setText(c.getCiudad());
+        jLabel17.setText(c.getApellido());
+        jLabel18.setText(c.getDireccion());
+        jLabel19.setText(c.getProvincia());
+        
+        jLabel21.setText(v.getMarca());
+        jLabel22.setText(v.getModelo());
+        jLabel23.setText(String.valueOf(v.getAnio()));
+        jLabel24.setText(v.getTipoCombustible());
+        jLabel26.setText(v.getPlaca());
+        jLabel27.setText(v.getTipoVehiculo());
+        
+        jTextArea1.setText(reporte.getObservacion());
+        
+        
+    }
+    private void obtenerDatos() {
+        try {
+            ListaEnlazada<Cliente> clientes = cliente.listar();
+            ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
+            clientes = clientes.buscar("id", reporte.getId_cliente());
+            vehiculos = vehiculos.buscar("id", reporte.getId_vehiculo());
+            cliente.setCliente(clientes.obtenerDato(0));
+            vehiculo.setVehiculo(vehiculos.obtenerDato(0));
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Datos no coinciden \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -369,7 +386,6 @@ public class FrmReporte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -377,7 +393,6 @@ public class FrmReporte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
