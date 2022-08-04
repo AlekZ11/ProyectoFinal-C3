@@ -16,7 +16,7 @@ import modelo.Cliente;
  *
  * @author Usuario iTC
  */
-public class FrmRegistarCliente extends javax.swing.JFrame {
+public class FrmLogin extends javax.swing.JFrame {
 
     private Integer numClientes = 0;
     private final ControladorClientes cc = new ControladorClientes();
@@ -28,7 +28,7 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
     /**
      * Creates new form FrmRegistarCliente
      */
-    public FrmRegistarCliente() {
+    public FrmLogin() {
         initComponents();
     }
 
@@ -65,33 +65,33 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre :");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(50, 40, 60, 14);
+        jLabel3.setBounds(50, 40, 60, 16);
         jPanel2.add(txtNombre);
         txtNombre.setBounds(120, 40, 130, 30);
 
         jLabel4.setText("Apellido :");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(280, 40, 60, 14);
+        jLabel4.setBounds(280, 40, 60, 16);
         jPanel2.add(txtApellido);
         txtApellido.setBounds(350, 40, 130, 30);
 
         jLabel5.setText("Identificacion :");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 90, 80, 14);
+        jLabel5.setBounds(30, 90, 80, 16);
         jPanel2.add(txtDireccion);
         txtDireccion.setBounds(350, 90, 130, 30);
 
         jLabel6.setText("Direccion:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(280, 90, 60, 14);
+        jLabel6.setBounds(280, 90, 60, 16);
 
         jLabel7.setText("Ciudad :");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(50, 140, 60, 14);
+        jLabel7.setBounds(50, 140, 60, 16);
 
         jLabel8.setText("Provincia :");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(280, 140, 60, 14);
+        jLabel8.setBounds(280, 140, 60, 16);
 
         btnCancelarP.setText("Limpiar");
         btnCancelarP.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +208,7 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
                 return true;
             }
         } catch (Exception ex) {
-            Logger.getLogger(FrmRegistarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -230,20 +230,21 @@ public class FrmRegistarCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRegistarCliente().setVisible(true);
+                new FrmLogin().setVisible(true);
             }
         });
     }

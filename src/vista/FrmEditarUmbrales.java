@@ -139,6 +139,11 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         jLabel4.setBounds(10, 50, 62, 25);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Todos excepto motos", "Livianos", "Motos", "Taxis", "Bus interprovincial", "Camión carga liviana", "Camioneta y camión de carga liviana", "Carga pesada" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(110, 50, 220, 30);
 
@@ -191,6 +196,10 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
