@@ -116,7 +116,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                             } else {
                                 valor = Double.valueOf(String.valueOf(value));
                             }
-                            resultados.insertar(controladorUmbral.comprobarUmbral(key, controladorVehiculos.getListaVehiculos().obtenerDato(controladorVehiculos.getSize() - 1).getAnio(), valor));
+                            //resultados.insertar(controladorUmbral.comprobarUmbral(key, controladorVehiculos.getListaVehiculos().obtenerDato(controladorVehiculos.getSize() - 1).getAnio(), valor));
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

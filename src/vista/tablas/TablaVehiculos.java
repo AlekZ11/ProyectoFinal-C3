@@ -42,7 +42,7 @@ public class TablaVehiculos  extends AbstractTableModel {
                 return null;
             }
             switch (columna) {
-                case 0:
+                /*case 0:
                     return vehiculo.getId();
                 case 1:
                     return vehiculo.getPlaca();
@@ -55,7 +55,7 @@ public class TablaVehiculos  extends AbstractTableModel {
                 case 5:
                     return vehiculo.getTipoCombustible();
                 case 6:
-                    return vehiculo.getTipoVehiculo();
+                    return vehiculo.getTipoVehiculo();*/
                 default:
                     return null;
             }

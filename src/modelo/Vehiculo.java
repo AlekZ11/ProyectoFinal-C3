@@ -1,62 +1,24 @@
 package modelo;
 
+import java.sql.Date;
+
 
 public class Vehiculo {
-    private Integer id;
-
-    private Integer id_cliente;
-    private String marca;
-    private String modelo;
-    private Integer anio;
     private String placa;
-    private String tipoVehiculo;
-    private String tipoCombustible;
+    
+    private Integer id_Automovil;
+    private Integer id_cliente;
+    private Date created_At;
+    private Date updated_At;
 
     public Vehiculo(){   }
 
-    public Vehiculo(Integer id, String marca, String modelo, Integer anio, String placa, String tipoVehiculo, String tipoCombustible, Integer id_cliente){
-        this.id = id;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anio = anio;
+    public Vehiculo(String placa, Integer id_Automovil, Integer id_cliente) {
         this.placa = placa;
-        this.tipoVehiculo = tipoVehiculo;
-        this.tipoCombustible = tipoCombustible;
+        this.id_Automovil = id_Automovil;
         this.id_cliente = id_cliente;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public Integer getAnio() {
-        return anio;
-    }
-
-    public void setAnio(Integer anio) {
-        this.anio = anio;
-    }
-
+    
     public String getPlaca() {
         return placa;
     }
@@ -65,20 +27,12 @@ public class Vehiculo {
         this.placa = placa;
     }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
+    public Integer getId_Automovil() {
+        return id_Automovil;
     }
 
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
-    }
-
-    public String getTipoCombustible() {
-        return tipoCombustible;
-    }
-
-    public void setTipoCombustible(String tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
+    public void setId_Automovil(Integer id_Automovil) {
+        this.id_Automovil = id_Automovil;
     }
 
     public Integer getId_cliente() {
@@ -89,17 +43,22 @@ public class Vehiculo {
         this.id_cliente = id_cliente;
     }
 
-    @Override
-    public String toString() {
-        return "Vehiculo{" +
-                "id=" + id +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", anio=" + anio +
-                ", placa='" + placa + '\'' +
-                ", tipoVehiculo=" + tipoVehiculo +
-                ", tipoCombustible=" + tipoCombustible +
-                ", Propietario=" + id_cliente +
-                '}';
+    public Date getCreated_At() {
+        return created_At;
     }
+
+    public void setCreated_At(Date created_At) {
+        this.created_At = created_At;
+    }
+
+    public Date getUpdated_At() {
+        return updated_At;
+    }
+
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
+    }
+    
+    
+
 }

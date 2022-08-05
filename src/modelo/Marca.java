@@ -4,10 +4,15 @@
  */
 package modelo;
 
+import java.sql.Date;
+
 /**
  *
  * @author LENOVO LEGION 5
  */
 public class Marca {
+    private Integer id;
     
+    private String name;
+    private Date created_At;
 }
