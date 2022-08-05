@@ -51,11 +51,11 @@ public class TablaClientes extends AbstractTableModel {
                 case 3:
                     return cliente.getIdentificacion();
                 case 4:
-                    return cliente.getProvincia();
+                    //return cliente.getProvincia();
                 case 5:
-                    return cliente.getCiudad();
+                    //return cliente.getCiudad();
                 case 6:
-                    return cliente.getDireccion();
+                    //return cliente.getDireccion();
                 default:
                     return null;
             }

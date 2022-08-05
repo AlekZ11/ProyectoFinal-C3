@@ -19,8 +19,8 @@ public class MarcaDao extends AdaptadorDao<Marca> {
         return marca;
     }
 
-    public void setMarca(Marca persona) {
-        this.marca = persona;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     public MarcaDao() {

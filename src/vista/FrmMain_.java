@@ -96,7 +96,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtProvincia.setText(atributosP[5]);
                 txtCiudad.setText(atributosP[4]);
                 txtDireccion.setText(atributosP[3]);
-                controladorClientes.insertarCliente(atributosP[1], atributosP[0], atributosP[2], atributosP[5], atributosP[4], atributosP[3]);
+                //controladorClientes.insertarCliente(atributosP[1], atributosP[0], atributosP[2], atributosP[5], atributosP[4], atributosP[3]);
                 txtMarca.setText(atributosV[1].toString());
                 txtModelo.setText(atributosV[2].toString());
                 txtAnio.setText(atributosV[4].toString());

@@ -15,4 +15,16 @@ public class Marca {
     
     private String name;
     private Date created_At;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getCreated_At() {
+        return created_At;
+    }
 }

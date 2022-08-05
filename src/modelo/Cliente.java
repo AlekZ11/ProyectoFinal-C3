@@ -1,19 +1,22 @@
 package modelo;
 
+import java.util.Date;
+
 public class Cliente extends Persona{
     private Integer id;
-    private String provincia;
-    private String ciudad;
-    private String direccion;
+    private Integer ID_location;
+    private Date Created_At;
+    private Date Updated_At;
 
-    public Cliente(){   }
+    public Cliente(){
+    
+    }
 
-    public Cliente(Integer id, String nombre, String apellido, String identificacion, String provincia, String ciudad, String direccion){
-        super(nombre, apellido, identificacion);
+    public Cliente(Integer id, Integer ID_location, Date Created_At, Date Updated_At) {
         this.id = id;
-        this.provincia = provincia;
-        this.ciudad = ciudad;
-        this.direccion = direccion;
+        this.ID_location = ID_location;
+        this.Created_At = Created_At;
+        this.Updated_At = Updated_At;
     }
 
     public Integer getId() {
@@ -24,39 +27,40 @@ public class Cliente extends Persona{
         this.id = id;
     }
 
-    public String getProvincia() {
-        return provincia;
+    public Integer getID_location() {
+        return ID_location;
     }
 
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
+    public void setID_location(Integer ID_location) {
+        this.ID_location = ID_location;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public Date getCreated_At() {
+        return Created_At;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCreated_At(Date Created_At) {
+        this.Created_At = Created_At;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public Date getUpdated_At() {
+        return Updated_At;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setUpdated_At(Date Updated_At) {
+        this.Updated_At = Updated_At;
     }
 
+    
     @Override
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
                 ", Nombre=" + super.getNombre() +
                 ", Apellido=" + super.getApellido() +
-                ", provincia='" + provincia + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", direccion='" + direccion + '\'' +
+                ", ID_location='" + ID_location + '\'' +
+                ", Created_At='" + Created_At + '\'' +
+                ", Updated_At='" + Updated_At + '\'' +
                 '}';
     }
 }

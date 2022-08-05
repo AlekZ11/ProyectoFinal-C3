@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class ControladorClientes {
     private ListaEnlazada<Cliente> listaClientes;
@@ -33,8 +34,8 @@ public class ControladorClientes {
         this.listaClientes = listaClientes;
     }
 
-    public void insertarCliente(String nombre, String apellido, String identificacion, String provincia, String ciudad, String direccion) throws Exception{
-        listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, provincia, ciudad, direccion));
+    public void insertarCliente(Integer ID_location, Date Created_At, Date Updated_At ) throws Exception{
+        listaClientes.insertar(new Cliente(listaClientes.getSize()+1, ID_location, Created_At, Updated_At));
     }
 
     public Integer getSize(){

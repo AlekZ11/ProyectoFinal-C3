@@ -10,6 +10,7 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
     RangoAnio rangoAnio;
 
     public RangoAnioDao(RangoAnio rangoAnio) {
+        super(RangoAnio.class);
         this.rangoAnio = rangoAnio;
     }
 

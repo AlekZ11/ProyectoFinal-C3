@@ -19,8 +19,8 @@ public class AutomovilDao extends AdaptadorDao<Automovil> {
         return automovil;
     }
 
-    public void setAutomovil(Automovil persona) {
-        this.automovil = persona;
+    public void setAutomovil(Automovil automovil) {
+        this.automovil = automovil;
     }
 
     public AutomovilDao() {

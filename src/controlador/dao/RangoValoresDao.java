@@ -9,7 +9,9 @@ import modelo.RangoValores;
 public class RangoValoresDao extends AdaptadorDao<RangoValores>{
     RangoValores rangoValores;
 
+
     public RangoValoresDao(RangoValores rangoValores) {
+        super(RangoValores.class);
         this.rangoValores = rangoValores;
     }
 
