@@ -1,6 +1,7 @@
 package controlador.modelos;
 
 import com.google.gson.Gson;
+import controlador.dao.UmbralDao;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.Umbral;
 
