@@ -1,6 +1,7 @@
 package controlador.modelos;
 
 import com.google.gson.Gson;
+import controlador.dao.VehiculoDao;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.TipoCombustible;
 import modelo.Vehiculo;
@@ -14,9 +15,9 @@ public class ControladorVehiculos {
     private ListaEnlazada<Vehiculo> listaVehiculos;
 
     public ControladorVehiculos(){
-        listaVehiculos = new ListaEnlazada<>();
+        listaVehiculos = new VehiculoDao().listar();
     }
-
+   
     public ListaEnlazada<Vehiculo> getListaVehiculos() {
         return listaVehiculos;
     }
