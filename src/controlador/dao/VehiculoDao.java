@@ -5,31 +5,44 @@
  */
 package controlador.dao;
 
+import controlador.tda.lista.ListaEnlazada;
 import modelo.Vehiculo;
 
 /**
  *
  * @author Usuario iTC
  */
-public class VehiculoDao extends AdaptadorDao<Vehiculo>{
+public class VehiculoDao extends AdaptadorDao<Vehiculo> {
     private Vehiculo vehiculo;
-    
-    public VehiculoDao() {
-        super(Vehiculo.class);
-    }
 
-    /**
-     * @return the vehiculo
-     */
-    public Vehiculo getVehiculo() {
+    public Vehiculo getPersona() {
         return vehiculo;
     }
 
-    /**
-     * @param vehiculo the vehiculo to set
-     */
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setPersona(Vehiculo persona) {
+        this.vehiculo = persona;
+    }
+
+    public VehiculoDao() {
+        super(Vehiculo.class);
     }
     
+    public void guardar() throws Exception{
+        super.guardar(vehiculo);
+    }
+    
+    public void modificar() throws Exception{
+        super.modificar(vehiculo);
+    }
+    
+    public ListaEnlazada<Vehiculo> listar(){
+        return super.listar();
+    }
+    
+    public Vehiculo obtener (Integer id) throws Exception{
+        return super.obtener(id);
+    }
+
+    public static void main(String[] args) throws Exception {
+    }
 }

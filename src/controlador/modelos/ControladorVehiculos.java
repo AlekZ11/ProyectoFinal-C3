@@ -28,15 +28,15 @@ public class ControladorVehiculos {
     public Vehiculo obtenerVehiculo(Integer id_vehiculo) throws Exception{
         for (int i = 0; i < listaVehiculos.getSize(); i++) {
             Vehiculo vehiculo = listaVehiculos.obtenerDato(i);
-            if (vehiculo.getId().equals(id_vehiculo)) {
+            /*if (vehiculo.getId().equals(id_vehiculo)) {
                 return vehiculo;
-            }
+            }*/
         }
         return null;
     }
 
     public void insertarVehiculo(String marca, String modelo, Integer anio, String placa, String tipoVehiculo, String tipoCombustible, Integer id_cliente) throws Exception{
-        listaVehiculos.insertar(new Vehiculo(listaVehiculos.getSize()+1, marca, modelo, anio, placa, tipoVehiculo, tipoCombustible, id_cliente));
+        //listaVehiculos.insertar(new Vehiculo(listaVehiculos.getSize()+1, marca, modelo, anio, placa, tipoVehiculo, tipoCombustible, id_cliente));
     }
 
     public Integer getSize(){
