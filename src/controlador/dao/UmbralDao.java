@@ -1,15 +1,16 @@
 package controlador.dao;
 
+
 import modelo.Umbral;
 
 public class UmbralDao extends AdaptadorDao<Umbral> {
     private Umbral umbral;
 
-    public Umbral getPersona() {
+    public Umbral getUmbral() {
         return umbral;
     }
 
-    public void setPersona(Umbral umbral) {
+    public void setUmbral(Umbral umbral) {
         this.umbral = umbral;
     }
 
