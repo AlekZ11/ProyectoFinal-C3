@@ -2,70 +2,61 @@ package modelo;
 
 
 public class Umbral {
-    private Integer id;
-    private Integer anioMin;
-    private Integer anioMax;
-    private Double [] valoresMin = new Double[4];
-    private Double [] valoresMax = new Double[4];
-    private Integer id_valor;
+    private Integer ID;
+    private Integer ID_RangoAnio;
+    private Double valorMin;
+    private Double valorMax;
+    private Integer claveUmbral;
 
     public Umbral(){   }
 
-    public Umbral(Integer id, Integer anioMin, Integer anioMax, Double [] valoresMin, Double [] valoresMax, Integer id_valor){
-        this.id = id;
-        this.anioMin = anioMin;
-        this.anioMax = anioMax;
-        this.valoresMin = valoresMin;
-        this.valoresMax = valoresMax;
-        this.id_valor = id_valor;
+    public Umbral(Integer ID, Integer ID_RangoAnio, Double valoresMin, Double valoresMax, Integer claveUmbral) {
+        this.ID = ID;
+        this.ID_RangoAnio = ID_RangoAnio;
+        this.valorMin = valoresMin;
+        this.valorMax = valoresMax;
+        this.claveUmbral = claveUmbral;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getID() {
+        return ID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 
-    public Integer getAnioMin() {
-        return anioMin;
+    public Integer getID_RangoAnio() {
+        return ID_RangoAnio;
     }
 
-    public void setAnioMin(Integer anioMin) {
-        this.anioMin = anioMin;
+    public void setID_RangoAnio(Integer ID_RangoAnio) {
+        this.ID_RangoAnio = ID_RangoAnio;
     }
 
-    public Integer getAnioMax() {
-        return anioMax;
+    public Double getValorMin() {
+        return valorMin;
     }
 
-    public void setAnioMax(Integer anioMax) {
-        this.anioMax = anioMax;
+    public void setValorMin(Double valorMin) {
+        this.valorMin = valorMin;
     }
 
-    public Double [] getValorMin() {
-        return valoresMin;
+    public Double getValorMax() {
+        return valorMax;
     }
 
-    public void setValorMin(Double [] valoresMin) {
-        this.valoresMin = valoresMin;
+    public void setValorMax(Double valorMax) {
+        this.valorMax = valorMax;
     }
 
-    public Double [] getValorMax() {
-        return valoresMax;
+    public Integer getClaveUmbral() {
+        return claveUmbral;
     }
 
-    public void setValorMax(Double [] valorMax) {
-        this.valoresMax = valoresMax;
+    public void setClaveUmbral(Integer claveUmbral) {
+        this.claveUmbral = claveUmbral;
     }
 
-    public Integer getId_valor() {
-        return id_valor;
-    }
-
-    public void setId_valor(Integer id_valor) {
-        this.id_valor = id_valor;
-    }
-
+    
 }

@@ -26,14 +26,14 @@ public class ControladorUmbral {
         this.listaUmbrales = listaUmbrales;
     }
 
-    public void insertarUmbral(Integer id_valor, Integer anioMin, Integer anioMax, Double [] valoresMin, Double [] valoresMax){
+    /*public void insertarUmbral(Integer id_valor, Integer anioMin, Integer anioMax, Double [] valoresMin, Double [] valoresMax){
         listaUmbrales.insertar(new Umbral(listaUmbrales.getSize()+1, anioMin, anioMax, valoresMin, valoresMax, id_valor));
-    }
+    }*/
 
     public ListaEnlazada<Umbral> obtenerUmbral(Integer id_valor) throws Exception{
         ListaEnlazada<Umbral> listaAux = new ListaEnlazada<>();
         for (int i = 0; i < listaUmbrales.getSize(); i++) {
-            if(listaUmbrales.obtenerDato(i).getId_valor().equals(id_valor)){
+            if(listaUmbrales.obtenerDato(i).getClaveUmbral().equals(id_valor)){
                 listaAux.insertar(listaUmbrales.obtenerDato(i));
             }
         }
@@ -68,7 +68,7 @@ public class ControladorUmbral {
         }
     }
 
-    public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception{
+    /*public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception{
         ListaEnlazada<Umbral> umbrales = obtenerUmbral(id_valor);
         String [] resultado = {"OK","Tipo 1", "Tipo 2", "Tipo 3"};
         for (int i = 0; i < umbrales.getSize(); i++) {
@@ -85,5 +85,5 @@ public class ControladorUmbral {
             }
         }
         return "Error no se encuentra dentro de los rangos de los umbrales";
-    }
+    }*/
 }
