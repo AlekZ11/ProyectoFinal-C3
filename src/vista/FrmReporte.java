@@ -5,12 +5,22 @@
  */
 package vista;
 
+import controlador.dao.AutomovilDao;
+import controlador.dao.CiudadDao;
 import controlador.dao.ClienteDao;
+import controlador.dao.LocationDao;
+import controlador.dao.MarcaDao;
+import controlador.dao.ProvinciaDao;
 import controlador.dao.VehiculoDao;
 import controlador.dao.pdf.ReportePDF;
 import controlador.tda.lista.ListaEnlazada;
 import javax.swing.JOptionPane;
+import modelo.Automovil;
+import modelo.Ciudad;
 import modelo.Cliente;
+import modelo.Location;
+import modelo.Marca;
+import modelo.Provincia;
 import modelo.Reporte;
 import modelo.Vehiculo;
 
@@ -23,9 +33,15 @@ public class FrmReporte extends javax.swing.JFrame {
     private Reporte reporte;
     private final ClienteDao cliente = new ClienteDao();
     private final VehiculoDao vehiculo = new VehiculoDao();
+    private final AutomovilDao automovil = new AutomovilDao();
+    private final MarcaDao marca = new MarcaDao();
+    private final LocationDao location = new LocationDao();
+    private final CiudadDao ciudad = new CiudadDao();
+    private final ProvinciaDao provincia = new ProvinciaDao();
 
     /**
      * Creates new form FrmReporte
+     *
      * @param reporte
      */
     public FrmReporte(Reporte reporte) {
@@ -294,38 +310,62 @@ public class FrmReporte extends javax.swing.JFrame {
         pdf.generarPDF();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cargar(){
+    private void cargar() {
+        obtenerDatos();
         Cliente c = cliente.getCliente();
         Vehiculo v = vehiculo.getVehiculo();
+        Automovil a = automovil.getAutomovil();
+        Marca m = marca.getMarca();
+        Location l = location.getLocation();
+        Ciudad cd = ciudad.getCiudad();
+        Provincia p = provincia.getProvincia();
+
         jLabel29.setText(reporte.getFecha().toString());
         jLabel31.setText(String.valueOf(reporte.getId()));
-        
+
         jLabel2.setText(c.getNombre());
         jLabel15.setText(c.getIdentificacion());
-        jLabel16.setText(c.getCiudad());
+        jLabel16.setText(cd.getNombre());
         jLabel17.setText(c.getApellido());
-        jLabel18.setText(c.getDireccion());
-        jLabel19.setText(c.getProvincia());
-        
-        jLabel21.setText(v.getMarca());
-        jLabel22.setText(v.getModelo());
-        jLabel23.setText(String.valueOf(v.getAnio()));
-        jLabel24.setText(v.getTipoCombustible());
+        jLabel18.setText(l.getDireccion());
+        jLabel19.setText(p.getNombre());
+
+        jLabel21.setText(m.getName());
+        jLabel22.setText(a.getModelo());
+        jLabel23.setText(String.valueOf(a.getAnio()));
+        jLabel24.setText(a.getTipoCombustible().getTipo());
         jLabel26.setText(v.getPlaca());
-        jLabel27.setText(v.getTipoVehiculo());
-        
+        jLabel27.setText(a.getTipoVehiculo().getTipo());
+
         jTextArea1.setText(reporte.getObservacion());
-        
-        
+
     }
+
     private void obtenerDatos() {
         try {
             ListaEnlazada<Cliente> clientes = cliente.listar();
             ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
+            ListaEnlazada<Automovil> automoviles = automovil.listar();
+            ListaEnlazada<Marca> marcas = marca.listar();
+            ListaEnlazada<Location> locations = location.listar();
+            ListaEnlazada<Ciudad> ciudades = ciudad.listar();
+            ListaEnlazada<Provincia> provincias = provincia.listar();
+
             clientes = clientes.buscar("id", reporte.getId_cliente());
             vehiculos = vehiculos.buscar("id", reporte.getId_vehiculo());
+            automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getId_Automovil());
+            marcas = marcas.buscar("id", automoviles.obtenerDato(0).getId_Marca());
+            locations = locations.buscar("id", clientes.obtenerDato(0).getID_location());
+            ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
+            provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());
+
             cliente.setCliente(clientes.obtenerDato(0));
             vehiculo.setVehiculo(vehiculos.obtenerDato(0));
+            automovil.setAutomovil(automoviles.obtenerDato(0));
+            marca.setMarca(marcas.obtenerDato(0));
+            location.setLocation(locations.obtenerDato(0));
+            ciudad.setCiudad(ciudades.obtenerDato(0));
+            provincia.setProvincia(provincias.obtenerDato(0));
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Datos no coinciden \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);

@@ -183,10 +183,10 @@ public class FrmLogin extends javax.swing.JFrame {
             c.setId(numClientes);
             c.setNombre(txtNombre.getText());
             c.setApellido(txtApellido.getText());
-            c.setCiudad(txtCiudad.getText());
-            c.setDireccion(txtDireccion.getText());
+            //c.setCiudad(txtCiudad.getText());
+            //c.setDireccion(txtDireccion.getText());
             c.setIdentificacion(txtIdentificacion.getText());
-            c.setProvincia(txtProvincia.getText());
+            //c.setProvincia(txtProvincia.getText());
             
             if (!estaRegistrado()) {
                 listaClientes.insertar(c);

@@ -15,11 +15,11 @@ import modelo.Vehiculo;
 public class VehiculoDao extends AdaptadorDao<Vehiculo> {
     private Vehiculo vehiculo;
 
-    public Vehiculo getPersona() {
+    public Vehiculo getVehiculo() {
         return vehiculo;
     }
 
-    public void setPersona(Vehiculo persona) {
+    public void setVehiculo(Vehiculo persona) {
         this.vehiculo = persona;
     }
 
