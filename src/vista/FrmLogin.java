@@ -154,7 +154,7 @@ public class FrmLogin extends javax.swing.JFrame {
             numClientes++;
             try {
                 Integer.valueOf(txtIdentificacion.getText());
-                registrar();
+                //registrar();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "La identificacion solo puede contener numeros", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -177,7 +177,7 @@ public class FrmLogin extends javax.swing.JFrame {
         txtProvincia.setText("");
     }
 
-    private void registrar() {
+    /*private void registrar() {
         try {
             Cliente c = new Cliente();
             c.setID_Cliente(numClientes);
@@ -198,7 +198,7 @@ public class FrmLogin extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar en base de datos: \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }*/
 
     public Boolean estaRegistrado() {
         try {

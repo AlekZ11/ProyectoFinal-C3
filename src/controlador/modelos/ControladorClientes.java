@@ -6,6 +6,7 @@ import controlador.dao.ClienteDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.UbicacionDao;
 import controlador.tda.lista.ListaEnlazada;
+import modelo.Ciudad;
 import modelo.Cliente;
 
 import java.io.FileNotFoundException;
@@ -13,6 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import modelo.Provincia;
+import modelo.Ubicacion;
 
 public class ControladorClientes {
     private ListaEnlazada<Cliente> listaClientes;
@@ -51,33 +54,39 @@ public class ControladorClientes {
     }
 
     public void cargarClientes(){
-        Gson gson = new Gson();
-        try {
-            Cliente [] arrayClientes = gson.fromJson(new FileReader("clientes.json"), Cliente[].class);
-            for (Cliente cliente : arrayClientes) {
-                listaClientes.insertar(cliente);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se encontro el archivo");
-        }
+        listaClientes = cldao.listar();
+    }
+    
+    public Integer existeProvincia(String provincia) throws Exception{
+        ListaEnlazada<Provincia> listaProvincia = pdao.listar();
+        ListaEnlazada <Provincia> resultado = listaProvincia.buscar("nombre", provincia);
+        if(resultado.estaVacia())
+            return -1;
+        return resultado.obtenerDato(0).getID_Provincia();
     }
 
-    public void guardarClientes() {
-        Gson gson = new Gson();
-        try {
-            Cliente[] arrayClientes = new Cliente[listaClientes.getSize()];
-            for (int i = 0; i < listaClientes.getSize(); i++) {
-                arrayClientes[i] = listaClientes.obtenerDato(i);
-            }
-            String json = gson.toJson(arrayClientes);
-            System.out.println(json);
-            FileWriter fw = new FileWriter("clientes.json");
-            fw.write(json);
-            fw.flush();
-            System.out.println("Se guardo el archivo");
-        } catch (Exception e) {
-            System.out.println("No se pudo guardar el archivo");
-        }
+    public Integer existeCiudad(String ciudad) throws Exception{
+        ListaEnlazada<Ciudad> listaCiudad = cidao.listar();
+        ListaEnlazada <Ciudad> resultado = listaCiudad.buscar("nombre", ciudad);
+        if(resultado.estaVacia())
+            return -1;
+        return resultado.obtenerDato(0).getID_Ciudad();
+    }
+
+    public Integer existeCliente(String identificacion) throws Exception{
+        ListaEnlazada<Cliente> listaCliente = cldao.listar();
+        ListaEnlazada <Cliente> resultado = listaCliente.buscar("identificacion", identificacion);
+        if(resultado.estaVacia())
+            return -1;
+        return resultado.obtenerDato(0).getID_Cliente();
+    }
+
+    public Integer existeUbiacion(String direccion) throws Exception{
+        ListaEnlazada<Ubicacion> listaUbicacion = udao.listar();
+        ListaEnlazada <Ubicacion> resultado = listaUbicacion.buscar("Direccion", direccion);
+        if(resultado.estaVacia())
+            return -1;
+        return resultado.obtenerDato(0).getID_Ubicacion();
     }
 
     public void imprimir(Integer i) throws Exception{

@@ -11,24 +11,24 @@ import java.util.Date;
  * @author LENOVO LEGION 5
  */
 public class Ciudad {
-    private Integer ID;
+    private Integer ID_Ciudad;
     private String Nombre;
     private Integer ID_Provincia;
     private Date Created_At;
 
     public Ciudad(Integer id, String Nombre, Integer ID_Provincia, Date Created_At) {
-        this.ID = id;
+        this.ID_Ciudad = id;
         this.Nombre = Nombre;
         this.ID_Provincia = ID_Provincia;
         this.Created_At = Created_At;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getID_Ciudad() {
+        return ID_Ciudad;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setID_Ciudad(Integer ID) {
+        this.ID_Ciudad = ID;
     }
 
     public String getNombre() {
@@ -57,7 +57,7 @@ public class Ciudad {
 
     @Override
     public String toString() {
-        return "Ciudad{" + "id=" + ID + ", Nombre=" + Nombre + ", ID_Provincia=" + ID_Provincia + ", Created_At=" + Created_At + '}';
+        return "Ciudad{" + "id=" + ID_Ciudad + ", Nombre=" + Nombre + ", ID_Provincia=" + ID_Provincia + ", Created_At=" + Created_At + '}';
     }
     
 }
