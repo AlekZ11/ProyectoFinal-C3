@@ -3,7 +3,7 @@ package controlador.modelos;
 import com.google.gson.Gson;
 import controlador.dao.UmbralDao;
 import controlador.tda.lista.ListaEnlazada;
-import modelo.Umbral;
+import modelo.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 public class ControladorUmbral {
     private ListaEnlazada<Umbral> listaUmbrales;
+    private ListaEnlazada<RangoAnio> listaRangosAnio;
 
     public ControladorUmbral(){
         listaUmbrales = new ListaEnlazada<>();
@@ -38,6 +39,14 @@ public class ControladorUmbral {
             }
         }
         return listaAux;
+    }
+    
+    public RangoAnio obtenerRangoAnio(Integer id_rangoAnio)throws Exception{
+        RangoAnio Aux = new RangoAnio();
+            if(listaRangosAnio.obtenerDato(id_rangoAnio).getID_RangoAnio().equals(id_rangoAnio)){
+                Aux = listaRangosAnio.obtenerDato(id_rangoAnio);
+            }
+        return Aux;
     }
 
     public void cargarUmbrales(){
@@ -68,13 +77,14 @@ public class ControladorUmbral {
         }
     }
 
-    /*public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception{
+    public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception{
         ListaEnlazada<Umbral> umbrales = obtenerUmbral(id_valor);
         String [] resultado = {"OK","Tipo 1", "Tipo 2", "Tipo 3"};
         for (int i = 0; i < umbrales.getSize(); i++) {
             Umbral umbral = umbrales.obtenerDato(i);
+            ListaEnlazada<RangoAnio> lra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
             if(umbral != null){
-                if(anio >= umbral.getAnioMin() && anio < umbral.getAnioMax()){
+                if(anio >= lra.obtenerDato(i) && anio < umbral.getAnioMax()){
                     for (int j = 0; j < umbral.getValorMin().length; j++) {
                         if(umbral.getValorMin()[j] <= valor && umbral.getValorMax()[j] > valor){
                             System.out.println("(" + umbral.getValorMin()[j] + " <= " + valor + " < " + umbral.getValorMax()[j] + ")" + " = " + resultado[j]);
@@ -85,5 +95,5 @@ public class ControladorUmbral {
             }
         }
         return "Error no se encuentra dentro de los rangos de los umbrales";
-    }*/
+    }
 }
