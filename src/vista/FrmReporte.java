@@ -325,12 +325,12 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel18.setText(CR.getL().getDireccion());
         jLabel19.setText(CR.getP().getNombre());
 
-        jLabel21.setText(CR.getM().getName());
+        jLabel21.setText(CR.getM().getNombre());
         jLabel22.setText(CR.getV().getModelo());
         //jLabel23.setText(String.valueOf(a.getAnio()));
-        jLabel24.setText(CR.getV().getTipoCombustible());
+        jLabel24.setText(CR.getT_c().getTipo());
         jLabel26.setText(CR.getA().getPlaca());
-        jLabel27.setText(CR.getV().getTipoVehiculo());
+        jLabel27.setText(CR.getT_v().getTipo());
 
         StringBuffer resultados = new StringBuffer();
         for (int i = 0; i < CR.getResultados().getSize(); i++) {

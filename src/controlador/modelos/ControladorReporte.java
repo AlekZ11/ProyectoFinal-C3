@@ -7,6 +7,7 @@ package controlador.modelos;
 import controlador.dao.CiudadDao;
 import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
+import controlador.dao.TipoCombustibleDao;
 import controlador.dao.UbicacionDao;
 import controlador.dao.VehiculoDao;
 import controlador.tda.lista.ListaEnlazada;
@@ -15,6 +16,8 @@ import modelo.Ciudad;
 import modelo.Cliente;
 import modelo.Marca;
 import modelo.Provincia;
+import modelo.TipoCombustible;
+import modelo.TipoVehiculo;
 import modelo.Ubicacion;
 import modelo.Vehiculo;
 
@@ -31,6 +34,8 @@ public class ControladorReporte {
     private Ubicacion l;
     private Ciudad cd;
     private Provincia p;
+    private TipoVehiculo t_v;
+    private TipoCombustible t_c;
     private ListaEnlazada<String> resultados;
 
     public ControladorReporte(Cliente c, Automovil a, ListaEnlazada<String> resultados) throws Exception {
@@ -41,6 +46,8 @@ public class ControladorReporte {
         this.l = ObtenerUbicacion();
         this.cd = ObtenerCiudad();
         this.p = ObtenerProvincia();
+        this.t_c = obtenerTipocombustible();
+        this.t_v = obtenerTipoVehiculo();
 
         this.resultados = resultados;
     }
@@ -161,6 +168,35 @@ public class ControladorReporte {
         this.p = p;
     }
 
+    /**
+     * @return the t_v
+     */
+    public TipoVehiculo getT_v() {
+        return t_v;
+    }
+
+    /**
+     * @param t_v the t_v to set
+     */
+    public void setT_v(TipoVehiculo t_v) {
+        this.t_v = t_v;
+    }
+
+    /**
+     * @return the t_c
+     */
+    public TipoCombustible getT_c() {
+        return t_c;
+    }
+
+    /**
+     * @param t_c the t_c to set
+     */
+    public void setT_c(TipoCombustible t_c) {
+        this.t_c = t_c;
+    }
+    
+    
     private Vehiculo ObtenerVehiculo() throws Exception {
         VehiculoDao vehiculo = new VehiculoDao();
         //ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
@@ -209,6 +245,16 @@ public class ControladorReporte {
         return provincia.obtener(cd.getID_Provincia() + "");
         
         //return provincias.obtenerDato(0);
+    }
+    
+    private TipoCombustible obtenerTipocombustible() throws Exception{
+        TipoCombustibleDao tipocombustible = new TipoCombustibleDao();
+        return tipocombustible.obtener(v.getID_TipoCombustible());
+    }
+    
+    private TipoVehiculo obtenerTipoVehiculo(){
+        TipoVehiculoDao tipovehiculo = new TipoVehiculoDao();
+        return tipovehiculo.obtener(v.getID_TipoVehiculo());
     }
 
 }
