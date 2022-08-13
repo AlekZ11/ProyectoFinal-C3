@@ -94,9 +94,8 @@ public class ControladorAutomoviles {
         Integer id_marca = existeMarca(marca);
         ListaEnlazada <Vehiculo> resultado1 = listaVehiculos.buscar("ID_Marca", id_marca);
         ListaEnlazada <Vehiculo> resultado2 = resultado1.buscar("Modelo", modelo);
-        ListaEnlazada <Vehiculo> resultado3 = resultado2.buscar("TipoVehiculo", tipoVehiculo);
-        ListaEnlazada <Vehiculo> resultado4 = resultado3.buscar("TipoCombustible", tipoCombustible);
-        System.out.println(resultado4.obtenerDato(0).toString());
+        ListaEnlazada <Vehiculo> resultado3 = resultado2.buscar("ID_TipoVehiculo", tipoVehiculo);
+        ListaEnlazada <Vehiculo> resultado4 = resultado3.buscar("ID_TipoCombustible", tipoCombustible);
         if(resultado4.getSize() > 0){
             return resultado4.obtenerDato(0).getID_Vehiculo();
         }else {

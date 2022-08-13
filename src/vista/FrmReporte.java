@@ -333,9 +333,9 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel21.setText(m.getNombre());
         jLabel22.setText(v.getModelo());
         //jLabel23.setText(String.valueOf(a.getAnio()));
-        jLabel24.setText(v.getTipoCombustible());
+        jLabel24.setText(v.getID_TipoCombustible());
         jLabel26.setText(a.getPlaca());
-        jLabel27.setText(v.getTipoVehiculo());
+        jLabel27.setText(v.getID_TipoVehiculo());
 
         jTextArea1.setText(reporte.getObservacion());
 

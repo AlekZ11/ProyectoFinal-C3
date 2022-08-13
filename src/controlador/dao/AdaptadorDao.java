@@ -57,7 +57,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         try {
 
             PreparedStatement stmt = getConexion().prepareStatement(ALL);
-            System.out.println("Comando : " + ALL);
             ResultSet resultSet = stmt.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             String[] columna = new String[resultSetMetaData.getColumnCount()];
@@ -106,7 +105,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             }
         }
         comando += " (" + variables + ") values (" + datos + ") ";
-        System.out.println("Comando : " + comando);
         try {
             PreparedStatement stmt = getConexion().prepareStatement(comando);
             stmt.executeUpdate();
@@ -141,7 +139,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
 
         }
         comando += datos + " where id"+clazz.getSimpleName().toLowerCase()+" = " + id.toString();
-        System.out.println("Comando : " + comando);
         try {
             PreparedStatement stmt = getConexion().prepareStatement(comando);
             stmt.executeUpdate();
@@ -165,7 +162,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         }
         T obj = null;
         String[] columna = columnas();
-        System.out.println("Comando : " + ALL_ID + id);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
             obj = (T) clazz.getConstructor().newInstance();

@@ -85,11 +85,9 @@ public class ControladorUmbral {
             RangoAnio ra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
             if(umbral != null){
                 if(anio >= ra.getAnioMin() && anio < ra.getAnioMax()){
-                    for (int j = 0; j < umbral.getValorMin(); j++) {
-                        if(umbral.getValorMin()[j] <= valor && umbral.getValorMax()[j] > valor){
-                            System.out.println("(" + umbral.getValorMin()[j] + " <= " + valor + " < " + umbral.getValorMax()[j] + ")" + " = " + resultado[j]);
-                            return resultado[j];
-                        }
+                    if(umbral.getValorMin() <= valor && umbral.getValorMax() > valor){
+                        System.out.println("(" + umbral.getValorMin() + " <= " + valor + " < " + umbral.getValorMax() + ")" + " = " + umbral.getTipo());
+                        return umbral.getTipo();
                     }
                 }
             }
