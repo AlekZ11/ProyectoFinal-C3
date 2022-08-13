@@ -15,7 +15,7 @@ public class Conexion {
     private static final String user="USER3C";
     private static final String pass="admin123";
     private static final String base= "DB3C";
-    private static final String port="jdbc:oracle:thin:@localhost:1521:XE";
+    private static final String port="jdbc:oracle:thin:@fe80::a000:5bda:5884:4177%4:1521:XE";
     public static Connection con;
 
     public static Connection getConexion() {

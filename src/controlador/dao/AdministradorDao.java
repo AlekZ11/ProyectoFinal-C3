@@ -44,5 +44,8 @@ public class AdministradorDao extends AdaptadorDao<Administrador> {
     }
 
     public static void main(String[] args) throws Exception {
+        AdministradorDao adao = new AdministradorDao();
+        adao.setAdministrador(new Administrador("joanr", "sysdba456"));
+        adao.guardar();
     }
 }

@@ -1,25 +1,14 @@
 package modelo;
 
-public class Administrador extends Persona {
-    private Integer id;
+public class Administrador {
     private String usuario;
     private String password;
 
     public Administrador(){   }
 
-    public Administrador(Integer id, String nombre, String apellido, String identificacion, String usuario, String password){
-        super(nombre, apellido, identificacion);
-        this.id = id;
+    public Administrador( String usuario, String password){
         this.usuario = usuario;
         this.password = password;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUsuario() {

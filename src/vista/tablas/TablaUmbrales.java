@@ -4,6 +4,7 @@ import controlador.tda.lista.ListaEnlazada;
 import modelo.Umbral;
 
 import javax.swing.table.AbstractTableModel;
+import modelo.RangoAnio;
 
 public class TablaUmbrales extends AbstractTableModel {
     private ListaEnlazada<Umbral> listaUmbrales;
@@ -43,18 +44,20 @@ public class TablaUmbrales extends AbstractTableModel {
     @Override
     public Object getValueAt(int fila, int columna) {
         Umbral umbral;
+        RangoAnio rangoAnio = new RangoAnio(1000, 0, 9999);
         try{
             umbral = listaUmbrales.obtenerDato(fila);
+            //rangoAnio = ControladorAnio.obtenerRango(umbral.getID_RangoAnio());
         }catch (Exception e){
             return null;
         }
         switch (columna) {
             case 0:
-                return umbral.getId();
+                return umbral.getID();
             case 1:
-                return umbral.getAnioMin();
+                return rangoAnio.getAnioMin();
             case 2:
-                return umbral.getAnioMax();
+                return rangoAnio.getAnioMax();
             case 3:
                 return umbral.getValorMin();
             case 4:

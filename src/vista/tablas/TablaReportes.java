@@ -45,8 +45,8 @@ public class TablaReportes extends AbstractTableModel {
         Vehiculo vehiculo;
         try{
             reporte = listaReportes.obtenerDato(fila);
-            cliente = controladorClientes.obtenerCliente(reporte.getId_cliente());
             vehiculo = controladorVehiculos.obtenerVehiculo(reporte.getId_vehiculo());
+            cliente = controladorClientes.obtenerCliente(vehiculo.getId_cliente());
         }catch (Exception e){
             return null;
         }

@@ -43,7 +43,7 @@ public class TablaClientes extends AbstractTableModel {
             }
             switch (columna) {
                 case 0:
-                    return cliente.getId();
+                    return cliente.getID();
                 case 1:
                     return cliente.getNombre();
                 case 2:

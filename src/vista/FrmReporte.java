@@ -8,7 +8,7 @@ package vista;
 import controlador.dao.AutomovilDao;
 import controlador.dao.CiudadDao;
 import controlador.dao.ClienteDao;
-import controlador.dao.LocationDao;
+import controlador.dao.UbicacionDao;
 import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.VehiculoDao;
@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import modelo.Automovil;
 import modelo.Ciudad;
 import modelo.Cliente;
-import modelo.Location;
+import modelo.Ubicacion;
 import modelo.Marca;
 import modelo.Provincia;
 import modelo.Reporte;
@@ -35,7 +35,7 @@ public class FrmReporte extends javax.swing.JFrame {
     private final VehiculoDao vehiculo = new VehiculoDao();
     private final AutomovilDao automovil = new AutomovilDao();
     private final MarcaDao marca = new MarcaDao();
-    private final LocationDao location = new LocationDao();
+    private final UbicacionDao location = new UbicacionDao();
     private final CiudadDao ciudad = new CiudadDao();
     private final ProvinciaDao provincia = new ProvinciaDao();
 
@@ -316,7 +316,7 @@ public class FrmReporte extends javax.swing.JFrame {
         Vehiculo v = vehiculo.getVehiculo();
         Automovil a = automovil.getAutomovil();
         Marca m = marca.getMarca();
-        Location l = location.getLocation();
+        Ubicacion l = location.getLocation();
         Ciudad cd = ciudad.getCiudad();
         Provincia p = provincia.getProvincia();
 
@@ -332,7 +332,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel21.setText(m.getName());
         jLabel22.setText(a.getModelo());
-        jLabel23.setText(String.valueOf(a.getAnio()));
+        //jLabel23.setText(String.valueOf(a.getAnio()));
         jLabel24.setText(a.getTipoCombustible().getTipo());
         jLabel26.setText(v.getPlaca());
         jLabel27.setText(a.getTipoVehiculo().getTipo());
@@ -347,15 +347,15 @@ public class FrmReporte extends javax.swing.JFrame {
             ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
             ListaEnlazada<Automovil> automoviles = automovil.listar();
             ListaEnlazada<Marca> marcas = marca.listar();
-            ListaEnlazada<Location> locations = location.listar();
+            ListaEnlazada<Ubicacion> locations = location.listar();
             ListaEnlazada<Ciudad> ciudades = ciudad.listar();
             ListaEnlazada<Provincia> provincias = provincia.listar();
 
-            clientes = clientes.buscar("id", reporte.getId_cliente());
             vehiculos = vehiculos.buscar("id", reporte.getId_vehiculo());
+            clientes = clientes.buscar("id", vehiculos.obtenerDato(0).getId_cliente());
             automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getId_Automovil());
             marcas = marcas.buscar("id", automoviles.obtenerDato(0).getId_Marca());
-            locations = locations.buscar("id", clientes.obtenerDato(0).getID_location());
+            locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
             ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
             provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());
 

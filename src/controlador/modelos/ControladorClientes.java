@@ -19,7 +19,7 @@ public class ControladorClientes {
     public Cliente obtenerCliente(Integer id_cliente) throws Exception{
         for (int i = 0; i < listaClientes.getSize(); i++) {
             Cliente cliente = listaClientes.obtenerDato(i);
-            if (cliente.getId().equals(id_cliente)) {
+            if (cliente.getID().equals(id_cliente)) {
                 return cliente;
             }
         }
@@ -34,8 +34,8 @@ public class ControladorClientes {
         this.listaClientes = listaClientes;
     }
 
-    public void insertarCliente(Integer ID_location, Date Created_At, Date Updated_At ) throws Exception{
-        listaClientes.insertar(new Cliente(listaClientes.getSize()+1, ID_location, Created_At, Updated_At));
+    public void insertarCliente(String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At ) throws Exception{
+        listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, ID_location, Created_At, Updated_At ));
     }
 
     public Integer getSize(){

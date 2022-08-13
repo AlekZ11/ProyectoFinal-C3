@@ -6,6 +6,7 @@ import java.sql.Date;
 public class Vehiculo {
     private String placa;
     
+    private Integer anio;
     private Integer id_Automovil;
     private Integer id_cliente;
     private Date created_At;
@@ -13,8 +14,9 @@ public class Vehiculo {
 
     public Vehiculo(){   }
 
-    public Vehiculo(String placa, Integer id_Automovil, Integer id_cliente) {
+    public Vehiculo(String placa, Integer anio, Integer id_Automovil, Integer id_cliente) {
         this.placa = placa;
+        this.anio = anio;
         this.id_Automovil = id_Automovil;
         this.id_cliente = id_cliente;
     }
@@ -25,6 +27,14 @@ public class Vehiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
     }
 
     public Integer getId_Automovil() {

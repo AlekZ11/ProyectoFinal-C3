@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Reporte {
     private Integer id;
-    private Integer id_cliente;
     private Integer id_vehiculo;
     private boolean estado;
     private Date fecha;
@@ -12,9 +11,8 @@ public class Reporte {
 
     public Reporte(){   }
 
-    public Reporte(Integer id, Integer id_cliente, Integer id_vehiculo, boolean estado, String observacion){
+    public Reporte(Integer id, Integer id_vehiculo, boolean estado, String observacion){
         this.id = id;
-        this.id_cliente = id_cliente;
         this.id_vehiculo = id_vehiculo;
         this.estado = estado;
         //Asignar la fecha actual
@@ -28,14 +26,6 @@ public class Reporte {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
     }
 
     public Integer getId_vehiculo() {
@@ -73,7 +63,7 @@ public class Reporte {
     @Override
     public String toString(){
         return "Reporte: " + this.id
-                + "\n - Cliente: " + this.id_cliente
+                + "\n - Cliente: " + 1
                 + "\n - Vehiculo: " + this.id_vehiculo
                 + "\n - Estado: " + this.estado
                 + "\n - Fecha: " + this.fecha

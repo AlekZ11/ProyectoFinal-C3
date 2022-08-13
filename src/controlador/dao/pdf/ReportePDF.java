@@ -12,7 +12,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import controlador.dao.AutomovilDao;
 import controlador.dao.CiudadDao;
 import controlador.dao.ClienteDao;
-import controlador.dao.LocationDao;
+import controlador.dao.UbicacionDao;
 import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.VehiculoDao;
@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import modelo.Automovil;
 import modelo.Ciudad;
 import modelo.Cliente;
-import modelo.Location;
+import modelo.Ubicacion;
 import modelo.Marca;
 import modelo.Provincia;
 import modelo.Reporte;
@@ -39,7 +39,7 @@ public class ReportePDF {
     private final VehiculoDao vehiculo = new VehiculoDao();
     private final AutomovilDao automovil = new AutomovilDao();
     private final MarcaDao marca = new MarcaDao();
-    private final LocationDao location = new LocationDao();
+    private final UbicacionDao ubicacion = new UbicacionDao();
     private final CiudadDao ciudad = new CiudadDao();
     private final ProvinciaDao provincia = new ProvinciaDao();
 
@@ -59,7 +59,7 @@ public class ReportePDF {
         Vehiculo v = vehiculo.getVehiculo();
         Automovil a = automovil.getAutomovil();
         Marca m = marca.getMarca();
-        Location l = location.getLocation();
+        Ubicacion l = ubicacion.getLocation();
         Ciudad cd = ciudad.getCiudad();
         Provincia p = provincia.getProvincia();
         
@@ -92,7 +92,7 @@ public class ReportePDF {
             documento.add(new Paragraph("Datos Vehículo", font));
             documento.add(new Paragraph("Marca: " + m.getName()));
             documento.add(new Paragraph("Modelo: " + a.getModelo()));
-            documento.add(new Paragraph("Año: " + a.getAnio()));
+            documento.add(new Paragraph("Año: " + v.getAnio()));
             documento.add(new Paragraph("Combustible: " + a.getTipoCombustible().getTipo()));
             documento.add(new Paragraph("Placa: " + v.getPlaca()));
             documento.add(new Paragraph("Tipo de Vehiculo: " + a.getTipoVehiculo().getTipo()));
@@ -123,15 +123,15 @@ public class ReportePDF {
             ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
             ListaEnlazada<Automovil> automoviles = automovil.listar();
             ListaEnlazada<Marca> marcas = marca.listar();
-            ListaEnlazada<Location> locations = location.listar();
+            ListaEnlazada<Ubicacion> locations = ubicacion.listar();
             ListaEnlazada<Ciudad> ciudades = ciudad.listar();
             ListaEnlazada<Provincia> provincias = provincia.listar();
             
-            clientes = clientes.buscar("id", reporte.getId_cliente());
             vehiculos = vehiculos.buscar("id", reporte.getId_vehiculo());
+            clientes = clientes.buscar("id", vehiculos.obtenerDato(0).getId_cliente());
             automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getId_Automovil());
             marcas = marcas.buscar("id", automoviles.obtenerDato(0).getId_Marca());
-            locations = locations.buscar("id", clientes.obtenerDato(0).getID_location());
+            locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
             ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
             provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());
             
@@ -139,7 +139,7 @@ public class ReportePDF {
             vehiculo.setVehiculo(vehiculos.obtenerDato(0));
             automovil.setAutomovil(automoviles.obtenerDato(0));
             marca.setMarca(marcas.obtenerDato(0));
-            location.setLocation(locations.obtenerDato(0));
+            ubicacion.setLocation(locations.obtenerDato(0));
             ciudad.setCiudad(ciudades.obtenerDato(0));
             provincia.setProvincia(provincias.obtenerDato(0));
             
@@ -149,7 +149,7 @@ public class ReportePDF {
     }
     
     public static void main(String[] args) {
-        ReportePDF pdf = new ReportePDF(new Reporte(2, 2, 3, true, "El chasis esta un ligeramente aboyado"));
-        pdf.generarPDF();
+        //ReportePDF pdf = new ReportePDF(new Reporte(2, 2, 3, true, "El chasis esta un ligeramente aboyado"));
+        //pdf.generarPDF();
     }
 }

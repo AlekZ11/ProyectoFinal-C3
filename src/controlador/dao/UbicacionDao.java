@@ -5,25 +5,25 @@
  */
 package controlador.dao;
 
-import modelo.Location;
+import modelo.Ubicacion;
 
 /**
  *
  * @author Usuario iTC
  */
-public class LocationDao extends AdaptadorDao<Location>{
+public class UbicacionDao extends AdaptadorDao<Ubicacion>{
     
-    private Location location;
+    private Ubicacion location;
     
-    public LocationDao() {
-        super(Location.class);
+    public UbicacionDao() {
+        super(Ubicacion.class);
     }
 
-    public Location getLocation() {
+    public Ubicacion getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Ubicacion location) {
         this.location = location;
     }
     
