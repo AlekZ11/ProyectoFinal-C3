@@ -313,8 +313,8 @@ public class FrmReporte extends javax.swing.JFrame {
     private void cargar() {
         obtenerDatos();
         Cliente c = cliente.getCliente();
-        Automovil v = vehiculo.getVehiculo();
-        Vehiculo a = automovil.getAutomovil();
+        Automovil a = automovil.getAutomovil();
+        Vehiculo v = vehiculo.getVehiculo();
         Marca m = marca.getMarca();
         Ubicacion l = location.getLocation();
         Ciudad cd = ciudad.getCiudad();
@@ -331,11 +331,11 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel19.setText(p.getNombre());
 
         jLabel21.setText(m.getName());
-        jLabel22.setText(a.getModelo());
+        jLabel22.setText(v.getModelo());
         //jLabel23.setText(String.valueOf(a.getAnio()));
-        jLabel24.setText(a.getTipoCombustible());
-        jLabel26.setText(v.getPlaca());
-        jLabel27.setText(a.getTipoVehiculo());
+        jLabel24.setText(v.getTipoCombustible());
+        jLabel26.setText(a.getPlaca());
+        jLabel27.setText(v.getTipoVehiculo());
 
         jTextArea1.setText(reporte.getObservacion());
 
@@ -344,17 +344,17 @@ public class FrmReporte extends javax.swing.JFrame {
     private void obtenerDatos() {
         try {
             ListaEnlazada<Cliente> clientes = cliente.listar();
-            ListaEnlazada<Automovil> vehiculos = vehiculo.listar();
-            ListaEnlazada<Vehiculo> automoviles = automovil.listar();
+            ListaEnlazada<Automovil> automoviles = automovil.listar();
+            ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
             ListaEnlazada<Marca> marcas = marca.listar();
             ListaEnlazada<Ubicacion> locations = location.listar();
             ListaEnlazada<Ciudad> ciudades = ciudad.listar();
             ListaEnlazada<Provincia> provincias = provincia.listar();
 
             vehiculos = vehiculos.buscar("id", reporte.getID_Vehiculo());
-            clientes = clientes.buscar("id", vehiculos.obtenerDato(0).getID_Cliente());
-            automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getID_Vehiculo());
-            marcas = marcas.buscar("id", automoviles.obtenerDato(0).getID_Marca());
+            clientes = clientes.buscar("id", automoviles.obtenerDato(0).getID_Cliente());
+            automoviles = automoviles.buscar("id", automoviles.obtenerDato(0).getID_Vehiculo());
+            marcas = marcas.buscar("id", vehiculos.obtenerDato(0).getID_Marca());
             locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
             ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
             provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());
