@@ -59,7 +59,7 @@ public class ReportePDF {
         Vehiculo v = vehiculo.getVehiculo();
         Automovil a = automovil.getAutomovil();
         Marca m = marca.getMarca();
-        Ubicacion l = ubicacion.getLocation();
+        Ubicacion l = ubicacion.getUbicacion();
         Ciudad cd = ciudad.getCiudad();
         Provincia p = provincia.getProvincia();
         
