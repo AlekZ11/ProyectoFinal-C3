@@ -56,8 +56,9 @@ public class ControladorReporte {
     }
     
     public ControladorReporte(ListaEnlazada<String> resultados) throws Exception {
-        this.c = ObtenerCliente();
+        
         this.a = ObtenerAutomovil();
+        this.c = ObtenerCliente();
         this.v = ObtenerVehiculo();
         this.m = ObtenerMarca();
         this.l = ObtenerUbicacion();
@@ -276,6 +277,7 @@ public class ControladorReporte {
     
     private Automovil ObtenerAutomovil() throws Exception{
         AutomovilDao auto = new AutomovilDao();
+        System.out.println("AUTO" + auto.obtener("GLS1960").getAnio());
         return auto.obtener("GLS1960");
     }
     
