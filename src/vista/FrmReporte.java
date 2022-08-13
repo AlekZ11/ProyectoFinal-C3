@@ -13,7 +13,13 @@ import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.VehiculoDao;
 import controlador.dao.pdf.ReportePDF;
+import controlador.modelos.ControladorReporte;
 import controlador.tda.lista.ListaEnlazada;
+import controlador.tda.lista.exception.PosicionException;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Vehiculo;
 import modelo.Ciudad;
@@ -30,30 +36,27 @@ import modelo.Automovil;
  */
 public class FrmReporte extends javax.swing.JFrame {
 
-    private Reporte reporte;
-    private final ClienteDao cliente = new ClienteDao();
-    private final VehiculoDao vehiculo = new VehiculoDao();
-    private final AutomovilDao automovil = new AutomovilDao();
-    private final MarcaDao marca = new MarcaDao();
-    private final UbicacionDao location = new UbicacionDao();
-    private final CiudadDao ciudad = new CiudadDao();
-    private final ProvinciaDao provincia = new ProvinciaDao();
+    //private Reporte reporte;
+    
+    private ControladorReporte CR = new ControladorReporte();
 
     /**
      * Creates new form FrmReporte
      *
-     * @param reporte
+     * @param cliente
+     * @param auto
+     * @param lista
      */
-    public FrmReporte(Reporte reporte) {
+    public FrmReporte(Cliente cliente, Automovil auto, ListaEnlazada<String> lista) {
         initComponents();
-        this.reporte = reporte;
-        obtenerDatos();
+        try {
+            CR = new ControladorReporte(cliente, auto, lista);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener datos, podria deberse a un error de la base de datos", "DataBaseError", JOptionPane.ERROR_MESSAGE);
+        }
         cargar();
     }
 
-    private FrmReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -306,70 +309,40 @@ public class FrmReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ReportePDF pdf = new ReportePDF(reporte);
-        pdf.generarPDF();
+        //ReportePDF pdf = new ReportePDF(reporte);
+        //pdf.generarPDF();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cargar() {
-        obtenerDatos();
-        Cliente c = cliente.getCliente();
-        Automovil a = automovil.getAutomovil();
-        Vehiculo v = vehiculo.getVehiculo();
-        Marca m = marca.getMarca();
-        Ubicacion l = location.getLocation();
-        Ciudad cd = ciudad.getCiudad();
-        Provincia p = provincia.getProvincia();
 
-        jLabel29.setText(reporte.getFecha().toString());
-        jLabel31.setText(String.valueOf(reporte.getID_Reporte()));
+        jLabel29.setText(String.valueOf(LocalDate.now()));
+        jLabel31.setText(String.valueOf("01"));
 
-        jLabel2.setText(c.getNombre());
-        jLabel15.setText(c.getIdentificacion());
-        jLabel16.setText(cd.getNombre());
-        jLabel17.setText(c.getApellido());
-        jLabel18.setText(l.getDireccion());
-        jLabel19.setText(p.getNombre());
+        jLabel2.setText(CR.getC().getNombre());
+        jLabel15.setText(CR.getC().getIdentificacion());
+        jLabel16.setText(CR.getCd().getNombre());
+        jLabel17.setText(CR.getC().getApellido());
+        jLabel18.setText(CR.getL().getDireccion());
+        jLabel19.setText(CR.getP().getNombre());
 
-        jLabel21.setText(m.getName());
-        jLabel22.setText(v.getModelo());
+        jLabel21.setText(CR.getM().getName());
+        jLabel22.setText(CR.getV().getModelo());
         //jLabel23.setText(String.valueOf(a.getAnio()));
-        jLabel24.setText(v.getTipoCombustible());
-        jLabel26.setText(a.getPlaca());
-        jLabel27.setText(v.getTipoVehiculo());
+        jLabel24.setText(CR.getV().getTipoCombustible());
+        jLabel26.setText(CR.getA().getPlaca());
+        jLabel27.setText(CR.getV().getTipoVehiculo());
 
-        jTextArea1.setText(reporte.getObservacion());
-
-    }
-
-    private void obtenerDatos() {
-        try {
-            ListaEnlazada<Cliente> clientes = cliente.listar();
-            ListaEnlazada<Automovil> automoviles = automovil.listar();
-            ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
-            ListaEnlazada<Marca> marcas = marca.listar();
-            ListaEnlazada<Ubicacion> locations = location.listar();
-            ListaEnlazada<Ciudad> ciudades = ciudad.listar();
-            ListaEnlazada<Provincia> provincias = provincia.listar();
-
-            vehiculos = vehiculos.buscar("id", reporte.getID_Vehiculo());
-            clientes = clientes.buscar("id", automoviles.obtenerDato(0).getID_Cliente());
-            automoviles = automoviles.buscar("id", automoviles.obtenerDato(0).getID_Vehiculo());
-            marcas = marcas.buscar("id", vehiculos.obtenerDato(0).getID_Marca());
-            locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
-            ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
-            provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());
-
-            cliente.setCliente(clientes.obtenerDato(0));
-            vehiculo.setVehiculo(vehiculos.obtenerDato(0));
-            automovil.setAutomovil(automoviles.obtenerDato(0));
-            marca.setMarca(marcas.obtenerDato(0));
-            location.setUbicacion(locations.obtenerDato(0));
-            ciudad.setCiudad(ciudades.obtenerDato(0));
-            provincia.setProvincia(provincias.obtenerDato(0));
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Datos no coinciden \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);
+        StringBuffer resultados = new StringBuffer();
+        for (int i = 0; i < CR.getResultados().getSize(); i++) {
+            try {
+                resultados.append(CR.getResultados().obtenerDato(i)).append("\n");
+            } catch (PosicionException ex) {
+                Logger.getLogger(FrmReporte.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        jTextArea1.setText(String.valueOf(resultados));
+
     }
 
     /**
@@ -402,7 +375,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte().setVisible(true);
+                new FrmReporte(new Cliente(), new Automovil(), new ListaEnlazada<String>()).setVisible(true);
             }
         });
     }
