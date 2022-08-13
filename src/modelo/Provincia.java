@@ -15,10 +15,9 @@ public class Provincia {
     private String Nombre;
     private Date Created_At;
 
-    public Provincia(Integer id, String Nombre, Date Created_At) {
+    public Provincia(Integer id, String Nombre) {
         this.ID_Provincia = id;
         this.Nombre = Nombre;
-        this.Created_At = Created_At;
     }
 
     public Integer getID_Provincia() {

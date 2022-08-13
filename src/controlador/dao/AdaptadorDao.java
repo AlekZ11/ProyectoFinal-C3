@@ -154,10 +154,10 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     }
 
     @Override
-    public T obtener(Integer id) throws Exception {
+    public T obtener(String id) throws Exception {
         T obj = null;
         String[] columna = columnas();
-        PreparedStatement stmt = getConexion().prepareStatement(ALL_ID + id.toString());
+        PreparedStatement stmt = getConexion().prepareStatement(ALL_ID + id);
         System.out.println("Comando : " + ALL_ID + id);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
@@ -219,5 +219,33 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         }
 
         return aux;
+    }
+
+    public Integer getCurrentValue(){
+        Integer value = 0;
+        try {
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id.nextval from dual";
+            PreparedStatement stmt = getConexion().prepareStatement(seleccion);
+            ResultSet resultSet = stmt.executeQuery();
+            resultSet.next();
+            value = resultSet.getInt(1);
+        } catch (Exception ex) {
+            System.out.println("Error en getCurrentValue " + ex);
+        }
+        return value;
+    }
+
+    public Integer getNextValue(){
+        Integer value = 0;
+        try {
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id.nextval from dual";
+            PreparedStatement stmt = getConexion().prepareStatement(seleccion);
+            ResultSet resultSet = stmt.executeQuery();
+            resultSet.next();
+            value = resultSet.getInt(1);
+        } catch (Exception ex) {
+            System.out.println("Error en getCurrentValue " + ex);
+        }
+        return value;
     }
 }

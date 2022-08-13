@@ -14,5 +14,5 @@ public interface InterfazDao <T> {
     public void guardar(T dato) throws Exception;
     public void modificar(T dato) throws Exception;
     public ListaEnlazada<T> listar() throws Exception;
-    public T obtener(Integer id) throws Exception;
+    public T obtener(String id) throws Exception;
 }

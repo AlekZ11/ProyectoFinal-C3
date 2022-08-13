@@ -39,7 +39,7 @@ public class AdministradorDao extends AdaptadorDao<Administrador> {
         return super.listar();
     }
     
-    public Administrador obtener (Integer id) throws Exception{
+    public Administrador obtener (String id) throws Exception{
         return super.obtener(id);
     }
 

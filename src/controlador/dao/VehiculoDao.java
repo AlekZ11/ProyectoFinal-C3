@@ -39,7 +39,7 @@ public class VehiculoDao extends AdaptadorDao<Vehiculo> {
         return super.listar();
     }
     
-    public Vehiculo obtener (Integer id) throws Exception{
+    public Vehiculo obtener (String id) throws Exception{
         return super.obtener(id);
     }
 

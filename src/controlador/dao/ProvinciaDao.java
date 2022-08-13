@@ -23,6 +23,10 @@ public class ProvinciaDao extends AdaptadorDao<Provincia>{
         return provincia;
     }
 
+    public void guardar() throws Exception{
+        super.guardar(provincia);
+    }
+
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }

@@ -27,8 +27,33 @@ public class ControladorAutomoviles {
 
     public ControladorAutomoviles(){
         listaAutomoviles = new AutomovilDao().listar();
+        adao = new AutomovilDao();
+        vdao = new VehiculoDao();
+        mdao = new MarcaDao();
+        tcdao = new TipoCombustibleDao();
+        tadao = new TipoAutoDao();
     }
-   
+
+    public AutomovilDao getAdao() {
+        return adao;
+    }
+
+    public VehiculoDao getVdao() {
+        return vdao;
+    }
+
+    public MarcaDao getMdao() {
+        return mdao;
+    }
+
+    public TipoCombustibleDao getTcdao() {
+        return tcdao;
+    }
+
+    public TipoAutoDao getTadao() {
+        return tadao;
+    }
+
     public ListaEnlazada<Automovil> getListaAutomoviles() {
         return listaAutomoviles;
     }
@@ -47,7 +72,7 @@ public class ControladorAutomoviles {
         return null;
     }
     
-    public Automovil obtenerAutomovil(Integer id_Automovil) throws Exception{
+    public Automovil obtenerAutomovil(String id_Automovil) throws Exception{
         return adao.obtener(id_Automovil);
     }
 
@@ -63,7 +88,7 @@ public class ControladorAutomoviles {
         listaAutomoviles = adao.listar();
     }
 
-    public Integer existeVehiculo(String marca, String Modelo, String tipoVehiculo) throws Exception{
+    public Integer existeVehiculo(String marca, String Modelo, String tipoVehiculo, String tipoCombustible) throws Exception{
         ListaEnlazada<Vehiculo> listaVehiculos = vdao.listar();
         Integer id_marca = existeMarca(marca);
         if(id_marca == -1)
@@ -71,8 +96,9 @@ public class ControladorAutomoviles {
         ListaEnlazada <Vehiculo> resultado1 = listaVehiculos.buscar("ID_Marca", id_marca);
         ListaEnlazada <Vehiculo> resultado2 = resultado1.buscar("Modelo", Modelo);
         ListaEnlazada <Vehiculo> resultado3 = resultado2.buscar("TipoVehiculo", tipoVehiculo);
-        if(resultado3.getSize() > 0){
-            return resultado3.obtenerDato(0).getID_Vehiculo();
+        ListaEnlazada <Vehiculo> resultado4 = resultado3.buscar("TipoCombustible", tipoCombustible);
+        if(resultado4.getSize() > 0){
+            return resultado4.obtenerDato(0).getID_Vehiculo();
         }else {
             return -1;
         }
@@ -84,6 +110,7 @@ public class ControladorAutomoviles {
         if(resultado.getSize() > 0){
             return resultado.obtenerDato(0).getID_Marca();
         }else {
+            mdao.setMarca(new Marca(marca));
             return -1;
         }
     }

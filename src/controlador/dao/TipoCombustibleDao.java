@@ -39,7 +39,7 @@ public class TipoCombustibleDao extends AdaptadorDao<TipoCombustible> {
         return super.listar();
     }
     
-    public TipoCombustible obtener (Integer id) throws Exception{
+    public TipoCombustible obtener (String id) throws Exception{
         return super.obtener(id);
     }
 

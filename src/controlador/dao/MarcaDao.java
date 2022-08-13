@@ -39,7 +39,7 @@ public class MarcaDao extends AdaptadorDao<Marca> {
         return super.listar();
     }
     
-    public Marca obtener (Integer id) throws Exception{
+    public Marca obtener (String id) throws Exception{
         return super.obtener(id);
     }
 

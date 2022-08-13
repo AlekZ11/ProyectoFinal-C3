@@ -26,7 +26,28 @@ public class ControladorClientes {
 
     public ControladorClientes(){
         listaClientes = new ListaEnlazada<>();
+        cldao = new ClienteDao();
+        udao = new UbicacionDao();
+        cidao = new CiudadDao();
+        pdao = new ProvinciaDao();
     }
+
+    public ClienteDao getCldao() {
+        return cldao;
+    }
+
+    public UbicacionDao getUdao() {
+        return udao;
+    }
+
+    public CiudadDao getCidao() {
+        return cidao;
+    }
+
+    public ProvinciaDao getPdao() {
+        return pdao;
+    }
+
     public Cliente obtenerCliente(Integer id_cliente) throws Exception{
         for (int i = 0; i < listaClientes.getSize(); i++) {
             Cliente cliente = listaClientes.obtenerDato(i);
@@ -46,7 +67,7 @@ public class ControladorClientes {
     }
 
     public void insertarCliente(String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At ) throws Exception{
-        listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, ID_location, Created_At, Updated_At ));
+        //listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, ID_location, Created_At, Updated_At ));
     }
 
     public Integer getSize(){
@@ -60,8 +81,11 @@ public class ControladorClientes {
     public Integer existeProvincia(String provincia) throws Exception{
         ListaEnlazada<Provincia> listaProvincia = pdao.listar();
         ListaEnlazada <Provincia> resultado = listaProvincia.buscar("nombre", provincia);
-        if(resultado.estaVacia())
-            return -1;
+        if(resultado.estaVacia()) {
+            pdao.setProvincia(new Provincia(pdao.getNextValue(), provincia));
+            pdao.guardar();
+            return pdao.getCurrentValue();
+        }
         return resultado.obtenerDato(0).getID_Provincia();
     }
 

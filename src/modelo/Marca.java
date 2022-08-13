@@ -16,6 +16,10 @@ public class Marca {
     private String name;
     private Date created_At;
 
+    public Marca(String name) {
+        this.name = name;
+    }
+
     public Integer getID_Marca() {
         return ID_Marca;
     }
