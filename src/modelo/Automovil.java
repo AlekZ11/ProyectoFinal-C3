@@ -14,9 +14,6 @@ public class Automovil {
 
     public Automovil(){   }
 
-    public Automovil() {
-    }
-
     public Automovil(String placa, Integer anio, Integer ID_Vehiculo, Integer id_cliente) {
         this.placa = placa;
         this.anio = anio;
