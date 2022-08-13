@@ -2,28 +2,28 @@ package modelo;
 
 
 public class Umbral {
-    private Integer ID;
+    private Integer ID_Umbral;
     private Integer ID_RangoAnio;
     private Double valorMin;
     private Double valorMax;
-    private Integer claveUmbral;
+    private Integer clave_Umbral;
 
     public Umbral(){   }
 
     public Umbral(Integer ID, Integer ID_RangoAnio, Double valoresMin, Double valoresMax, Integer claveUmbral) {
-        this.ID = ID;
+        this.ID_Umbral = ID;
         this.ID_RangoAnio = ID_RangoAnio;
         this.valorMin = valoresMin;
         this.valorMax = valoresMax;
-        this.claveUmbral = claveUmbral;
+        this.clave_Umbral = claveUmbral;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getID_Umbral() {
+        return ID_Umbral;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setID_Umbral(Integer ID_Umbral) {
+        this.ID_Umbral = ID_Umbral;
     }
 
     public Integer getID_RangoAnio() {
@@ -50,12 +50,12 @@ public class Umbral {
         this.valorMax = valorMax;
     }
 
-    public Integer getClaveUmbral() {
-        return claveUmbral;
+    public Integer getClave_Umbral() {
+        return clave_Umbral;
     }
 
-    public void setClaveUmbral(Integer claveUmbral) {
-        this.claveUmbral = claveUmbral;
+    public void setClave_Umbral(Integer clave_Umbral) {
+        this.clave_Umbral = clave_Umbral;
     }
 
     

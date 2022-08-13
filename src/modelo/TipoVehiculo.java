@@ -11,25 +11,14 @@ import java.sql.Date;
  * @author LENOVO LEGION 5
  */
 public class TipoVehiculo {
-    private Integer id;
-    
     private String tipo;
     private Date created_At;
 
     public TipoVehiculo() {
     }
 
-    public TipoVehiculo(Integer id, String tipo) {
-        this.id = id;
+    public TipoVehiculo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTipo() {

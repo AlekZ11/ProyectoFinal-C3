@@ -3,8 +3,8 @@ package modelo;
 import java.util.Date;
 
 public class Reporte {
-    private Integer id;
-    private Integer id_vehiculo;
+    private Integer ID_Reporte;
+    private Integer ID_Vehiculo;
     private boolean estado;
     private Date fecha;
     private String observacion;
@@ -12,28 +12,28 @@ public class Reporte {
     public Reporte(){   }
 
     public Reporte(Integer id, Integer id_vehiculo, boolean estado, String observacion){
-        this.id = id;
-        this.id_vehiculo = id_vehiculo;
+        this.ID_Reporte = id;
+        this.ID_Vehiculo = id_vehiculo;
         this.estado = estado;
         //Asignar la fecha actual
         this.fecha = new Date();
         this.observacion = observacion;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getID_Reporte() {
+        return ID_Reporte;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setID_Reporte(Integer ID_Reporte) {
+        this.ID_Reporte = ID_Reporte;
     }
 
-    public Integer getId_vehiculo() {
-        return id_vehiculo;
+    public Integer getID_Vehiculo() {
+        return ID_Vehiculo;
     }
 
-    public void setId_vehiculo(Integer id_vehiculo) {
-        this.id_vehiculo = id_vehiculo;
+    public void setID_Vehiculo(Integer ID_Vehiculo) {
+        this.ID_Vehiculo = ID_Vehiculo;
     }
 
     public String getEstado() {
@@ -62,9 +62,9 @@ public class Reporte {
 
     @Override
     public String toString(){
-        return "Reporte: " + this.id
-                + "\n - Cliente: " + 1
-                + "\n - Vehiculo: " + this.id_vehiculo
+        return "Reporte: " + this.ID_Reporte
+                + "\n - Cliente: " + 1/*ControladorCliente.getCliente(ControladorVehiculo.getVehiculo(ID_Vehiculo).getCliente).getNombre()*/
+                + "\n - Vehiculo: " + this.ID_Vehiculo
                 + "\n - Estado: " + this.estado
                 + "\n - Fecha: " + this.fecha
                 + "\n - Observacion: " + this.observacion;

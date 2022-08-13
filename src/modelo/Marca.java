@@ -11,13 +11,13 @@ import java.sql.Date;
  * @author LENOVO LEGION 5
  */
 public class Marca {
-    private Integer id;
+    private Integer ID_Marca;
     
     private String name;
     private Date created_At;
 
-    public Integer getId() {
-        return id;
+    public Integer getID_Marca() {
+        return ID_Marca;
     }
 
     public String getName() {

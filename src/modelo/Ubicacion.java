@@ -13,24 +13,24 @@ import java.util.Date;
  */
 public class Ubicacion {
     
-    private Integer id;
+    private Integer ID_Ubicacion;
     private Integer ID_Ciudad;
     private String Direccion;
     private Date Created_At;
 
     public Ubicacion(Integer id, Integer ID_Ciudad, String Direccion, Date Created_At) {
-        this.id = id;
+        this.ID_Ubicacion = id;
         this.ID_Ciudad = ID_Ciudad;
         this.Direccion = Direccion;
         this.Created_At = Created_At;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getID_Ubicacion() {
+        return ID_Ubicacion;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setID_Ubicacion(Integer ID_Ubicacion) {
+        this.ID_Ubicacion = ID_Ubicacion;
     }
 
     public Integer getID_Ciudad() {
@@ -59,7 +59,7 @@ public class Ubicacion {
 
     @Override
     public String toString() {
-        return "Location{" + "id=" + id + ", ID_Ciudad=" + ID_Ciudad + ", Direccion=" + Direccion + ", Created_At=" + Created_At + '}';
+        return "Location{" + "id=" + ID_Ubicacion + ", ID_Ciudad=" + ID_Ciudad + ", Direccion=" + Direccion + ", Created_At=" + Created_At + '}';
     }
     
 }

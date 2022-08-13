@@ -3,7 +3,7 @@ package modelo;
 import java.util.Date;
 
 public class Cliente{
-    private Integer ID;
+    private Integer ID_Cliente;
     private String nombre;
     private String apellido;
     private String identificacion;
@@ -16,7 +16,7 @@ public class Cliente{
     }
 
     public Cliente(Integer id, String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At) {
-        this.ID = id;
+        this.ID_Cliente = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.identificacion = identificacion;
@@ -25,12 +25,12 @@ public class Cliente{
         this.Updated_At = Updated_At;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getID_Cliente() {
+        return ID_Cliente;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setID_Cliente(Integer ID_Cliente) {
+        this.ID_Cliente = ID_Cliente;
     }
     
     public String getNombre() {
@@ -83,7 +83,7 @@ public class Cliente{
 
     public String toString() {
         return "Cliente{" +
-                "id=" + ID +
+                "id=" + ID_Cliente +
                 ", Nombre=" + nombre +
                 ", Apellido=" + apellido +
                 ", ID_location='" + ID_Ubicacion + '\'' +

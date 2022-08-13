@@ -11,22 +11,22 @@ import java.util.Date;
  * @author LENOVO LEGION 5
  */
 public class Provincia {
-    private Integer id;
+    private Integer ID_Provincia;
     private String Nombre;
     private Date Created_At;
 
     public Provincia(Integer id, String Nombre, Date Created_At) {
-        this.id = id;
+        this.ID_Provincia = id;
         this.Nombre = Nombre;
         this.Created_At = Created_At;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getID_Provincia() {
+        return ID_Provincia;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setID_Provincia(Integer ID_Provincia) {
+        this.ID_Provincia = ID_Provincia;
     }
 
     public String getNombre() {
@@ -47,6 +47,6 @@ public class Provincia {
 
     @Override
     public String toString() {
-        return "Provincia{" + "id=" + id + ", Nombre=" + Nombre + ", Created_At=" + Created_At + '}';
+        return "Provincia{" + "id=" + ID_Provincia + ", Nombre=" + Nombre + ", Created_At=" + Created_At + '}';
     }  
 }

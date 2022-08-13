@@ -180,7 +180,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private void registrar() {
         try {
             Cliente c = new Cliente();
-            c.setID(numClientes);
+            c.setID_Cliente(numClientes);
             c.setNombre(txtNombre.getText());
             c.setApellido(txtApellido.getText());
             //c.setCiudad(txtCiudad.getText());

@@ -33,7 +33,7 @@ public class ControladorUmbral {
     public ListaEnlazada<Umbral> obtenerUmbral(Integer id_valor) throws Exception{
         ListaEnlazada<Umbral> listaAux = new ListaEnlazada<>();
         for (int i = 0; i < listaUmbrales.getSize(); i++) {
-            if(listaUmbrales.obtenerDato(i).getClaveUmbral().equals(id_valor)){
+            if(listaUmbrales.obtenerDato(i).getClave_Umbral().equals(id_valor)){
                 listaAux.insertar(listaUmbrales.obtenerDato(i));
             }
         }

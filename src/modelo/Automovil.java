@@ -1,73 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 import java.sql.Date;
 
-/**
- *
- * @author LENOVO LEGION 5
- */
+
 public class Automovil {
-    private Integer id;
+    private String placa;
     
-    private Integer id_Marca;
-    private String modelo;
-    private TipoVehiculo tipoVehiculo;
-    private TipoCombustible tipoCombustible;
+    private Integer anio;
+    private Integer ID_Automovil;
+    private Integer ID_Cliente;
     private Date created_At;
+    private Date updated_At;
 
-    public Automovil() {
+    public Automovil(){   }
+
+    public Automovil(String placa, Integer anio, Integer id_Automovil, Integer id_cliente) {
+        this.placa = placa;
+        this.anio = anio;
+        this.ID_Automovil = id_Automovil;
+        this.ID_Cliente = id_cliente;
+    }
+    
+    public String getPlaca() {
+        return placa;
     }
 
-    public Automovil(Integer id, Integer id_Marca, String modelo, TipoVehiculo tipoVehiculo, TipoCombustible tipoCombustible) {
-        this.id = id;
-        this.id_Marca = id_Marca;
-        this.modelo = modelo;
-        this.tipoVehiculo = tipoVehiculo;
-        this.tipoCombustible = tipoCombustible;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getAnio() {
+        return anio;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAnio(Integer anio) {
+        this.anio = anio;
     }
 
-    public Integer getId_Marca() {
-        return id_Marca;
+    public Integer getID_Automovil() {
+        return ID_Automovil;
     }
 
-    public void setId_Marca(Integer id_Marca) {
-        this.id_Marca = id_Marca;
+    public void setID_Automovil(Integer ID_Automovil) {
+        this.ID_Automovil = ID_Automovil;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Integer getID_Cliente() {
+        return ID_Cliente;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public TipoVehiculo getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
-    }
-
-    public TipoCombustible getTipoCombustible() {
-        return tipoCombustible;
-    }
-
-    public void setTipoCombustible(TipoCombustible tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
+    public void setID_Cliente(Integer ID_Cliente) {
+        this.ID_Cliente = ID_Cliente;
     }
 
     public Date getCreated_At() {
@@ -77,6 +60,15 @@ public class Automovil {
     public void setCreated_At(Date created_At) {
         this.created_At = created_At;
     }
+
+    public Date getUpdated_At() {
+        return updated_At;
+    }
+
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
+    }
     
     
+
 }

@@ -1,20 +1,20 @@
 package vista.tablas;
 
 import controlador.tda.lista.ListaEnlazada;
-import modelo.Vehiculo;
+import modelo.Automovil;
 
 import javax.swing.table.AbstractTableModel;
 
 public class TablaVehiculos  extends AbstractTableModel {
 
         private String[] columnas = {"ID", "Placa", "Marca", "Modelo", "Año", "Tipo_Combustible", "Tipo_Vehiculo"};
-        ListaEnlazada<Vehiculo> listaVehiculos;
+        ListaEnlazada<Automovil> listaVehiculos;
 
         public TablaVehiculos() {
 
         }
 
-        public TablaVehiculos(ListaEnlazada<Vehiculo> listaVehiculos) {
+        public TablaVehiculos(ListaEnlazada<Automovil> listaVehiculos) {
             this.listaVehiculos = listaVehiculos;
         }
 
@@ -35,7 +35,7 @@ public class TablaVehiculos  extends AbstractTableModel {
 
         @Override
         public Object getValueAt(int fila, int columna) {
-            Vehiculo vehiculo;
+            Automovil vehiculo;
             try{
                 vehiculo = listaVehiculos.obtenerDato(fila);
             }catch (Exception e){

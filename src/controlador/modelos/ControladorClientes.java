@@ -1,6 +1,10 @@
 package controlador.modelos;
 
 import com.google.gson.Gson;
+import controlador.dao.CiudadDao;
+import controlador.dao.ClienteDao;
+import controlador.dao.ProvinciaDao;
+import controlador.dao.UbicacionDao;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.Cliente;
 
@@ -12,6 +16,10 @@ import java.util.Date;
 
 public class ControladorClientes {
     private ListaEnlazada<Cliente> listaClientes;
+    private ClienteDao cldao;
+    private UbicacionDao udao;
+    private CiudadDao cidao;
+    private ProvinciaDao pdao;
 
     public ControladorClientes(){
         listaClientes = new ListaEnlazada<>();
@@ -19,7 +27,7 @@ public class ControladorClientes {
     public Cliente obtenerCliente(Integer id_cliente) throws Exception{
         for (int i = 0; i < listaClientes.getSize(); i++) {
             Cliente cliente = listaClientes.obtenerDato(i);
-            if (cliente.getID().equals(id_cliente)) {
+            if (cliente.getID_Cliente().equals(id_cliente)) {
                 return cliente;
             }
         }

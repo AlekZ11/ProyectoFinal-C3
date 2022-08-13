@@ -12,7 +12,7 @@ import modelo.TipoVehiculo;
  *
  * @author Usuario iTC
  */
-public class TipoVehiculoDao extends AdaptadorDao<TipoVehiculo> {
+public class TipoAutoDao extends AdaptadorDao<TipoVehiculo> {
     private TipoVehiculo tipoVehiculo;
 
     public TipoVehiculo getTipoVehiculo() {
@@ -23,7 +23,7 @@ public class TipoVehiculoDao extends AdaptadorDao<TipoVehiculo> {
         this.tipoVehiculo = persona;
     }
 
-    public TipoVehiculoDao() {
+    public TipoAutoDao() {
         super(TipoVehiculo.class);
     }
     

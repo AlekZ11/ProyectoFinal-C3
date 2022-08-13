@@ -9,24 +9,24 @@ package modelo;
  * @author LENOVO LEGION 5
  */
 public class RangoAnio {
-    private Integer ID;
+    private Integer ID_RangoAnio;
     private Integer anioMin;
     private Integer anioMax;
 
     public RangoAnio(Integer ID, Integer anioMin, Integer anioMax) {
-        this.ID = ID;
+        this.ID_RangoAnio = ID;
         this.anioMin = anioMin;
         this.anioMax = anioMax;
     }
 
     public RangoAnio() {    }
 
-    public Integer getID() {
-        return ID;
+    public Integer getID_RangoAnio() {
+        return ID_RangoAnio;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setID_RangoAnio(Integer ID_RangoAnio) {
+        this.ID_RangoAnio = ID_RangoAnio;
     }
 
     public Integer getAnioMin() {

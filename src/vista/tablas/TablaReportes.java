@@ -5,7 +5,7 @@ import controlador.modelos.ControladorVehiculos;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.Cliente;
 import modelo.Reporte;
-import modelo.Vehiculo;
+import modelo.Automovil;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -42,17 +42,17 @@ public class TablaReportes extends AbstractTableModel {
     public Object getValueAt(int fila, int columna) {
         Reporte reporte;
         Cliente cliente;
-        Vehiculo vehiculo;
+        Automovil vehiculo;
         try{
             reporte = listaReportes.obtenerDato(fila);
-            vehiculo = controladorVehiculos.obtenerVehiculo(reporte.getId_vehiculo());
-            cliente = controladorClientes.obtenerCliente(vehiculo.getId_cliente());
+            vehiculo = controladorVehiculos.obtenerVehiculo(reporte.getID_Vehiculo());
+            cliente = controladorClientes.obtenerCliente(vehiculo.getID_Cliente());
         }catch (Exception e){
             return null;
         }
         switch (columna) {
             case 0:
-                return reporte.getId();
+                return reporte.getID_Reporte();
             case 1:
                 return cliente.getNombre() + " " + cliente.getApellido();
             case 2:

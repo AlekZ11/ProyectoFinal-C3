@@ -53,7 +53,7 @@ public class TablaUmbrales extends AbstractTableModel {
         }
         switch (columna) {
             case 0:
-                return umbral.getID();
+                return umbral.getID_Umbral();
             case 1:
                 return rangoAnio.getAnioMin();
             case 2:
