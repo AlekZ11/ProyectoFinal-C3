@@ -23,6 +23,10 @@ public class CiudadDao extends AdaptadorDao<Ciudad>{
         return ciudad;
     }
 
+    public void guardar() throws Exception{
+        super.guardar(ciudad);
+    }
+
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }

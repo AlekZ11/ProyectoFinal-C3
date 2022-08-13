@@ -18,11 +18,10 @@ public class Ubicacion {
     private String Direccion;
     private Date Created_At;
 
-    public Ubicacion(Integer id, Integer ID_Ciudad, String Direccion, Date Created_At) {
-        this.ID_Ubicacion = id;
+    public Ubicacion(Integer ID_Ubicacion, Integer ID_Ciudad, String Direccion) {
+        this.ID_Ubicacion = ID_Ubicacion;
         this.ID_Ciudad = ID_Ciudad;
         this.Direccion = Direccion;
-        this.Created_At = Created_At;
     }
 
     public Integer getID_Ubicacion() {

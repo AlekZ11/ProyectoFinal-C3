@@ -15,14 +15,12 @@ public class Cliente{
     
     }
 
-    public Cliente(Integer id, String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At) {
-        this.ID_Cliente = id;
+    public Cliente(Integer ID_Cliente, String nombre, String apellido, String identificacion, Integer ID_Ubicacion) {
+        this.ID_Cliente = ID_Cliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.identificacion = identificacion;
-        this.ID_Ubicacion = ID_location;
-        this.Created_At = Created_At;
-        this.Updated_At = Updated_At;
+        this.ID_Ubicacion = ID_Ubicacion;
     }
 
     public Integer getID_Cliente() {

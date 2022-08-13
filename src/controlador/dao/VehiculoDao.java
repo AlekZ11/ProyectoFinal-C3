@@ -19,8 +19,8 @@ public class VehiculoDao extends AdaptadorDao<Vehiculo> {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo persona) {
-        this.vehiculo = persona;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public VehiculoDao() {

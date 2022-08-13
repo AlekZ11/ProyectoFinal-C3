@@ -363,7 +363,7 @@ public class FrmReporte extends javax.swing.JFrame {
             vehiculo.setVehiculo(vehiculos.obtenerDato(0));
             automovil.setAutomovil(automoviles.obtenerDato(0));
             marca.setMarca(marcas.obtenerDato(0));
-            location.setLocation(locations.obtenerDato(0));
+            location.setUbicacion(locations.obtenerDato(0));
             ciudad.setCiudad(ciudades.obtenerDato(0));
             provincia.setProvincia(provincias.obtenerDato(0));
 

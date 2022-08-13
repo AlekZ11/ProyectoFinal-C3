@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+
 import modelo.Vehiculo;
 
 public class ControladorAutomoviles {
@@ -61,16 +63,6 @@ public class ControladorAutomoviles {
     public void setListaVehiculos(ListaEnlazada<Automovil> listaVehiculos) {
         this.listaAutomoviles = listaVehiculos;
     }
-
-    public Automovil obtenerVehiculo(Integer id_vehiculo) throws Exception{
-        for (int i = 0; i < listaAutomoviles.getSize(); i++) {
-            Automovil vehiculo = listaAutomoviles.obtenerDato(i);
-            if (vehiculo.getID_Vehiculo().equals(id_vehiculo)) {
-                return vehiculo;
-            }
-        }
-        return null;
-    }
     
     public Automovil obtenerAutomovil(String id_Automovil) throws Exception{
         return adao.obtener(id_Automovil);
@@ -88,19 +80,28 @@ public class ControladorAutomoviles {
         listaAutomoviles = adao.listar();
     }
 
-    public Integer existeVehiculo(String marca, String Modelo, String tipoVehiculo, String tipoCombustible) throws Exception{
+    public void guardarAutomovil(String placa, Integer anio, String marca, String modelo, String tipoVehiculo, String tipoCombustible, Integer id_cliente) throws Exception{
+        Automovil automovil = obtenerAutomovil(placa);
+        if (automovil == null){
+            Integer id_Vehiculo = existeVehiculo(marca, modelo, tipoVehiculo, tipoCombustible);
+            adao.setAutomovil(new Automovil(placa, anio, id_Vehiculo, id_cliente));
+            adao.guardar();
+        }
+    }
+
+    public Integer existeVehiculo(String marca, String modelo, String tipoVehiculo, String tipoCombustible) throws Exception{
         ListaEnlazada<Vehiculo> listaVehiculos = vdao.listar();
         Integer id_marca = existeMarca(marca);
-        if(id_marca == -1)
-            return -1;
         ListaEnlazada <Vehiculo> resultado1 = listaVehiculos.buscar("ID_Marca", id_marca);
-        ListaEnlazada <Vehiculo> resultado2 = resultado1.buscar("Modelo", Modelo);
+        ListaEnlazada <Vehiculo> resultado2 = resultado1.buscar("Modelo", modelo);
         ListaEnlazada <Vehiculo> resultado3 = resultado2.buscar("TipoVehiculo", tipoVehiculo);
         ListaEnlazada <Vehiculo> resultado4 = resultado3.buscar("TipoCombustible", tipoCombustible);
         if(resultado4.getSize() > 0){
             return resultado4.obtenerDato(0).getID_Vehiculo();
         }else {
-            return -1;
+            vdao.setVehiculo(new Vehiculo(vdao.getNextValue(), id_marca, modelo, tipoVehiculo, tipoCombustible));
+            vdao.guardar();
+            return vdao.getCurrentValue();
         }
     }
 
@@ -110,18 +111,9 @@ public class ControladorAutomoviles {
         if(resultado.getSize() > 0){
             return resultado.obtenerDato(0).getID_Marca();
         }else {
-            mdao.setMarca(new Marca(marca));
-            return -1;
-        }
-    }
-
-    public Integer existeModelo(String modelo) throws Exception{
-        ListaEnlazada<Vehiculo> listaVehiculos = vdao.listar();
-        ListaEnlazada <Vehiculo> resultado = listaVehiculos.buscar("Modelo", modelo);
-        if(resultado.getSize() > 0){
-            return resultado.obtenerDato(0).getID_Vehiculo();
-        }else {
-            return -1;
+            mdao.setMarca(new Marca(mdao.getNextValue() , marca));
+            mdao.guardar();
+            return mdao.getCurrentValue();
         }
     }
 

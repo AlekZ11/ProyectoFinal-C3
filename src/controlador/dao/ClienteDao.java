@@ -25,6 +25,10 @@ public class ClienteDao extends AdaptadorDao<Cliente>{
         return cliente;
     }
 
+    public void guardar() throws Exception{
+        super.guardar(cliente);
+    }
+
     /**
      * @param cliente the cliente to set
      */

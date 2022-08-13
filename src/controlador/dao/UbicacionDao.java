@@ -19,11 +19,15 @@ public class UbicacionDao extends AdaptadorDao<Ubicacion>{
         super(Ubicacion.class);
     }
 
-    public Ubicacion getLocation() {
+    public Ubicacion getUbicacion() {
         return location;
     }
 
-    public void setLocation(Ubicacion location) {
+    public void guardar() throws Exception{
+        super.guardar(location);
+    }
+
+    public void setUbicacion(Ubicacion location) {
         this.location = location;
     }
     

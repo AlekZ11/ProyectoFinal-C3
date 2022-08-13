@@ -12,12 +12,12 @@ public class Automovil {
     private Date created_At;
     private Date updated_At;
 
-    public Automovil(){   }
+    public Automovil(Integer nextValue, Integer id_marca, String modelo, String tipoVehiculo, String tipoCombustible){   }
 
-    public Automovil(String placa, Integer anio, Integer id_Automovil, Integer id_cliente) {
+    public Automovil(String placa, Integer anio, Integer ID_Vehiculo, Integer id_cliente) {
         this.placa = placa;
         this.anio = anio;
-        this.ID_Vehiculo = id_Automovil;
+        this.ID_Vehiculo = ID_Vehiculo;
         this.ID_Cliente = id_cliente;
     }
     

@@ -139,7 +139,7 @@ public class ReportePDF {
             vehiculo.setVehiculo(vehiculos.obtenerDato(0));
             automovil.setAutomovil(automoviles.obtenerDato(0));
             marca.setMarca(marcas.obtenerDato(0));
-            ubicacion.setLocation(locations.obtenerDato(0));
+            ubicacion.setUbicacion(locations.obtenerDato(0));
             ciudad.setCiudad(ciudades.obtenerDato(0));
             provincia.setProvincia(provincias.obtenerDato(0));
             

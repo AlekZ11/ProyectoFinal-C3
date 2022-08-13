@@ -16,7 +16,8 @@ public class Marca {
     private String name;
     private Date created_At;
 
-    public Marca(String name) {
+    public Marca(Integer ID_Marca, String name) {
+        this.ID_Marca = ID_Marca;
         this.name = name;
     }
 
