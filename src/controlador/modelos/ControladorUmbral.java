@@ -82,10 +82,10 @@ public class ControladorUmbral {
         String [] resultado = {"OK","Tipo 1", "Tipo 2", "Tipo 3"};
         for (int i = 0; i < umbrales.getSize(); i++) {
             Umbral umbral = umbrales.obtenerDato(i);
-            ListaEnlazada<RangoAnio> lra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
+            RangoAnio ra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
             if(umbral != null){
-                if(anio >= lra.obtenerDato(i) && anio < umbral.getAnioMax()){
-                    for (int j = 0; j < umbral.getValorMin().length; j++) {
+                if(anio >= ra.getAnioMin() && anio < ra.getAnioMax()){
+                    for (int j = 0; j < umbral.getValorMin(); j++) {
                         if(umbral.getValorMin()[j] <= valor && umbral.getValorMax()[j] > valor){
                             System.out.println("(" + umbral.getValorMin()[j] + " <= " + valor + " < " + umbral.getValorMax()[j] + ")" + " = " + resultado[j]);
                             return resultado[j];
