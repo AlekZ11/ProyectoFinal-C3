@@ -7,7 +7,7 @@ public class Automovil {
     private String placa;
     
     private Integer anio;
-    private Integer ID_Automovil;
+    private Integer ID_Vehiculo;
     private Integer ID_Cliente;
     private Date created_At;
     private Date updated_At;
@@ -17,7 +17,7 @@ public class Automovil {
     public Automovil(String placa, Integer anio, Integer id_Automovil, Integer id_cliente) {
         this.placa = placa;
         this.anio = anio;
-        this.ID_Automovil = id_Automovil;
+        this.ID_Vehiculo = id_Automovil;
         this.ID_Cliente = id_cliente;
     }
     
@@ -37,12 +37,12 @@ public class Automovil {
         this.anio = anio;
     }
 
-    public Integer getID_Automovil() {
-        return ID_Automovil;
+    public Integer getID_Vehiculo() {
+        return ID_Vehiculo;
     }
 
-    public void setID_Automovil(Integer ID_Automovil) {
-        this.ID_Automovil = ID_Automovil;
+    public void setID_Vehiculo(Integer ID_Vehiculo) {
+        this.ID_Vehiculo = ID_Vehiculo;
     }
 
     public Integer getID_Cliente() {

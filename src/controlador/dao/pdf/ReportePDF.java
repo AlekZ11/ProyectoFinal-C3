@@ -56,8 +56,8 @@ public class ReportePDF {
         Document documento = new Document();
         obtenerDatos();
         Cliente c = cliente.getCliente();
-        Automovil v = vehiculo.getVehiculo();
-        Vehiculo a = automovil.getAutomovil();
+        Vehiculo v = vehiculo.getVehiculo();
+        Automovil a = automovil.getAutomovil();
         Marca m = marca.getMarca();
         Ubicacion l = ubicacion.getLocation();
         Ciudad cd = ciudad.getCiudad();
@@ -91,11 +91,11 @@ public class ReportePDF {
             
             documento.add(new Paragraph("Datos Vehículo", font));
             documento.add(new Paragraph("Marca: " + m.getName()));
-            documento.add(new Paragraph("Modelo: " + a.getModelo()));
-            documento.add(new Paragraph("Año: " + v.getAnio()));
-            documento.add(new Paragraph("Combustible: " + a.getTipoCombustible()));
-            documento.add(new Paragraph("Placa: " + v.getPlaca()));
-            documento.add(new Paragraph("Tipo de Vehiculo: " + a.getTipoVehiculo()));
+            documento.add(new Paragraph("Modelo: " + v.getModelo()));
+            documento.add(new Paragraph("Año: " + a.getAnio()));
+            documento.add(new Paragraph("Combustible: " + v.getTipoCombustible()));
+            documento.add(new Paragraph("Placa: " + a.getPlaca()));
+            documento.add(new Paragraph("Tipo de Vehiculo: " + v.getTipoVehiculo()));
             documento.add(new Paragraph("\n"));
             
             documento.add(new Paragraph("Observaciones", font));
@@ -120,17 +120,17 @@ public class ReportePDF {
     private void obtenerDatos() {
         try {
             ListaEnlazada<Cliente> clientes = cliente.listar();
-            ListaEnlazada<Automovil> vehiculos = vehiculo.listar();
-            ListaEnlazada<Vehiculo> automoviles = automovil.listar();
+            ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
+            ListaEnlazada<Automovil> automoviles = automovil.listar();
             ListaEnlazada<Marca> marcas = marca.listar();
             ListaEnlazada<Ubicacion> locations = ubicacion.listar();
             ListaEnlazada<Ciudad> ciudades = ciudad.listar();
             ListaEnlazada<Provincia> provincias = provincia.listar();
             
             vehiculos = vehiculos.buscar("id", reporte.getID_Vehiculo());
-            clientes = clientes.buscar("id", vehiculos.obtenerDato(0).getID_Cliente());
-            automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getID_Automovil());
-            marcas = marcas.buscar("id", automoviles.obtenerDato(0).getID_Marca());
+            clientes = clientes.buscar("id", automoviles.obtenerDato(0).getID_Cliente());
+            automoviles = automoviles.buscar("id", automoviles.obtenerDato(0).getID_Vehiculo());
+            marcas = marcas.buscar("id", vehiculos.obtenerDato(0).getID_Marca());
             locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
             ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());
             provincias = provincias.buscar("id", ciudades.obtenerDato(0).getID_Provincia());

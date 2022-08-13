@@ -6,7 +6,7 @@ package vista;
 
 import controlador.modelos.ControladorClientes;
 import controlador.modelos.ControladorUmbral;
-import controlador.modelos.ControladorVehiculos;
+import controlador.modelos.ControladorAutomoviles;
 import controlador.tda.lista.ListaEnlazada;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,7 +23,7 @@ public class FrmMain_ extends javax.swing.JFrame {
 
     ListaEnlazada<String> resultados = new ListaEnlazada<>();
     ControladorClientes controladorClientes = new ControladorClientes();
-    ControladorVehiculos controladorVehiculos = new ControladorVehiculos();
+    ControladorAutomoviles controladorVehiculos = new ControladorAutomoviles();
     ControladorUmbral controladorUmbral = new ControladorUmbral();
 
     /**

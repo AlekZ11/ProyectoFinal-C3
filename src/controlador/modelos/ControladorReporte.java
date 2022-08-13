@@ -9,5 +9,9 @@ package controlador.modelos;
  * @author LENOVO LEGION 5
  */
 public class ControladorReporte {
+    ControladorClientes ccliente;
+    ControladorAutomoviles cvehiculo;
+    
+    
     
 }

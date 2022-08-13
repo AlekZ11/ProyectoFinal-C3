@@ -353,7 +353,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
             vehiculos = vehiculos.buscar("id", reporte.getID_Vehiculo());
             clientes = clientes.buscar("id", vehiculos.obtenerDato(0).getID_Cliente());
-            automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getID_Automovil());
+            automoviles = automoviles.buscar("id", vehiculos.obtenerDato(0).getID_Vehiculo());
             marcas = marcas.buscar("id", automoviles.obtenerDato(0).getID_Marca());
             locations = locations.buscar("id", clientes.obtenerDato(0).getID_Ubicacion());
             ciudades = ciudades.buscar("id", locations.obtenerDato(0).getID_Ciudad());

@@ -1,7 +1,7 @@
 package vista.tablas;
 
 import controlador.modelos.ControladorClientes;
-import controlador.modelos.ControladorVehiculos;
+import controlador.modelos.ControladorAutomoviles;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.Cliente;
 import modelo.Reporte;
@@ -13,7 +13,7 @@ public class TablaReportes extends AbstractTableModel {
     private String[] columnas = {"ID", "Nombres", "PLaca", "Estado", "Fecha"};
     ListaEnlazada<Reporte> listaReportes;
     ControladorClientes controladorClientes;
-    ControladorVehiculos controladorVehiculos;
+    ControladorAutomoviles controladorVehiculos;
 
     public TablaReportes() {
 
