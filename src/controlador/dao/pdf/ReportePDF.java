@@ -90,12 +90,12 @@ public class ReportePDF {
             documento.add(new Paragraph("\n"));
             
             documento.add(new Paragraph("Datos Vehículo", font));
-            documento.add(new Paragraph("Marca: " + m.getName()));
+            documento.add(new Paragraph("Marca: " + m.getNombre()));
             documento.add(new Paragraph("Modelo: " + v.getModelo()));
             documento.add(new Paragraph("Año: " + a.getAnio()));
-            documento.add(new Paragraph("Combustible: " + v.getTipoCombustible()));
+            documento.add(new Paragraph("Combustible: " + v.getID_TipoCombustible()));
             documento.add(new Paragraph("Placa: " + a.getPlaca()));
-            documento.add(new Paragraph("Tipo de Vehiculo: " + v.getTipoVehiculo()));
+            documento.add(new Paragraph("Tipo de Vehiculo: " + v.getID_TipoVehiculo()));
             documento.add(new Paragraph("\n"));
             
             documento.add(new Paragraph("Observaciones", font));

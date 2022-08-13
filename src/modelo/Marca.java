@@ -13,23 +13,28 @@ import java.sql.Date;
 public class Marca {
     private Integer ID_Marca;
     
-    private String name;
+    private String nombre;
     private Date created_At;
 
-    public Marca(Integer ID_Marca, String name) {
+    public Marca(){}
+    
+    public Marca(Integer ID_Marca, String nombre) {
         this.ID_Marca = ID_Marca;
-        this.name = name;
+        this.nombre = nombre;
     }
 
     public Integer getID_Marca() {
         return ID_Marca;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public Date getCreated_At() {
-        return created_At;
+    @Override
+    public String toString() {
+        return "{"+"ID="+ID_Marca+", nombre="+nombre+", Created_At="+created_At+"}";
     }
+    
+    
 }

@@ -97,7 +97,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtCiudad.setText(atributosP[4]);
                 txtDireccion.setText(atributosP[3]);
                 //controladorClientes.insertarCliente(atributosP[1], atributosP[0], atributosP[2], atributosP[5], atributosP[4], atributosP[3]);
-                Integer id_cliente = controladorClientes.existeCliente(atributosP[2], atributosP[1], atributosP[0], atributosP[3], atributosP[4], atributosP[5]);
+                Integer id_cliente = controladorClientes.existeCliente(atributosP[1], atributosP[0], atributosP[2], atributosP[3], atributosP[4], atributosP[5]);
                 txtMarca.setText(atributosV[1].toString());
                 txtModelo.setText(atributosV[2].toString());
                 txtAnio.setText(atributosV[4].toString());
@@ -105,8 +105,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtTipo.setText(atributosV[9].toString());
                 txtCombustible.setText(atributosV[8].toString());
                 controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), String.valueOf(atributosV[1]), String.valueOf(atributosV[2]),String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
-                controladorClientes.imprimir(0);
-                controladorAutomoviles.imprimir(0);
+                Integer aniov = Integer.parseInt(atributosV[4].toString());
                 map.forEach((key, value) -> {
                     try {
                         if (String.valueOf(value).matches("^-?\\d+(?:,\\d+)?$")) {
@@ -116,7 +115,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                             } else {
                                 valor = Double.valueOf(String.valueOf(value));
                             }
-                            //resultados.insertar(controladorUmbral.comprobarUmbral(key, controladorVehiculos.getListaVehiculos().obtenerDato(controladorVehiculos.getSize() - 1).getAnio(), valor));
+                            resultados.insertar(controladorUmbral.comprobarUmbral(key, aniov, valor));
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -125,6 +124,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 br.close();
             } catch (Exception e) {
                 System.out.println("Error al leer el archivo");
+                e.printStackTrace();
                 error = false;
             }
         }

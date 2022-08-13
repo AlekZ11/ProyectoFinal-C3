@@ -13,16 +13,20 @@ import java.util.Date;
 public class UmbralDao extends AdaptadorDao<Umbral> {
     private Umbral umbral;
 
-    public Umbral getPersona() {
+    public Umbral getUmbral() {
         return umbral;
     }
 
-    public void setPersona(Umbral umbral) {
+    public void setUmbral(Umbral umbral) {
         this.umbral = umbral;
     }
 
     public UmbralDao() {
         super(Umbral.class);
+    }
+
+    public void guardar() throws Exception{
+        super.guardar(umbral);
     }
 
     public ListaEnlazada<Umbral> buscar(String Descripcion) throws Exception{

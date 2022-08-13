@@ -15,8 +15,8 @@ public class Vehiculo {
     
     private Integer ID_Marca;
     private String modelo;
-    private String tipoVehiculo;
-    private String tipoCombustible;
+    private String ID_TipoVehiculo;
+    private String ID_TipoCombustible;
     private Date created_At;
 
     public Vehiculo() {
@@ -26,8 +26,8 @@ public class Vehiculo {
         this.ID_Vehiculo = ID_Vehiculo;
         this.ID_Marca = ID_Marca;
         this.modelo = modelo;
-        this.tipoVehiculo = tipoVehiculo;
-        this.tipoCombustible = tipoCombustible;
+        this.ID_TipoVehiculo = tipoVehiculo;
+        this.ID_TipoCombustible = tipoCombustible;
     }
 
     public Integer getID_Vehiculo() {
@@ -54,20 +54,20 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
+    public String getID_TipoVehiculo() {
+        return ID_TipoVehiculo;
     }
 
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
+    public void setID_TipoVehiculo(String ID_TipoVehiculo) {
+        this.ID_TipoVehiculo = ID_TipoVehiculo;
     }
 
-    public String getTipoCombustible() {
-        return tipoCombustible;
+    public String getID_TipoCombustible() {
+        return ID_TipoCombustible;
     }
 
-    public void setTipoCombustible(String tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
+    public void setID_TipoCombustible(String ID_TipoCombustible) {
+        this.ID_TipoCombustible = ID_TipoCombustible;
     }
 
     public Date getCreated_At() {

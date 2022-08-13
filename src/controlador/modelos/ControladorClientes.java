@@ -18,13 +18,14 @@ import modelo.Provincia;
 import modelo.Ubicacion;
 
 public class ControladorClientes {
+
     private ListaEnlazada<Cliente> listaClientes;
     private ClienteDao cldao;
     private UbicacionDao udao;
     private CiudadDao cidao;
     private ProvinciaDao pdao;
 
-    public ControladorClientes(){
+    public ControladorClientes() {
         listaClientes = new ListaEnlazada<>();
         cldao = new ClienteDao();
         udao = new UbicacionDao();
@@ -48,7 +49,7 @@ public class ControladorClientes {
         return pdao;
     }
 
-    public Cliente obtenerCliente(Integer id_cliente) throws Exception{
+    public Cliente obtenerCliente(Integer id_cliente) throws Exception {
         for (int i = 0; i < listaClientes.getSize(); i++) {
             Cliente cliente = listaClientes.obtenerDato(i);
             if (cliente.getID_Cliente().equals(id_cliente)) {
@@ -66,71 +67,68 @@ public class ControladorClientes {
         this.listaClientes = listaClientes;
     }
 
-    public void insertarCliente(String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At ) throws Exception{
+    public void insertarCliente(String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At) throws Exception {
         //listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, ID_location, Created_At, Updated_At ));
     }
 
-    public Integer getSize(){
+    public Integer getSize() {
         return listaClientes.getSize();
     }
 
-    public void cargarClientes(){
+    public void cargarClientes() {
         listaClientes = cldao.listar();
     }
-    
-    public Integer existeProvincia(String provincia) throws Exception{
+
+    public Integer existeProvincia(String provincia) throws Exception {
         ListaEnlazada<Provincia> listaProvincia = pdao.listar();
-        ListaEnlazada <Provincia> resultado = listaProvincia.buscar("nombre", provincia);
-        if(resultado.estaVacia()) {
-            pdao.setProvincia(new Provincia(pdao.getNextValue(), provincia));
-            pdao.guardar();
-            return pdao.getCurrentValue();
+        ListaEnlazada<Provincia> resultado = listaProvincia.buscar("nombre", provincia);
+        if (resultado.getSize() > 0) {
+            return resultado.obtenerDato(0).getID_Provincia();
         }
-        return resultado.obtenerDato(0).getID_Provincia();
+        pdao.setProvincia(new Provincia(pdao.getNextValue(), provincia));
+        pdao.guardar();
+        return pdao.getCurrentValue();
     }
 
-    public Integer existeCiudad(String ciudad, String provincia) throws Exception{
+    public Integer existeCiudad(String ciudad, String provincia) throws Exception {
         ListaEnlazada<Ciudad> listaCiudad = cidao.listar();
-        ListaEnlazada <Ciudad> resultado1 = listaCiudad.buscar("nombre", ciudad);
+        ListaEnlazada<Ciudad> resultado1 = listaCiudad.buscar("nombre", ciudad);
         Integer id_provincia = existeProvincia(provincia);
-        ListaEnlazada <Ciudad> resultado2 = resultado1.buscar("ID_Provincia", id_provincia);
-        if(resultado2.estaVacia()){
-            cidao.setCiudad(new Ciudad(cidao.getNextValue(), ciudad, id_provincia));
-            cidao.guardar();
-            return cidao.getCurrentValue();
+        ListaEnlazada<Ciudad> resultado2 = resultado1.buscar("ID_Provincia", id_provincia);
+        if (resultado2.getSize() > 0) {
+            return resultado2.obtenerDato(0).getID_Ciudad();
         }
-        return resultado2.obtenerDato(0).getID_Ciudad();
+        cidao.setCiudad(new Ciudad(cidao.getNextValue(), ciudad, id_provincia));
+        cidao.guardar();
+        return cidao.getCurrentValue();
     }
 
-    public Integer existeCliente(String identificacion, String nombre, String apellido, String direccion, String ciudad, String provincia) throws Exception{
+    public Integer existeCliente(String nombre, String apellido, String identificacion, String direccion, String ciudad, String provincia) throws Exception {
         ListaEnlazada<Cliente> listaCliente = cldao.listar();
-        ListaEnlazada <Cliente> resultado = listaCliente.buscar("identificacion", identificacion);
-        ListaEnlazada <Cliente> resultado1 = resultado.buscar("nombre", nombre);
-        ListaEnlazada <Cliente> resultado2 = resultado1.buscar("apellido", apellido);
+        ListaEnlazada<Cliente> resultado = listaCliente.buscar("identificacion", identificacion);
         Integer id_Ubicacion = existeUbicacion(direccion, ciudad, provincia);
-        ListaEnlazada <Cliente> resultado3 = resultado2.buscar("ID_Ubicacion", id_Ubicacion);
-        if(resultado3.estaVacia()) {
-            cldao.setCliente(new Cliente(cldao.getNextValue(), identificacion, nombre, apellido, id_Ubicacion));
-            cldao.guardar();
-            return cldao.getCurrentValue();
+        if (resultado.getSize() > 0) {
+            return resultado.obtenerDato(0).getID_Cliente();
         }
-        return resultado.obtenerDato(0).getID_Cliente();
+        cldao.setCliente(new Cliente(cldao.getNextValue(), identificacion, nombre, apellido, id_Ubicacion));
+        cldao.guardar();
+        return cldao.getCurrentValue();
     }
 
-    public Integer existeUbicacion(String direccion, String ciudad, String provincia) throws Exception{
+    public Integer existeUbicacion(String direccion, String ciudad, String provincia) throws Exception {
         ListaEnlazada<Ubicacion> listaUbicacion = udao.listar();
         Integer id_ciudad = existeCiudad(ciudad, provincia);
-        ListaEnlazada <Ubicacion> resultado = listaUbicacion.buscar("Direccion", direccion);
-        ListaEnlazada <Ubicacion> resultado2 = resultado.buscar("ID_Ciudad", id_ciudad);
-        if(resultado2.estaVacia()){
-            udao.setUbicacion(new Ubicacion(udao.getNextValue(),id_ciudad, direccion));
-            udao.guardar();
-            return udao.getCurrentValue();
+        ListaEnlazada<Ubicacion> resultado = listaUbicacion.buscar("Direccion", direccion);
+        ListaEnlazada<Ubicacion> resultado2 = resultado.buscar("ID_Ciudad", id_ciudad);
+        if (resultado2.getSize() > 0) {
+            return resultado.obtenerDato(0).getID_Ubicacion();
         }
-        return resultado.obtenerDato(0).getID_Ubicacion();
+        udao.setUbicacion(new Ubicacion(udao.getNextValue(), id_ciudad, direccion));
+        udao.guardar();
+        return udao.getCurrentValue();
     }
 
-    public void imprimir(Integer i) throws Exception{
+    public void imprimir(Integer i) throws Exception {
         System.out.println(listaClientes.obtenerDato(i).toString());
     }
 }
