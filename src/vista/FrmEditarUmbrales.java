@@ -38,31 +38,31 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtfUmbralMaximo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtfUmbralMinimo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtfClave = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txtfDescripcion = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxCalificación = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbxCategoria = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        cbxAnio = new javax.swing.JComboBox<>();
+        btnGestionar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnAniadir = new javax.swing.JButton();
+        btnCancelarM = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jTextField3 = new javax.swing.JTextField();
+        listaUmbrales = new javax.swing.JList<>();
+        txtfBuscar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -76,15 +76,27 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(350, 170, 103, 32);
+
+        txtfUmbralMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfUmbralMaximoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtfUmbralMaximo);
+        txtfUmbralMaximo.setBounds(350, 170, 103, 32);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("<= X <");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(250, 170, 93, 32);
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(130, 170, 105, 32);
+
+        txtfUmbralMinimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfUmbralMinimoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtfUmbralMinimo);
+        txtfUmbralMinimo.setBounds(130, 170, 105, 32);
 
         jLabel3.setText("Umbrales");
         jPanel1.add(jLabel3);
@@ -93,92 +105,92 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         jLabel9.setText("Clave valor:");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(8, 37, 73, 30);
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(90, 36, 134, 32);
+        jPanel1.add(txtfClave);
+        txtfClave.setBounds(90, 36, 134, 32);
 
         jLabel10.setText("Descripción:");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(242, 36, 75, 32);
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(323, 36, 239, 32);
+        jPanel1.add(txtfDescripcion);
+        txtfDescripcion.setBounds(323, 36, 239, 32);
 
-        jButton4.setText("Cancelar");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(20, 220, 105, 32);
+        btnCancelar.setText("Cancelar");
+        jPanel1.add(btnCancelar);
+        btnCancelar.setBounds(20, 220, 105, 32);
 
         jLabel4.setText("Calificación:");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(8, 80, 74, 24);
 
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(88, 80, 136, 30);
+        jPanel1.add(cbxCalificación);
+        cbxCalificación.setBounds(88, 80, 136, 30);
 
         jLabel5.setText("Categoría:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(250, 90, 60, 16);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Todos excepto motos", "Motos" }));
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(320, 80, 240, 30);
+        cbxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Todos excepto motos", "Motos" }));
+        jPanel1.add(cbxCategoria);
+        cbxCategoria.setBounds(320, 80, 240, 30);
 
         jLabel7.setText("Año");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(30, 130, 30, 16);
 
-        jPanel1.add(jComboBox4);
-        jComboBox4.setBounds(90, 120, 290, 30);
+        jPanel1.add(cbxAnio);
+        cbxAnio.setBounds(90, 120, 290, 30);
 
-        jButton5.setText("Gestionar años");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(410, 120, 150, 30);
+        btnGestionar.setText("Gestionar años");
+        jPanel1.add(btnGestionar);
+        btnGestionar.setBounds(410, 120, 150, 30);
 
-        jButton6.setText("Modificar");
-        jPanel1.add(jButton6);
-        jButton6.setBounds(340, 220, 105, 32);
+        btnModificar.setText("Modificar");
+        jPanel1.add(btnModificar);
+        btnModificar.setBounds(340, 220, 105, 32);
 
-        jButton7.setText("Añadir");
-        jPanel1.add(jButton7);
-        jButton7.setBounds(460, 220, 105, 32);
+        btnAniadir.setText("Añadir");
+        jPanel1.add(btnAniadir);
+        btnAniadir.setBounds(460, 220, 105, 32);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(330, 50, 570, 260);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Cancelar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(640, 570, 114, 36);
+        btnCancelarM.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCancelarM.setText("Cancelar");
+        getContentPane().add(btnCancelarM);
+        btnCancelarM.setBounds(640, 570, 114, 36);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("Guardar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(770, 570, 115, 36);
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGuardar.setText("Guardar");
+        getContentPane().add(btnGuardar);
+        btnGuardar.setBounds(770, 570, 115, 36);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setText("Salir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(10, 570, 88, 36);
+        getContentPane().add(btnSalir);
+        btnSalir.setBounds(10, 570, 88, 36);
 
         jLabel6.setText("Buscar");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(20, 50, 40, 30);
 
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listaUmbrales.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        listaUmbrales.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "ALINEACIÓN 1ER EJE CONVERGENCIA", "ALINEACIÓN 1ER EJE DIVERGENCIA", "EFICACIA SUSPENSIÓN EN RUEDA DERECHA DEL 1ER EJE", "DESEQUILIBRIO DE SUSPENSIÓN DEL 1ER EJE", "EFICACIA SUSPENSIÓN EN RUEDA DERECHA DEL 2DO EJE", "DESEQUILIBRIO DE SUSPENSIÓN DEL 2DO EJE", "ALINEACIÓN HORIZONTAL FARO CONDUCTOR", "ALINEACIÓN VERTICAL FARO CONDUCTOR" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaUmbrales);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 310, 220);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(60, 50, 260, 30);
+        getContentPane().add(txtfBuscar);
+        txtfBuscar.setBounds(60, 50, 260, 30);
 
         jScrollPane2.setViewportView(jTable1);
 
@@ -188,9 +200,19 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         setBounds(0, 0, 925, 659);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtfUmbralMinimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfUmbralMinimoKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
+    }//GEN-LAST:event_txtfUmbralMinimoKeyTyped
+
+    private void txtfUmbralMaximoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfUmbralMaximoKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
+    }//GEN-LAST:event_txtfUmbralMaximoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -228,16 +250,16 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton btnAniadir;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelarM;
+    private javax.swing.JButton btnGestionar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbxAnio;
+    private javax.swing.JComboBox<String> cbxCalificación;
+    private javax.swing.JComboBox<String> cbxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -247,15 +269,15 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JList<String> listaUmbrales;
+    private javax.swing.JTextField txtfBuscar;
+    private javax.swing.JTextField txtfClave;
+    private javax.swing.JTextField txtfDescripcion;
+    private javax.swing.JTextField txtfUmbralMaximo;
+    private javax.swing.JTextField txtfUmbralMinimo;
     // End of variables declaration//GEN-END:variables
 }
