@@ -13,7 +13,7 @@ public class TablaReportes extends AbstractTableModel {
     private String[] columnas = {"ID", "Nombres", "PLaca", "Estado", "Fecha"};
     ListaEnlazada<Reporte> listaReportes;
     ControladorClientes controladorClientes;
-    ControladorAutomoviles controladorAutomoviles;
+    ControladorAutomoviles controladorVehiculos;
 
     public TablaReportes() {
 
@@ -42,11 +42,11 @@ public class TablaReportes extends AbstractTableModel {
     public Object getValueAt(int fila, int columna) {
         Reporte reporte;
         Cliente cliente;
-        Automovil automovil;
+        Automovil vehiculo;
         try{
             reporte = listaReportes.obtenerDato(fila);
-            automovil = controladorAutomoviles.obtenerAutomovil(reporte.getID_Vehiculo().toString());
-            cliente = controladorClientes.obtenerCliente(automovil.getID_Cliente());
+            vehiculo = controladorVehiculos.obtenerAutomovil(reporte.getID_Vehiculo() + "");
+            cliente = controladorClientes.obtenerCliente(vehiculo.getID_Cliente());
         }catch (Exception e){
             return null;
         }
@@ -56,7 +56,7 @@ public class TablaReportes extends AbstractTableModel {
             case 1:
                 return cliente.getNombre() + " " + cliente.getApellido();
             case 2:
-                return automovil.getPlaca();
+                return vehiculo.getPlaca();
             case 3:
                 return reporte.getEstado();
             case 4:

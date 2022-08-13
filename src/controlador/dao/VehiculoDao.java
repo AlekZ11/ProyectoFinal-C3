@@ -35,10 +35,12 @@ public class VehiculoDao extends AdaptadorDao<Vehiculo> {
         super.modificar(vehiculo);
     }
     
+    @Override
     public ListaEnlazada<Vehiculo> listar(){
         return super.listar();
     }
     
+    @Override
     public Vehiculo obtener (String id) throws Exception{
         return super.obtener(id);
     }
