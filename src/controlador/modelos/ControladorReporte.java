@@ -4,10 +4,13 @@
  */
 package controlador.modelos;
 
+import controlador.dao.AutomovilDao;
 import controlador.dao.CiudadDao;
+import controlador.dao.ClienteDao;
 import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.TipoCombustibleDao;
+import controlador.dao.TipoVehiculoDao;
 import controlador.dao.UbicacionDao;
 import controlador.dao.VehiculoDao;
 import controlador.tda.lista.ListaEnlazada;
@@ -46,8 +49,22 @@ public class ControladorReporte {
         this.l = ObtenerUbicacion();
         this.cd = ObtenerCiudad();
         this.p = ObtenerProvincia();
-        this.t_c = obtenerTipocombustible();
-        this.t_v = obtenerTipoVehiculo();
+        this.t_c = ObtenerTipocombustible();
+        this.t_v = ObtenerTipoVehiculo();
+
+        this.resultados = resultados;
+    }
+    
+    public ControladorReporte(ListaEnlazada<String> resultados) throws Exception {
+        this.c = ObtenerCliente();
+        this.a = ObtenerAutomovil();
+        this.v = ObtenerVehiculo();
+        this.m = ObtenerMarca();
+        this.l = ObtenerUbicacion();
+        this.cd = ObtenerCiudad();
+        this.p = ObtenerProvincia();
+        this.t_c = ObtenerTipocombustible();
+        this.t_v = ObtenerTipoVehiculo();
 
         this.resultados = resultados;
     }
@@ -247,14 +264,24 @@ public class ControladorReporte {
         //return provincias.obtenerDato(0);
     }
     
-    private TipoCombustible obtenerTipocombustible() throws Exception{
+    private TipoCombustible ObtenerTipocombustible() throws Exception{
         TipoCombustibleDao tipocombustible = new TipoCombustibleDao();
         return tipocombustible.obtener(v.getID_TipoCombustible());
     }
     
-    private TipoVehiculo obtenerTipoVehiculo(){
+    private TipoVehiculo ObtenerTipoVehiculo() throws Exception{
         TipoVehiculoDao tipovehiculo = new TipoVehiculoDao();
         return tipovehiculo.obtener(v.getID_TipoVehiculo());
+    }
+    
+    private Automovil ObtenerAutomovil() throws Exception{
+        AutomovilDao auto = new AutomovilDao();
+        return auto.obtener("GLS1960");
+    }
+    
+    private Cliente ObtenerCliente() throws Exception{
+        ClienteDao cliente = new ClienteDao();
+        return cliente.obtener(a.getID_Cliente() + "");
     }
 
 }
