@@ -28,7 +28,7 @@ public class ControladorAutomoviles {
     private TipoAutoDao tadao;
 
     public ControladorAutomoviles(){
-        listaAutomoviles = new AutomovilDao().listar();
+        listaAutomoviles = new ListaEnlazada<>();
         adao = new AutomovilDao();
         vdao = new VehiculoDao();
         mdao = new MarcaDao();
@@ -59,13 +59,13 @@ public class ControladorAutomoviles {
     public ListaEnlazada<Automovil> getListaAutomoviles() {
         return listaAutomoviles;
     }
+    
+    public Automovil obtenerAutomovil(String placa) throws Exception{
+        return adao.obtener(placa);
+    }
 
     public void setListaVehiculos(ListaEnlazada<Automovil> listaVehiculos) {
         this.listaAutomoviles = listaVehiculos;
-    }
-    
-    public Automovil obtenerAutomovil(String id_Automovil) throws Exception{
-        return adao.obtener(id_Automovil);
     }
 
     public void insertarVehiculo(String marca, String modelo, Integer anio, String placa, String tipoVehiculo, String tipoCombustible, Integer id_cliente) throws Exception{
@@ -81,7 +81,7 @@ public class ControladorAutomoviles {
     }
 
     public void guardarAutomovil(String placa, Integer anio, String marca, String modelo, String tipoVehiculo, String tipoCombustible, Integer id_cliente) throws Exception{
-        Automovil automovil = obtenerAutomovil(placa);
+        Automovil automovil = adao.obtener(placa);
         if (automovil == null){
             Integer id_Vehiculo = existeVehiculo(marca, modelo, tipoVehiculo, tipoCombustible);
             adao.setAutomovil(new Automovil(placa, anio, id_Vehiculo, id_cliente));
@@ -96,6 +96,7 @@ public class ControladorAutomoviles {
         ListaEnlazada <Vehiculo> resultado2 = resultado1.buscar("Modelo", modelo);
         ListaEnlazada <Vehiculo> resultado3 = resultado2.buscar("TipoVehiculo", tipoVehiculo);
         ListaEnlazada <Vehiculo> resultado4 = resultado3.buscar("TipoCombustible", tipoCombustible);
+        System.out.println(resultado4.obtenerDato(0).toString());
         if(resultado4.getSize() > 0){
             return resultado4.obtenerDato(0).getID_Vehiculo();
         }else {
@@ -107,14 +108,15 @@ public class ControladorAutomoviles {
 
     public Integer existeMarca(String marca) throws Exception{
         ListaEnlazada<Marca> listaMarcas = mdao.listar();
-        ListaEnlazada <Marca> resultado = listaMarcas.buscar("Marca", marca);
-        if(resultado.getSize() > 0){
+        ListaEnlazada <Marca> resultado = new ListaEnlazada<>();
+        if(listaMarcas.obtenerDato(0).getNombre() != null)
+            resultado = listaMarcas.buscar("Nombre", marca);
+        if(resultado.getSize() > 0 ){
             return resultado.obtenerDato(0).getID_Marca();
-        }else {
-            mdao.setMarca(new Marca(mdao.getNextValue() , marca));
-            mdao.guardar();
-            return mdao.getCurrentValue();
         }
+        mdao.setMarca(new Marca(mdao.getNextValue(), marca));
+        mdao.guardar();
+        return mdao.getCurrentValue();
     }
 
     public void imprimir(Integer i) throws Exception{

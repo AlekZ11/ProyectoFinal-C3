@@ -1,8 +1,10 @@
 package controlador.modelos;
 
 import com.google.gson.Gson;
+import controlador.dao.RangoAnioDao;
 import controlador.dao.UmbralDao;
 import controlador.tda.lista.ListaEnlazada;
+import modelo.RangoAnio;
 import modelo.Umbral;
 
 import java.io.FileNotFoundException;
@@ -13,9 +15,13 @@ import java.util.HashMap;
 
 public class ControladorUmbral {
     private ListaEnlazada<Umbral> listaUmbrales;
+    private UmbralDao udao;
+    private RangoAnioDao rdao;
 
     public ControladorUmbral(){
         listaUmbrales = new ListaEnlazada<>();
+        udao = new UmbralDao();
+        rdao = new RangoAnioDao();
     }
 
     public ListaEnlazada<Umbral> getListaUmbrales() {
@@ -31,6 +37,7 @@ public class ControladorUmbral {
     }*/
 
     public ListaEnlazada<Umbral> obtenerUmbral(Integer id_valor) throws Exception{
+        cargarUmbrales();
         ListaEnlazada<Umbral> listaAux = new ListaEnlazada<>();
         for (int i = 0; i < listaUmbrales.getSize(); i++) {
             if(listaUmbrales.obtenerDato(i).getClave_Umbral().equals(id_valor)){
@@ -41,49 +48,36 @@ public class ControladorUmbral {
     }
 
     public void cargarUmbrales(){
-        Gson gson = new Gson();
-        try {
-            Umbral [] arrayUmbrales = gson.fromJson(new FileReader("umbrales.json"), Umbral[].class);
-            for (Umbral umbral : arrayUmbrales) {
-                listaUmbrales.insertar(umbral);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se encontro el archivo");
-        }
+        listaUmbrales = udao.listar();
     }
 
-    public void guardarUmbrales(){
-        Gson gson = new Gson();
-        try {
-            Umbral[] arrayUmbrales = new Umbral[listaUmbrales.getSize()];
-            arrayUmbrales = listaUmbrales.toArray();
-            String json = gson.toJson(arrayUmbrales);
-            System.out.println(json);
-            FileWriter fw = new FileWriter("umbrales.json");
-            fw.write(json);
-            fw.flush();
-            System.out.println("Se guardo el archivo");
-        } catch (Exception e) {
-            System.out.println("No se pudo guardar el archivo");
-        }
+    public Integer obtenerRangoAnio(Integer anioMin, Integer anioMax) throws Exception{
+        ListaEnlazada<RangoAnio> listaAux = rdao.listar();
+        ListaEnlazada<RangoAnio> resultado1 = listaAux.buscar("anioMin", anioMin);
+        ListaEnlazada<RangoAnio> resultado2 = resultado1.buscar("anioMax", anioMax);
+        return resultado2.obtenerDato(0).getID_RangoAnio();
     }
 
-    /*public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception{
-        ListaEnlazada<Umbral> umbrales = obtenerUmbral(id_valor);
-        String [] resultado = {"OK","Tipo 1", "Tipo 2", "Tipo 3"};
+    public void guardarUmbrales(Double valorMin, Double valorMax, String tipo, Integer anioMin, Integer anioMax, Integer clave_valor) throws Exception {
+        Integer id_rangoAnio = obtenerRangoAnio(anioMin, anioMax);
+        udao.setUmbral(new Umbral(udao.getNextValue(), id_rangoAnio, tipo, valorMin, valorMax, clave_valor ));
+        udao.guardar();
+    }
+
+    public String comprobarUmbral(Integer clave_valor, Integer anio, Double valor) throws Exception{
+        ListaEnlazada<Umbral> umbrales = obtenerUmbral(clave_valor);
         for (int i = 0; i < umbrales.getSize(); i++) {
             Umbral umbral = umbrales.obtenerDato(i);
+            RangoAnio rangoAnio = rdao.obtener(umbral.getID_RangoAnio().toString());
             if(umbral != null){
-                if(anio >= umbral.getAnioMin() && anio < umbral.getAnioMax()){
-                    for (int j = 0; j < umbral.getValorMin().length; j++) {
-                        if(umbral.getValorMin()[j] <= valor && umbral.getValorMax()[j] > valor){
-                            System.out.println("(" + umbral.getValorMin()[j] + " <= " + valor + " < " + umbral.getValorMax()[j] + ")" + " = " + resultado[j]);
-                            return resultado[j];
+                if(anio >= rangoAnio.getAnioMin() && anio < rangoAnio.getAnioMax()){
+                        if(umbral.getValorMin() <= valor && umbral.getValorMax() > valor){
+                            System.out.println("(" + umbral.getValorMin() + " <= " + valor + " < " + umbral.getValorMax() + ")" + " = " + umbral.getTipo());
+                            return umbral.getTipo();
                         }
-                    }
                 }
             }
         }
-        return "Error no se encuentra dentro de los rangos de los umbrales";
-    }*/
+        return "Error no se encuentro un umbral asignado para el valor ingresado";
+    }
 }

@@ -15,6 +15,8 @@ public class Ciudad {
     private String Nombre;
     private Integer ID_Provincia;
     private Date Created_At;
+    
+    public Ciudad(){}
 
     public Ciudad(Integer ID_Ciudad, String Nombre, Integer ID_Provincia) {
         this.ID_Ciudad = ID_Ciudad;

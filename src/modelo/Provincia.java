@@ -14,6 +14,8 @@ public class Provincia {
     private Integer ID_Provincia;
     private String Nombre;
     private Date Created_At;
+    
+    public Provincia(){}
 
     public Provincia(Integer id, String Nombre) {
         this.ID_Provincia = id;

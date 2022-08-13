@@ -35,7 +35,7 @@ public class FrmReporte extends javax.swing.JFrame {
     private final VehiculoDao vehiculo = new VehiculoDao();
     private final AutomovilDao automovil = new AutomovilDao();
     private final MarcaDao marca = new MarcaDao();
-    private final UbicacionDao location = new UbicacionDao();
+    private final UbicacionDao ubicacion = new UbicacionDao();
     private final CiudadDao ciudad = new CiudadDao();
     private final ProvinciaDao provincia = new ProvinciaDao();
 
@@ -316,7 +316,7 @@ public class FrmReporte extends javax.swing.JFrame {
         Automovil a = automovil.getAutomovil();
         Vehiculo v = vehiculo.getVehiculo();
         Marca m = marca.getMarca();
-        Ubicacion l = location.getLocation();
+        Ubicacion u = ubicacion.getUbicacion();
         Ciudad cd = ciudad.getCiudad();
         Provincia p = provincia.getProvincia();
 
@@ -327,10 +327,10 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel15.setText(c.getIdentificacion());
         jLabel16.setText(cd.getNombre());
         jLabel17.setText(c.getApellido());
-        jLabel18.setText(l.getDireccion());
+        jLabel18.setText(u.getDireccion());
         jLabel19.setText(p.getNombre());
 
-        jLabel21.setText(m.getName());
+        jLabel21.setText(m.getNombre());
         jLabel22.setText(v.getModelo());
         //jLabel23.setText(String.valueOf(a.getAnio()));
         jLabel24.setText(v.getTipoCombustible());
@@ -347,7 +347,7 @@ public class FrmReporte extends javax.swing.JFrame {
             ListaEnlazada<Automovil> automoviles = automovil.listar();
             ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
             ListaEnlazada<Marca> marcas = marca.listar();
-            ListaEnlazada<Ubicacion> locations = location.listar();
+            ListaEnlazada<Ubicacion> locations = ubicacion.listar();
             ListaEnlazada<Ciudad> ciudades = ciudad.listar();
             ListaEnlazada<Provincia> provincias = provincia.listar();
 
@@ -363,7 +363,7 @@ public class FrmReporte extends javax.swing.JFrame {
             vehiculo.setVehiculo(vehiculos.obtenerDato(0));
             automovil.setAutomovil(automoviles.obtenerDato(0));
             marca.setMarca(marcas.obtenerDato(0));
-            location.setUbicacion(locations.obtenerDato(0));
+            ubicacion.setUbicacion(locations.obtenerDato(0));
             ciudad.setCiudad(ciudades.obtenerDato(0));
             provincia.setProvincia(provincias.obtenerDato(0));
 

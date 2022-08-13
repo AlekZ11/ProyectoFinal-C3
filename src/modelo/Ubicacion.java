@@ -17,6 +17,8 @@ public class Ubicacion {
     private Integer ID_Ciudad;
     private String Direccion;
     private Date Created_At;
+    
+    public Ubicacion(){}
 
     public Ubicacion(Integer ID_Ubicacion, Integer ID_Ciudad, String Direccion) {
         this.ID_Ubicacion = ID_Ubicacion;

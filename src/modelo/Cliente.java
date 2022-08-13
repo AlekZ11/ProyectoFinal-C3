@@ -11,9 +11,7 @@ public class Cliente{
     private Date Created_At;
     private Date Updated_At;
 
-    public Cliente(){
-    
-    }
+    public Cliente(){}
 
     public Cliente(Integer ID_Cliente, String nombre, String apellido, String identificacion, Integer ID_Ubicacion) {
         this.ID_Cliente = ID_Cliente;

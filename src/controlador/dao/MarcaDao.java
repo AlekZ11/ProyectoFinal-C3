@@ -35,10 +35,6 @@ public class MarcaDao extends AdaptadorDao<Marca> {
         super.modificar(marca);
     }
     
-    public ListaEnlazada<Marca> listar(){
-        return super.listar();
-    }
-    
     public Marca obtener (String id) throws Exception{
         return super.obtener(id);
     }

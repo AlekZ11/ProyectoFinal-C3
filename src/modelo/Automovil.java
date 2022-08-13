@@ -12,7 +12,7 @@ public class Automovil {
     private Date created_At;
     private Date updated_At;
 
-    public Automovil(Integer nextValue, Integer id_marca, String modelo, String tipoVehiculo, String tipoCombustible){   }
+    public Automovil(){   }
 
     public Automovil(String placa, Integer anio, Integer ID_Vehiculo, Integer id_cliente) {
         this.placa = placa;

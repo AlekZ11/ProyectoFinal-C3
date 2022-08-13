@@ -32,7 +32,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         this.clazz = clazz;
         this.conexion = Conexion.getConexion();
         ALL += clazz.getSimpleName().toUpperCase() + " ";
-        ALL_ID = ALL + "Where id =";
+        ALL_ID = ALL + "Where id_"+clazz.getSimpleName().toLowerCase()+" = ";
     }
 
     public Connection getConexion() {
@@ -140,7 +140,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             }
 
         }
-        comando += datos + " where id = " + id.toString();
+        comando += datos + " where id"+clazz.getSimpleName().toLowerCase()+" = " + id.toString();
         System.out.println("Comando : " + comando);
         try {
             PreparedStatement stmt = getConexion().prepareStatement(comando);
@@ -155,9 +155,16 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
 
     @Override
     public T obtener(String id) throws Exception {
+        
+        PreparedStatement stmt;
+        if (!id.matches("^-?\\d+(?:,\\d+)?$")) {
+            id = "'"+id + "'";
+            stmt = getConexion().prepareStatement("Select * from " + clazz.getSimpleName().toLowerCase() + " where placa = " + id);
+        }else{
+            stmt  = getConexion().prepareStatement(ALL_ID + id);
+        }
         T obj = null;
         String[] columna = columnas();
-        PreparedStatement stmt = getConexion().prepareStatement(ALL_ID + id);
         System.out.println("Comando : " + ALL_ID + id);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
