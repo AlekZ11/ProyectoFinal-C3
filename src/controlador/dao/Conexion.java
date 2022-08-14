@@ -14,7 +14,10 @@ import java.sql.SQLException;
 public class Conexion {
     private static final String user="USER3C";
     private static final String pass="admin123";
+<<<<<<< Updated upstream
     //private static final String base= "DB3C";
+=======
+>>>>>>> Stashed changes
     private static final String port="jdbc:oracle:thin:@localhost:1521:XE";
     public static Connection con;
 

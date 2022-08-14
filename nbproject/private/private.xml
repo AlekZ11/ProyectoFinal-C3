@@ -3,9 +3,40 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Usuario%20iTC/Documents/GitHub/ProyectoFinal-C3/src/controlador/dao/pdf/ReportePDF.java</file>
             <file>file:/C:/Users/Usuario%20iTC/Documents/GitHub/ProyectoFinal-C3/src/controlador/modelos/ControladorReporte.java</file>
             <file>file:/C:/Users/Usuario%20iTC/Documents/GitHub/ProyectoFinal-C3/src/vista/FrmReporte.java</file>
+=======
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/modelos/ControladorClientes.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Vehiculo.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/vista/FrmMain_.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Reporte.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Umbral.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/MarcaDao.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Automovil.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Ubicacion.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/TipoCombustible.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/tda/lista/ListaEnlazada.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Cliente.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Marca.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/modelos/ControladorReporte.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Ciudad.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/RangoAnio.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/VehiculoDao.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/Provincia.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/AdaptadorDao.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/AutomovilDao.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/ClienteDao.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/modelo/TipoVehiculo.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/vista/FrmReporte.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/modelos/ControladorAutomoviles.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/modelos/ControladorUmbral.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/vista/tablas/TablaReportes.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/dao/Conexion.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/controlador/modelos/ControladorAdministrador.java</file>
+            <file>file:/C:/Users/LENOVO%20LEGION%205/Documents/NetBeansProjects/ProyectoFinal-C3/src/vista/FrmEditarUmbrales.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
