@@ -5,29 +5,14 @@
  */
 package vista;
 
-import controlador.dao.AutomovilDao;
-import controlador.dao.CiudadDao;
-import controlador.dao.ClienteDao;
-import controlador.dao.UbicacionDao;
-import controlador.dao.MarcaDao;
-import controlador.dao.ProvinciaDao;
-import controlador.dao.VehiculoDao;
-import controlador.dao.pdf.ReportePDF;
 import controlador.modelos.ControladorReporte;
 import controlador.tda.lista.ListaEnlazada;
 import controlador.tda.lista.exception.PosicionException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modelo.Vehiculo;
-import modelo.Ciudad;
 import modelo.Cliente;
-import modelo.Ubicacion;
-import modelo.Marca;
-import modelo.Provincia;
-import modelo.Reporte;
 import modelo.Automovil;
 
 /**
@@ -57,6 +42,21 @@ public class FrmReporte extends javax.swing.JFrame {
         cargar();
     }
 
+    public FrmReporte(ListaEnlazada<String> lista) {
+        initComponents();
+        lista = new ListaEnlazada<>();
+        lista.insertarCabecera("NO APRUEBA");
+        lista.insertarCabecera("RINES DAÑADOS");
+        lista.insertarCabecera("LLANTAS DESGASTADAS");
+        lista.insertarCabecera("CAPO ABOLLADO");
+        
+        try {
+            CR = new ControladorReporte(lista);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener datos, podria deberse a un error de la base de datos", "DataBaseError", JOptionPane.ERROR_MESSAGE);
+        }
+        cargar();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -375,7 +375,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte(new Cliente(), new Automovil(), new ListaEnlazada<String>()).setVisible(true);
+                new FrmReporte(new ListaEnlazada<String>()).setVisible(true);
             }
         });
     }
