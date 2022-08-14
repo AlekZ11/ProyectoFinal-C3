@@ -60,9 +60,9 @@ public class ControladorReporte {
         this.resultados = resultados;
     }
     
-    public ControladorReporte(ListaEnlazada<String> resultados) throws Exception {
+    public ControladorReporte(String Placa, ListaEnlazada<String> resultados) throws Exception {
         
-        this.a = ObtenerAutomovil();
+        this.a = ObtenerAutomovil(Placa);
         this.c = ObtenerCliente();
         this.v = ObtenerVehiculo();
         this.m = ObtenerMarca();
@@ -235,7 +235,7 @@ public class ControladorReporte {
         MarcaDao marca = new MarcaDao();
         //ListaEnlazada<Marca> marcas = marca.listar();
         //marcas = marcas.buscar("ID_Marca", v.getID_Marca());
-        System.out.println("\nMarca " + marca.obtener(v.getID_Marca() + "").getMarca() + "\n");
+        System.out.println("\nMarca " + marca.obtener(v.getID_Marca() + "").getNombre() + "\n");
         
         return marca.obtener(v.getID_Marca() + "");
         
@@ -278,7 +278,7 @@ public class ControladorReporte {
     private TipoCombustible ObtenerTipocombustible() throws Exception{
         TipoCombustibleDao tipocombustible = new TipoCombustibleDao();
         //System.out.println("\nCombustible " + tipocombustible.obtener(v.getID_TipoCombustible()).getTipo() + "\n");
-        System.out.println("\nCombustible " + tipocombustible.obtener("Gasolina").getTipo() + "\n");
+        System.out.println("\nCombustible " + tipocombustible.obtener("Gasolina").getID_TIPOCOMBUSTIBLE() + "\n");
         
         //return tipocombustible.obtener("Gasolina");
         return tipocombustible.obtener(v.getID_TipoCombustible());
@@ -287,17 +287,17 @@ public class ControladorReporte {
     private TipoVehiculo ObtenerTipoVehiculo() throws Exception{
         TipoVehiculoDao tipovehiculo = new TipoVehiculoDao();
         //System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener(v.getID_TipoVehiculo()).getTipo() + "\n");
-        System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener("Coupe").getTipo() + "\n");
+        System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener("Coupe").getID_TIPOVEHICULO() + "\n");
         
         //return tipovehiculo.obtener("Coupe");
         return tipovehiculo.obtener(v.getID_TipoVehiculo());
     }
     
-    private Automovil ObtenerAutomovil() throws Exception{
+    private Automovil ObtenerAutomovil(String Placa) throws Exception{
         AutomovilDao auto = new AutomovilDao();
         System.out.println("AUTO" + auto.obtener("GLS1960").getAnio());
         System.out.println("\nAUTO " + auto.obtener("GLS1960").getPlaca() + "\n");
-        return auto.obtener("GLS1960");
+        return auto.obtener(Placa);
     }
     
     private Cliente ObtenerCliente() throws Exception{
@@ -316,7 +316,7 @@ public class ControladorReporte {
         lista.insertarCabecera("SANDIA");
         
         try {
-            ControladorReporte cr = new ControladorReporte(lista);
+            ControladorReporte cr = new ControladorReporte("GLS1960", lista);
             System.err.println(cr.toString());
         } catch (Exception ex) {
             Logger.getLogger(ControladorReporte.class.getName()).log(Level.SEVERE, null, ex);
