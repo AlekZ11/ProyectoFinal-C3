@@ -76,7 +76,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
                         Utilidades.cambiarDatos(objeto, columna[i], obj);
                     }
                 }
-                System.out.print(obj.toString());
                 lista.insertarCabecera(obj);
             }
             System.out.println("");
@@ -156,7 +155,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     public T obtener(String id) throws Exception {
         
         PreparedStatement stmt;
-        if (id.matches("[a-zA-Z]{3}[\\d]{3,4}")) {
+        if (id.matches("[A-Z]{3}[\\d]{3,4}")) {
             id = "'"+id + "'";
             stmt = getConexion().prepareStatement("Select * from " + clazz.getSimpleName().toLowerCase() + " where placa = " + id);
         }else if (id.matches("[a-zA-Z]+")){

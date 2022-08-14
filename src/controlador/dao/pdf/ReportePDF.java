@@ -59,12 +59,12 @@ public class ReportePDF {
             documento.add(new Paragraph("\n"));
 
             documento.add(new Paragraph("Datos Vehículo", font));
-            documento.add(new Paragraph("Marca: " + CR.getM().getMarca()));
+            documento.add(new Paragraph("Marca: " + CR.getM().getNombre()));
             documento.add(new Paragraph("Modelo: " + CR.getV().getModelo()));
             documento.add(new Paragraph("Año: " + CR.getA().getAnio()));
-            documento.add(new Paragraph("Combustible: " + CR.getT_c().getTipo()));
+            documento.add(new Paragraph("Combustible: " + CR.getT_c().getID_TIPOCOMBUSTIBLE()));
             documento.add(new Paragraph("Placa: " + CR.getA().getPlaca()));
-            documento.add(new Paragraph("Tipo de Vehiculo: " + CR.getT_v().getTipo()));
+            documento.add(new Paragraph("Tipo de Vehiculo: " + CR.getT_v().getID_TIPOVEHICULO()));
             documento.add(new Paragraph("\n"));
 
             documento.add(new Paragraph("Observaciones", font));
@@ -106,7 +106,7 @@ public class ReportePDF {
         
         
         try {
-            ControladorReporte reportController = new ControladorReporte(lista);
+            ControladorReporte reportController = new ControladorReporte("GLS1960", lista);
             ReportePDF pdf = new ReportePDF(reportController);
             pdf.generarPDF();
         } catch (Exception ex) {

@@ -23,7 +23,7 @@ public class Conexion {
             conectar();
         return con;
     }
-    
+
     public static Connection conectar() {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -39,7 +39,7 @@ public class Conexion {
         }
         return con;
     }
-    
+
     public static void main(String[] args) {
         try {
             Connection cn = Conexion.getConexion();

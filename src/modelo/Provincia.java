@@ -13,7 +13,6 @@ import java.util.Date;
 public class Provincia {
     private Integer ID_Provincia;
     private String Nombre;
-    private Date Created_At;
     
     public Provincia(){}
 
@@ -38,16 +37,8 @@ public class Provincia {
         this.Nombre = Nombre;
     }
 
-    public Date getCreated_At() {
-        return Created_At;
-    }
-
-    public void setCreated_At(Date Created_At) {
-        this.Created_At = Created_At;
-    }
-
     @Override
     public String toString() {
-        return "Provincia{" + "id=" + ID_Provincia + ", Nombre=" + Nombre + ", Created_At=" + Created_At + '}';
+        return "Provincia{" + "id=" + ID_Provincia + ", Nombre=" + Nombre + '}';
     }  
 }
