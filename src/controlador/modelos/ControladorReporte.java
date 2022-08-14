@@ -47,7 +47,7 @@ public class ControladorReporte {
         this.cd = ObtenerCiudad();
         this.p = ObtenerProvincia();
         this.t_c = obtenerTipocombustible();
-        this.t_v = obtenerTipoVehiculo();
+        //this.t_v = obtenerTipoVehiculo();
 
         this.resultados = resultados;
     }
@@ -252,9 +252,9 @@ public class ControladorReporte {
         return tipocombustible.obtener(v.getID_TipoCombustible());
     }
     
-    private TipoVehiculo obtenerTipoVehiculo(){
+    /*private TipoVehiculo obtenerTipoVehiculo(){
         TipoVehiculoDao tipovehiculo = new TipoVehiculoDao();
         return tipovehiculo.obtener(v.getID_TipoVehiculo());
-    }
+    }*/
 
 }

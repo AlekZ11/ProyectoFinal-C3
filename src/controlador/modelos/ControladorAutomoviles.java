@@ -68,10 +68,6 @@ public class ControladorAutomoviles {
         this.listaAutomoviles = listaVehiculos;
     }
 
-    public void insertarVehiculo(String marca, String modelo, Integer anio, String placa, String tipoVehiculo, String tipoCombustible, Integer id_cliente) throws Exception{
-        //listaVehiculos.insertar(new Automovil(listaVehiculos.getSize()+1, marca, modelo, anio, placa, tipoVehiculo, tipoCombustible, id_cliente));
-    }
-
     public Integer getSize(){
         return listaAutomoviles.getSize();
     }
@@ -101,21 +97,19 @@ public class ControladorAutomoviles {
         }else {
             vdao.setVehiculo(new Vehiculo(vdao.getNextValue(), id_marca, modelo, tipoVehiculo, tipoCombustible));
             vdao.guardar();
-            return vdao.getCurrentValue();
+            return vdao.getVehiculo().getID_Vehiculo();
         }
     }
 
     public Integer existeMarca(String marca) throws Exception{
         ListaEnlazada<Marca> listaMarcas = mdao.listar();
-        ListaEnlazada <Marca> resultado = new ListaEnlazada<>();
-        if(listaMarcas.obtenerDato(0).getNombre() != null)
-            resultado = listaMarcas.buscar("Nombre", marca);
+        ListaEnlazada <Marca> resultado = listaMarcas.buscar("Marca", marca);
         if(resultado.getSize() > 0 ){
             return resultado.obtenerDato(0).getID_Marca();
         }
         mdao.setMarca(new Marca(mdao.getNextValue(), marca));
         mdao.guardar();
-        return mdao.getCurrentValue();
+        return mdao.getMarca().getID_Marca();
     }
 
     public void imprimir(Integer i) throws Exception{

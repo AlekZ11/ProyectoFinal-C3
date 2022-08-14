@@ -110,6 +110,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error en guardar " + e);
+            e.printStackTrace();
         }
     }
 
@@ -143,7 +144,8 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             PreparedStatement stmt = getConexion().prepareStatement(comando);
             stmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error en guardar " + e);
+            System.out.println("Error en modificar " + e);
+            e.printStackTrace();
         }
 
         System.out.println(comando);
@@ -154,7 +156,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     public T obtener(String id) throws Exception {
         
         PreparedStatement stmt;
-        if (!id.matches("^-?\\d+(?:,\\d+)?$")) {
+        if (id.matches("[a-zA-Z]{3}[\\d]{3,4}")) {
             id = "'"+id + "'";
             stmt = getConexion().prepareStatement("Select * from " + clazz.getSimpleName().toLowerCase() + " where placa = " + id);
         }else{
@@ -218,6 +220,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             }
         } catch (Exception e) {
             System.out.println("xxxx " + e);
+            e.printStackTrace();
 
         }
 
@@ -227,7 +230,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     public Integer getCurrentValue(){
         Integer value = 0;
         try {
-            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id.nextval from dual";
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id_seq.currval from dual";
             PreparedStatement stmt = getConexion().prepareStatement(seleccion);
             ResultSet resultSet = stmt.executeQuery();
             resultSet.next();
@@ -241,7 +244,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     public Integer getNextValue(){
         Integer value = 0;
         try {
-            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id.nextval from dual";
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id_seq.nextval from dual";
             PreparedStatement stmt = getConexion().prepareStatement(seleccion);
             ResultSet resultSet = stmt.executeQuery();
             resultSet.next();

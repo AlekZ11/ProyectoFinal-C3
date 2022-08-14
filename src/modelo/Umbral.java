@@ -3,6 +3,7 @@ package modelo;
 
 public class Umbral {
     private Integer ID_Umbral;
+    private String descripcion;
     private Integer ID_RangoAnio;
     private String tipo;
     private Double valorMin;
@@ -11,13 +12,14 @@ public class Umbral {
 
     public Umbral(){   }
 
-    public Umbral(Integer ID, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
+    public Umbral(Integer ID, String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
         this.ID_Umbral = ID;
         this.ID_RangoAnio = ID_RangoAnio;
         this.tipo = tipo;
         this.valorMin = valoresMin;
         this.valorMax = valoresMax;
         this.clave_Umbral = claveUmbral;
+        this.descripcion = descripcion;
     }
 
     public Integer getID_Umbral() {
@@ -26,6 +28,14 @@ public class Umbral {
 
     public void setID_Umbral(Integer ID_Umbral) {
         this.ID_Umbral = ID_Umbral;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Integer getID_RangoAnio() {

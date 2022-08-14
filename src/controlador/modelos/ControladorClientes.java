@@ -110,7 +110,7 @@ public class ControladorClientes {
         if (resultado.getSize() > 0) {
             return resultado.obtenerDato(0).getID_Cliente();
         }
-        cldao.setCliente(new Cliente(cldao.getNextValue(), identificacion, nombre, apellido, id_Ubicacion));
+        cldao.setCliente(new Cliente(cldao.getNextValue(), nombre, apellido, identificacion, id_Ubicacion));
         cldao.guardar();
         return cldao.getCurrentValue();
     }

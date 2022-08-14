@@ -29,6 +29,7 @@ public class VehiculoDao extends AdaptadorDao<Vehiculo> {
     
     public void guardar() throws Exception{
         super.guardar(vehiculo);
+        System.out.println("Vehiculo Guardado");
     }
     
     public void modificar() throws Exception{

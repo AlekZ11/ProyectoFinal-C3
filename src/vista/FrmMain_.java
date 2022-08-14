@@ -44,6 +44,11 @@ public class FrmMain_ extends javax.swing.JFrame {
         String[] lineaSeparada;
         while (!error) {
             String archivo = String.valueOf(JOptionPane.showInputDialog(null, "Ingrese la PLACA :"));
+            //si le dio a cancelar me salgo del while
+            if (archivo == null || archivo.toLowerCase() == "null") {
+                error = true;
+                break;
+            }
             error = true;
             try {
                 archivo += ".txt";

@@ -29,6 +29,7 @@ public class MarcaDao extends AdaptadorDao<Marca> {
     
     public void guardar() throws Exception{
         super.guardar(marca);
+        System.out.println("Marca Guardada");
     }
     
     public void modificar() throws Exception{
