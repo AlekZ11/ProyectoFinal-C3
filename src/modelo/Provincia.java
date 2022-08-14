@@ -16,8 +16,7 @@ public class Provincia {
     
     public Provincia(){}
 
-    public Provincia(Integer id, String Nombre) {
-        this.ID_Provincia = id;
+    public Provincia( String Nombre) {
         this.Nombre = Nombre;
     }
 

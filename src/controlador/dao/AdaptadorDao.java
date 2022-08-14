@@ -9,11 +9,7 @@ import controlador.utiles.Utilidades;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -91,22 +87,25 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     @Override
     public void guardar(T dato) throws Exception {
         String[] columnas = columnas();
-        String comando = "Insert Into " + clazz.getSimpleName().toUpperCase();
-        String variables = "";
+        String comando = "call Insert_" + clazz.getSimpleName().toUpperCase();
         String datos = "";
         for (int i = 0; i < columnas.length; i++) {
-            if (i == columnas.length - 1) {
-                variables += columnas[i];//id, nombres, external_id, ...
-                datos += tipoDato(columnas[i], dato);//0, "casa", "343-545
-            } else {
-                variables += columnas[i] + " , ";
-                datos += tipoDato(columnas[i], dato) + " , ";
+            if(!"null".equals(String.valueOf(tipoDato(columnas[i], dato)))){
+                datos += tipoDato(columnas[i], dato) + 
+                        ((i != columnas.length-1 )?" , ":"");
             }
         }
-        comando += " (" + variables + ") values (" + datos + ") ";
+        comando += " (" + datos;
+        if(comando.charAt(comando.length()-2) == ','){
+            comando = comando.substring(0, comando.length()-3);
+        }
+        comando += ")";
         try {
-            PreparedStatement stmt = getConexion().prepareStatement(comando);
-            stmt.executeUpdate();
+            System.out.println(comando);
+            CallableStatement stmt = getConexion().prepareCall(comando);
+            stmt.execute();
+            stmt.close();
+            return;
         } catch (Exception e) {
             System.out.println("Error en guardar " + e);
             e.printStackTrace();
@@ -214,7 +213,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 aux = (dato != null) ? "\'" + formato.format((Date) dato) + "\'" : "null";
             } else if (field.getType().getSuperclass().getSimpleName().equalsIgnoreCase("Number")) {
-                aux = (dato != null) ? dato.toString() : "0";
+                aux = (dato != null) ? dato.toString() : "null";
             } else if (field.getType().getSimpleName().equals("Boolean")) {
                 aux = (dato != null) ? dato.toString() : Boolean.FALSE.toString();
             } else {

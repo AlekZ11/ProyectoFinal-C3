@@ -14,11 +14,11 @@ public class Automovil {
 
     public Automovil(){   }
 
-    public Automovil(String placa, Integer anio, Integer ID_Vehiculo, Integer id_cliente) {
+    public Automovil(String placa, Integer anio, Integer ID_Vehiculo, Integer Id_cliente) {
         this.placa = placa;
         this.anio = anio;
         this.ID_Vehiculo = ID_Vehiculo;
-        this.ID_Cliente = id_cliente;
+        this.ID_Cliente = Id_cliente;
     }
     
     public String getPlaca() {

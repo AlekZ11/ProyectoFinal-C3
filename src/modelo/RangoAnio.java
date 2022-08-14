@@ -17,8 +17,7 @@ public class RangoAnio {
     private Date created_At;
     private Date updated_At;
 
-    public RangoAnio(Integer ID, Integer anioMin, Integer anioMax) {
-        this.ID_RangoAnio = ID;
+    public RangoAnio( Integer anioMin, Integer anioMax) {
         this.anioMin = anioMin;
         this.anioMax = anioMax;
     }

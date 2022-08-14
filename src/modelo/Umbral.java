@@ -17,8 +17,7 @@ public class Umbral {
 
     public Umbral(){   }
 
-    public Umbral(Integer ID, String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
-        this.ID_Umbral = ID;
+    public Umbral(String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
         this.ID_RangoAnio = ID_RangoAnio;
         this.tipo = tipo;
         this.valorMin = valoresMin;
@@ -49,14 +48,6 @@ public class Umbral {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public Integer getID_RangoAnio() {
