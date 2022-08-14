@@ -6,6 +6,8 @@ package vista;
 
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import controlador.dao.UmbralDao;
+import controlador.tda.lista.ListaEnlazada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -13,6 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.multi.MultiLookAndFeel;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import modelo.Umbral;
 
 /**
  *
@@ -25,6 +28,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
      */
     public FrmEditarUmbrales() {
         initComponents();
+        cargarLista();
     }
 
     /**
@@ -105,6 +109,12 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         jLabel9.setText("Clave valor:");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(8, 37, 73, 30);
+
+        txtfClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfClaveKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtfClave);
         txtfClave.setBounds(90, 36, 134, 32);
 
@@ -189,6 +199,18 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 310, 220);
+
+        txtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtfBuscarKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfBuscarKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtfBuscar);
         txtfBuscar.setBounds(60, 50, 260, 30);
 
@@ -214,6 +236,32 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
     }//GEN-LAST:event_txtfUmbralMaximoKeyTyped
 
+    private void txtfClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfClaveKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();
+    }//GEN-LAST:event_txtfClaveKeyTyped
+
+    private void txtfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyTyped
+        
+    }//GEN-LAST:event_txtfBuscarKeyTyped
+
+    private void txtfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfBuscarKeyPressed
+
+    private void txtfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyReleased
+        cargarLista();
+    }//GEN-LAST:event_txtfBuscarKeyReleased
+    private void cargarLista(){
+        listaUmbrales.removeAll();
+        ListaEnlazada<Umbral> aux = new ListaEnlazada();
+        UmbralDao umdao = new UmbralDao();
+        if(txtfBuscar.getText().trim().length()==0){
+            aux = umdao.consultarUmbrales(null);
+        }else{
+            aux = umdao.consultarUmbrales(txtfBuscar.getText());
+        }
+    }
     /**
      * @param args the command line arguments
      */

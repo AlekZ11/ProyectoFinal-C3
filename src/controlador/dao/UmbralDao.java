@@ -65,5 +65,18 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         }
         return lista;
     }
-
+    
+    public ListaEnlazada<Umbral> consultarUmbrales(String descripcion){
+        ListaEnlazada<Umbral> aux = new ListaEnlazada<>();
+        String sentencia = "";
+        if (descripcion==null) {
+            sentencia="SELECT * FROM UMBRAL";
+        } else {
+            sentencia="SELECT * FROM UMBRAL WHERE TIPO LIKE '"+descripcion+"%'";
+            
+        }
+        System.out.println(sentencia);
+        return aux;
+    }
+    
 }
