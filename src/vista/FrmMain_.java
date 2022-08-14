@@ -31,7 +31,7 @@ public class FrmMain_ extends javax.swing.JFrame {
      */
     public FrmMain_() {
         initComponents();
-        this.setSize(1155, 720);
+        this.setSize(1155, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -126,6 +126,9 @@ public class FrmMain_ extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 });
+                for (int k = 0; k < resultados.getSize(); k++) {
+                    System.out.println(resultados.obtenerDato(k));
+                }
                 br.close();
             } catch (Exception e) {
                 System.out.println("Error al leer el archivo");
@@ -156,9 +159,6 @@ public class FrmMain_ extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnCancelarP = new javax.swing.JButton();
-        btnModificarP = new javax.swing.JButton();
-        btnAceptarP = new javax.swing.JButton();
         txtProvincia = new javax.swing.JTextField();
         txtIdentificacion = new javax.swing.JTextField();
         txtCiudad = new javax.swing.JTextField();
@@ -167,67 +167,34 @@ public class FrmMain_ extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jSpinner6 = new javax.swing.JSpinner();
-        jSpinner7 = new javax.swing.JSpinner();
-        jSpinner8 = new javax.swing.JSpinner();
         jLabel21 = new javax.swing.JLabel();
-        jSpinner9 = new javax.swing.JSpinner();
-        jSpinner10 = new javax.swing.JSpinner();
-        jSpinner11 = new javax.swing.JSpinner();
-        jSpinner12 = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
-        jSpinner13 = new javax.swing.JSpinner();
-        jSpinner14 = new javax.swing.JSpinner();
-        jSpinner15 = new javax.swing.JSpinner();
-        jSpinner16 = new javax.swing.JSpinner();
         jLabel23 = new javax.swing.JLabel();
-        jSpinner17 = new javax.swing.JSpinner();
-        jSpinner18 = new javax.swing.JSpinner();
-        jSpinner19 = new javax.swing.JSpinner();
-        jSpinner20 = new javax.swing.JSpinner();
         jLabel24 = new javax.swing.JLabel();
-        jSpinner21 = new javax.swing.JSpinner();
-        jSpinner22 = new javax.swing.JSpinner();
-        jSpinner23 = new javax.swing.JSpinner();
-        jSpinner24 = new javax.swing.JSpinner();
-        jSpinner25 = new javax.swing.JSpinner();
-        jSpinner26 = new javax.swing.JSpinner();
-        jSpinner27 = new javax.swing.JSpinner();
-        jSpinner28 = new javax.swing.JSpinner();
         jLabel25 = new javax.swing.JLabel();
-        jSpinner29 = new javax.swing.JSpinner();
-        jSpinner30 = new javax.swing.JSpinner();
-        jSpinner31 = new javax.swing.JSpinner();
-        jSpinner32 = new javax.swing.JSpinner();
         jLabel26 = new javax.swing.JLabel();
-        jSpinner33 = new javax.swing.JSpinner();
         jLabel27 = new javax.swing.JLabel();
-        jSpinner34 = new javax.swing.JSpinner();
-        jSpinner35 = new javax.swing.JSpinner();
-        jSpinner36 = new javax.swing.JSpinner();
         jLabel28 = new javax.swing.JLabel();
-        jSpinner37 = new javax.swing.JSpinner();
-        jSpinner38 = new javax.swing.JSpinner();
-        jSpinner39 = new javax.swing.JSpinner();
-        jSpinner40 = new javax.swing.JSpinner();
         jLabel29 = new javax.swing.JLabel();
+        txt_Prueba1 = new javax.swing.JTextField();
+        txt_Prueba2 = new javax.swing.JTextField();
+        txt_Prueba3 = new javax.swing.JTextField();
+        txt_Prueba4 = new javax.swing.JTextField();
+        txt_Prueba5 = new javax.swing.JTextField();
+        txt_Prueba6 = new javax.swing.JTextField();
+        txt_Prueba7 = new javax.swing.JTextField();
+        txt_Prueba8 = new javax.swing.JTextField();
+        txt_Prueba9 = new javax.swing.JTextField();
+        txt_Prueba10 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnModificarV = new javax.swing.JButton();
-        btnAceptarV = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnCancelarV = new javax.swing.JButton();
         txtAnio = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
@@ -288,20 +255,6 @@ public class FrmMain_ extends javax.swing.JFrame {
         jPanel2.add(jLabel8);
         jLabel8.setBounds(280, 140, 60, 16);
 
-        btnCancelarP.setText("CANCELAR");
-        btnCancelarP.setEnabled(false);
-        jPanel2.add(btnCancelarP);
-        btnCancelarP.setBounds(360, 200, 130, 30);
-
-        btnModificarP.setText("MODIFICAR");
-        jPanel2.add(btnModificarP);
-        btnModificarP.setBounds(40, 200, 130, 30);
-
-        btnAceptarP.setText("ACEPTAR");
-        btnAceptarP.setEnabled(false);
-        jPanel2.add(btnAceptarP);
-        btnAceptarP.setBounds(200, 200, 130, 30);
-
         txtProvincia.setEditable(false);
         jPanel2.add(txtProvincia);
         txtProvincia.setBounds(350, 140, 130, 22);
@@ -315,7 +268,7 @@ public class FrmMain_ extends javax.swing.JFrame {
         txtCiudad.setBounds(120, 140, 130, 22);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 60, 540, 270);
+        jPanel2.setBounds(10, 80, 540, 190);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Resultados Obtenidos"));
         jPanel3.setLayout(null);
@@ -335,133 +288,133 @@ public class FrmMain_ extends javax.swing.JFrame {
         jLabel18.setText("Tipo 2");
         jPanel3.add(jLabel18);
         jLabel18.setBounds(360, 30, 50, 16);
-        jPanel3.add(jSpinner1);
-        jSpinner1.setBounds(450, 70, 64, 22);
-        jPanel3.add(jSpinner2);
-        jSpinner2.setBounds(150, 70, 64, 22);
-        jPanel3.add(jSpinner3);
-        jSpinner3.setBounds(250, 70, 64, 22);
-        jPanel3.add(jSpinner4);
-        jSpinner4.setBounds(350, 70, 64, 22);
 
         jLabel19.setText("Holguras :");
         jPanel3.add(jLabel19);
-        jLabel19.setBounds(40, 70, 90, 20);
+        jLabel19.setBounds(40, 60, 90, 20);
 
         jLabel20.setText("Luxometro :");
         jPanel3.add(jLabel20);
-        jLabel20.setBounds(40, 120, 90, 20);
-        jPanel3.add(jSpinner5);
-        jSpinner5.setBounds(150, 120, 64, 22);
-        jPanel3.add(jSpinner6);
-        jSpinner6.setBounds(250, 120, 64, 22);
-        jPanel3.add(jSpinner7);
-        jSpinner7.setBounds(350, 120, 64, 22);
-        jPanel3.add(jSpinner8);
-        jSpinner8.setBounds(450, 120, 64, 22);
+        jLabel20.setBounds(40, 100, 90, 20);
 
         jLabel21.setText("Sonometro :");
         jPanel3.add(jLabel21);
-        jLabel21.setBounds(40, 170, 90, 20);
-        jPanel3.add(jSpinner9);
-        jSpinner9.setBounds(150, 170, 64, 22);
-        jPanel3.add(jSpinner10);
-        jSpinner10.setBounds(250, 170, 64, 22);
-        jPanel3.add(jSpinner11);
-        jSpinner11.setBounds(350, 170, 64, 22);
-        jPanel3.add(jSpinner12);
-        jSpinner12.setBounds(450, 170, 64, 22);
+        jLabel21.setBounds(40, 140, 90, 20);
 
         jLabel22.setText("Gases :");
         jPanel3.add(jLabel22);
-        jLabel22.setBounds(40, 220, 90, 20);
-        jPanel3.add(jSpinner13);
-        jSpinner13.setBounds(150, 220, 64, 22);
-        jPanel3.add(jSpinner14);
-        jSpinner14.setBounds(250, 220, 64, 22);
-        jPanel3.add(jSpinner15);
-        jSpinner15.setBounds(350, 220, 64, 22);
-        jPanel3.add(jSpinner16);
-        jSpinner16.setBounds(450, 220, 64, 22);
+        jLabel22.setBounds(40, 180, 90, 20);
 
         jLabel23.setText("Opacimetro :");
         jPanel3.add(jLabel23);
-        jLabel23.setBounds(40, 270, 90, 20);
-        jPanel3.add(jSpinner17);
-        jSpinner17.setBounds(150, 270, 64, 22);
-        jPanel3.add(jSpinner18);
-        jSpinner18.setBounds(250, 270, 64, 22);
-        jPanel3.add(jSpinner19);
-        jSpinner19.setBounds(350, 270, 64, 22);
-        jPanel3.add(jSpinner20);
-        jSpinner20.setBounds(450, 270, 64, 22);
+        jLabel23.setBounds(40, 220, 90, 20);
 
         jLabel24.setText("Alineador :");
         jPanel3.add(jLabel24);
-        jLabel24.setBounds(40, 320, 90, 20);
-        jPanel3.add(jSpinner21);
-        jSpinner21.setBounds(150, 320, 64, 22);
-        jPanel3.add(jSpinner22);
-        jSpinner22.setBounds(250, 320, 64, 22);
-        jPanel3.add(jSpinner23);
-        jSpinner23.setBounds(350, 320, 64, 22);
-        jPanel3.add(jSpinner24);
-        jSpinner24.setBounds(450, 320, 64, 22);
-        jPanel3.add(jSpinner25);
-        jSpinner25.setBounds(450, 370, 64, 22);
-        jPanel3.add(jSpinner26);
-        jSpinner26.setBounds(350, 370, 64, 22);
-        jPanel3.add(jSpinner27);
-        jSpinner27.setBounds(150, 370, 64, 22);
-        jPanel3.add(jSpinner28);
-        jSpinner28.setBounds(250, 370, 64, 22);
+        jLabel24.setBounds(40, 260, 90, 20);
 
         jLabel25.setText("Suspension :");
         jPanel3.add(jLabel25);
-        jLabel25.setBounds(40, 370, 90, 20);
-        jPanel3.add(jSpinner29);
-        jSpinner29.setBounds(150, 420, 64, 22);
-        jPanel3.add(jSpinner30);
-        jSpinner30.setBounds(450, 420, 64, 22);
-        jPanel3.add(jSpinner31);
-        jSpinner31.setBounds(350, 420, 64, 22);
-        jPanel3.add(jSpinner32);
-        jSpinner32.setBounds(250, 420, 64, 22);
+        jLabel25.setBounds(40, 300, 90, 20);
 
         jLabel26.setText("Frenos :");
         jPanel3.add(jLabel26);
-        jLabel26.setBounds(40, 420, 90, 20);
-        jPanel3.add(jSpinner33);
-        jSpinner33.setBounds(250, 470, 64, 22);
+        jLabel26.setBounds(40, 340, 90, 20);
 
         jLabel27.setText("Rodadura :");
         jPanel3.add(jLabel27);
-        jLabel27.setBounds(40, 470, 90, 20);
-        jPanel3.add(jSpinner34);
-        jSpinner34.setBounds(150, 470, 64, 22);
-        jPanel3.add(jSpinner35);
-        jSpinner35.setBounds(450, 470, 64, 22);
-        jPanel3.add(jSpinner36);
-        jSpinner36.setBounds(350, 470, 64, 22);
+        jLabel27.setBounds(40, 380, 90, 20);
 
         jLabel28.setText("Neumaticos");
         jPanel3.add(jLabel28);
-        jLabel28.setBounds(40, 520, 90, 20);
-        jPanel3.add(jSpinner37);
-        jSpinner37.setBounds(150, 520, 64, 22);
-        jPanel3.add(jSpinner38);
-        jSpinner38.setBounds(450, 520, 64, 22);
-        jPanel3.add(jSpinner39);
-        jSpinner39.setBounds(350, 520, 64, 22);
-        jPanel3.add(jSpinner40);
-        jSpinner40.setBounds(250, 520, 64, 22);
+        jLabel28.setBounds(40, 420, 90, 20);
 
         jLabel29.setText("Pruebas");
         jPanel3.add(jLabel29);
         jLabel29.setBounds(50, 30, 42, 16);
 
+        txt_Prueba1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba1);
+        txt_Prueba1.setBounds(160, 60, 330, 22);
+
+        txt_Prueba2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba2);
+        txt_Prueba2.setBounds(160, 100, 330, 22);
+
+        txt_Prueba3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba3);
+        txt_Prueba3.setBounds(160, 140, 330, 22);
+
+        txt_Prueba4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba4);
+        txt_Prueba4.setBounds(160, 180, 330, 22);
+
+        txt_Prueba5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba5);
+        txt_Prueba5.setBounds(160, 220, 330, 22);
+
+        txt_Prueba6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba6);
+        txt_Prueba6.setBounds(160, 260, 330, 20);
+
+        txt_Prueba7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba7ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba7);
+        txt_Prueba7.setBounds(160, 300, 330, 22);
+
+        txt_Prueba8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba8);
+        txt_Prueba8.setBounds(160, 340, 330, 22);
+
+        txt_Prueba9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba9);
+        txt_Prueba9.setBounds(160, 380, 330, 22);
+
+        txt_Prueba10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba10);
+        txt_Prueba10.setBounds(160, 420, 330, 22);
+
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(560, 60, 550, 570);
+        jPanel3.setBounds(560, 60, 550, 460);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Vehiculo"));
         jPanel4.setLayout(null);
@@ -478,15 +431,6 @@ public class FrmMain_ extends javax.swing.JFrame {
         jPanel4.add(jLabel9);
         jLabel9.setBounds(50, 50, 60, 16);
 
-        btnModificarV.setText("MODIFICAR");
-        jPanel4.add(btnModificarV);
-        btnModificarV.setBounds(40, 210, 130, 30);
-
-        btnAceptarV.setText("ACEPTAR");
-        btnAceptarV.setEnabled(false);
-        jPanel4.add(btnAceptarV);
-        btnAceptarV.setBounds(200, 210, 130, 30);
-
         jLabel10.setText("Placa :");
         jPanel4.add(jLabel10);
         jLabel10.setBounds(50, 100, 50, 16);
@@ -498,11 +442,6 @@ public class FrmMain_ extends javax.swing.JFrame {
         jLabel11.setText("Tipo :");
         jPanel4.add(jLabel11);
         jLabel11.setBounds(280, 150, 60, 16);
-
-        btnCancelarV.setText("CANCELAR");
-        btnCancelarV.setEnabled(false);
-        jPanel4.add(btnCancelarV);
-        btnCancelarV.setBounds(360, 210, 130, 30);
 
         txtAnio.setEditable(false);
         jPanel4.add(txtAnio);
@@ -529,7 +468,7 @@ public class FrmMain_ extends javax.swing.JFrame {
         txtPlaca.setBounds(120, 100, 130, 22);
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(10, 350, 540, 280);
+        jPanel4.setBounds(10, 300, 540, 200);
 
         btnCargarDatos.setText("Cargar Datos de un Archivo");
         btnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -557,7 +496,7 @@ public class FrmMain_ extends javax.swing.JFrame {
         btnVerificar.setBounds(600, 20, 220, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 10, 1120, 640);
+        jPanel1.setBounds(10, 10, 1120, 530);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -567,12 +506,52 @@ public class FrmMain_ extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setBounds(0, 0, 1154, 689);
+        setBounds(0, 0, 1154, 581);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
         cargarDatos();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCargarDatosActionPerformed
+
+    private void txt_Prueba1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba1ActionPerformed
+
+    private void txt_Prueba2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba2ActionPerformed
+
+    private void txt_Prueba3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba3ActionPerformed
+
+    private void txt_Prueba4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba4ActionPerformed
+
+    private void txt_Prueba5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba5ActionPerformed
+
+    private void txt_Prueba6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba6ActionPerformed
+
+    private void txt_Prueba7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba7ActionPerformed
+
+    private void txt_Prueba8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba8ActionPerformed
+
+    private void txt_Prueba9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba9ActionPerformed
+
+    private void txt_Prueba10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -610,14 +589,8 @@ public class FrmMain_ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptarP;
-    private javax.swing.JButton btnAceptarV;
-    private javax.swing.JButton btnCancelarP;
-    private javax.swing.JButton btnCancelarV;
     private javax.swing.JButton btnCargarDatos;
     private javax.swing.JButton btnInforme;
-    private javax.swing.JButton btnModificarP;
-    private javax.swing.JButton btnModificarV;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -654,46 +627,6 @@ public class FrmMain_ extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner10;
-    private javax.swing.JSpinner jSpinner11;
-    private javax.swing.JSpinner jSpinner12;
-    private javax.swing.JSpinner jSpinner13;
-    private javax.swing.JSpinner jSpinner14;
-    private javax.swing.JSpinner jSpinner15;
-    private javax.swing.JSpinner jSpinner16;
-    private javax.swing.JSpinner jSpinner17;
-    private javax.swing.JSpinner jSpinner18;
-    private javax.swing.JSpinner jSpinner19;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner20;
-    private javax.swing.JSpinner jSpinner21;
-    private javax.swing.JSpinner jSpinner22;
-    private javax.swing.JSpinner jSpinner23;
-    private javax.swing.JSpinner jSpinner24;
-    private javax.swing.JSpinner jSpinner25;
-    private javax.swing.JSpinner jSpinner26;
-    private javax.swing.JSpinner jSpinner27;
-    private javax.swing.JSpinner jSpinner28;
-    private javax.swing.JSpinner jSpinner29;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner30;
-    private javax.swing.JSpinner jSpinner31;
-    private javax.swing.JSpinner jSpinner32;
-    private javax.swing.JSpinner jSpinner33;
-    private javax.swing.JSpinner jSpinner34;
-    private javax.swing.JSpinner jSpinner35;
-    private javax.swing.JSpinner jSpinner36;
-    private javax.swing.JSpinner jSpinner37;
-    private javax.swing.JSpinner jSpinner38;
-    private javax.swing.JSpinner jSpinner39;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner40;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
-    private javax.swing.JSpinner jSpinner9;
     private javax.swing.JLabel lblNombreArchivo;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtApellido;
@@ -707,5 +640,15 @@ public class FrmMain_ extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlaca;
     private javax.swing.JTextField txtProvincia;
     private javax.swing.JTextField txtTipo;
+    private javax.swing.JTextField txt_Prueba1;
+    private javax.swing.JTextField txt_Prueba10;
+    private javax.swing.JTextField txt_Prueba2;
+    private javax.swing.JTextField txt_Prueba3;
+    private javax.swing.JTextField txt_Prueba4;
+    private javax.swing.JTextField txt_Prueba5;
+    private javax.swing.JTextField txt_Prueba6;
+    private javax.swing.JTextField txt_Prueba7;
+    private javax.swing.JTextField txt_Prueba8;
+    private javax.swing.JTextField txt_Prueba9;
     // End of variables declaration//GEN-END:variables
 }
