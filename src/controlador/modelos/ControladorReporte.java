@@ -42,6 +42,7 @@ public class ControladorReporte {
     private Provincia p;
     private TipoVehiculo t_v;
     private TipoCombustible t_c;
+    private String estado;
     private ListaEnlazada<String> resultados;
     
     ListaEnlazada<Reporte> reporte;
@@ -60,7 +61,7 @@ public class ControladorReporte {
         this.resultados = resultados;
     }
     
-    public ControladorReporte(String Placa, ListaEnlazada<String> resultados) throws Exception {
+    public ControladorReporte(Boolean estado, String Placa, ListaEnlazada<String> resultados) throws Exception {
         
         this.a = ObtenerAutomovil(Placa);
         this.c = ObtenerCliente();
@@ -78,6 +79,16 @@ public class ControladorReporte {
     public ControladorReporte() {
 
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     /**
      * @return the c
@@ -306,6 +317,14 @@ public class ControladorReporte {
         
         return cliente.obtener(a.getID_Cliente() + "");
     }
+    
+    public String obtenerEstado(Boolean estado){
+        if (estado) {
+            return "APROBADO";
+        } else{
+            return "REPROBADO";
+        }
+    }
 
     public static void main(String[] args) {
         
@@ -316,7 +335,7 @@ public class ControladorReporte {
         lista.insertarCabecera("SANDIA");
         
         try {
-            ControladorReporte cr = new ControladorReporte("GLS1960", lista);
+            ControladorReporte cr = new ControladorReporte(true,"GLS1960", lista);
             System.err.println(cr.toString());
         } catch (Exception ex) {
             Logger.getLogger(ControladorReporte.class.getName()).log(Level.SEVERE, null, ex);

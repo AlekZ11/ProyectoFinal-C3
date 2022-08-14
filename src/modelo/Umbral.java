@@ -50,7 +50,7 @@ public class Umbral {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+/**
     public String getCategoria() {
         return categoria;
     }
@@ -58,7 +58,7 @@ public class Umbral {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
+**/
     public Integer getID_RangoAnio() {
         return ID_RangoAnio;
     }
