@@ -24,6 +24,8 @@ import javax.swing.DefaultListModel;
  */
 public class FrmEditarUmbrales extends javax.swing.JFrame {
 
+    ListaEnlazada<Umbral> aux = new ListaEnlazada();
+
     /**
      * Creates new form FrmEditarUmbrales
      */
@@ -127,6 +129,11 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         txtfDescripcion.setBounds(323, 36, 239, 32);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnCancelar);
         btnCancelar.setBounds(20, 220, 105, 32);
 
@@ -193,6 +200,11 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
         listaUmbrales.setModel(modelo);
         listaUmbrales.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        listaUmbrales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaUmbralesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaUmbrales);
 
         getContentPane().add(jScrollPane1);
@@ -253,19 +265,55 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private void txtfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyReleased
         cargarLista();
     }//GEN-LAST:event_txtfBuscarKeyReleased
+
+    private void listaUmbralesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaUmbralesMouseClicked
+        if (evt.getClickCount() == 2) {
+            cargarDatos();
+            btnAniadir.setEnabled(false);
+        }
+    }//GEN-LAST:event_listaUmbralesMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiarVista();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+    
+    private void limpiarVista(){
+        txtfClave.setText("");
+        txtfDescripcion.setText("");
+        txtfUmbralMaximo.setText("");
+        txtfUmbralMinimo.setText("");
+        cargarDatos();
+        btnAniadir.setEnabled(true);
+        btnModificar.setEnabled(true);
+    }
+    
+    private void cargarDatos() {
+        try {
+            int seleccion = listaUmbrales.getSelectedIndex();
+            Umbral umbralModificar = aux.obtenerDato(seleccion);
+            txtfClave.setText(umbralModificar.getClave_Umbral()+"");
+            txtfDescripcion.setText(umbralModificar.getDescripcion());
+            txtfUmbralMinimo.setText(umbralModificar.getValorMin()+"");
+            txtfUmbralMaximo.setText(umbralModificar.getValorMax()+"");
+            cbxCalificación.removeAllItems();
+            cbxCalificación.addItem("Tipo: "+umbralModificar.getTipo());
+        } catch (Exception e) {
+        }
+    }
+
     private void cargarLista() {
         modelo.clear();
-        ListaEnlazada<Umbral> aux = new ListaEnlazada();
+
         UmbralDao umdao = new UmbralDao();
         try {
-        if (txtfBuscar.getText().trim().length() == 0) {
-            aux = umdao.buscar(null);
-        } else {
-            aux = umdao.buscar(txtfBuscar.getText());
-        }
-        
+            if (txtfBuscar.getText().trim().length() == 0) {
+                aux = umdao.buscar(null);
+            } else {
+                aux = umdao.buscar(txtfBuscar.getText());
+            }
+
             for (int i = 0; i < aux.getSize(); i++) {
-                modelo.addElement(aux.obtenerDato(i).getDescripcion() +" - Tipo "+ aux.obtenerDato(i).getTipo());
+                modelo.addElement(aux.obtenerDato(i).getDescripcion() + " - Tipo " + aux.obtenerDato(i).getTipo());
             }
         } catch (Exception e) {
             System.out.println("Error en cargar lista");

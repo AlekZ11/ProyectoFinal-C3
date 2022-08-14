@@ -51,14 +51,6 @@ public class Umbral {
         this.descripcion = descripcion;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public Integer getID_RangoAnio() {
         return ID_RangoAnio;
     }
