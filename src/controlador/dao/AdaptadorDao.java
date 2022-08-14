@@ -76,7 +76,6 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
                         Utilidades.cambiarDatos(objeto, columna[i], obj);
                     }
                 }
-                System.out.print(obj.toString());
                 lista.insertarCabecera(obj);
             }
             System.out.println("");

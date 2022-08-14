@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 
 public class Umbral {
     private Integer ID_Umbral;
@@ -9,6 +11,8 @@ public class Umbral {
     private Double valorMin;
     private Double valorMax;
     private Integer clave_Umbral;
+    private Date Created_At;
+    private Date Updated_At;
 
     public Umbral(){   }
 
@@ -77,6 +81,24 @@ public class Umbral {
     public void setClave_Umbral(Integer clave_Umbral) {
         this.clave_Umbral = clave_Umbral;
     }
+
+    public Date getCreated_At() {
+        return Created_At;
+    }
+
+    public void setCreated_At(Date Created_At) {
+        this.Created_At = Created_At;
+    }
+
+    public Date getUpdated_At() {
+        return Updated_At;
+    }
+
+    public void setUpdated_At(Date Updated_At) {
+        this.Updated_At = Updated_At;
+    }
+    
+    
 
     
 }

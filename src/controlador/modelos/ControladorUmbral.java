@@ -1,6 +1,7 @@
 package controlador.modelos;
 
 import com.google.gson.Gson;
+import controlador.dao.RangoAnioDao;
 import controlador.dao.UmbralDao;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.*;
@@ -15,9 +16,14 @@ public class ControladorUmbral {
 
     private ListaEnlazada<Umbral> listaUmbrales;
     private ListaEnlazada<RangoAnio> listaRangosAnio;
+    private UmbralDao udao;
+    private RangoAnioDao radao;
 
     public ControladorUmbral() {
-        listaUmbrales = new ListaEnlazada<>();
+        udao = new UmbralDao();
+        radao = new RangoAnioDao();
+        listaUmbrales = udao.listar();
+        listaRangosAnio = radao.listar();
     }
 
     public ListaEnlazada<Umbral> getListaUmbrales() {
@@ -42,11 +48,8 @@ public class ControladorUmbral {
     }
 
     public RangoAnio obtenerRangoAnio(Integer id_rangoAnio) throws Exception {
-        RangoAnio Aux = new RangoAnio();
-        if (listaRangosAnio.obtenerDato(id_rangoAnio).getID_RangoAnio().equals(id_rangoAnio)) {
-            Aux = listaRangosAnio.obtenerDato(id_rangoAnio);
-        }
-        return Aux;
+        ListaEnlazada<RangoAnio> Aux = listaRangosAnio.buscar("ID_RangoAnio", id_rangoAnio);
+        return Aux.obtenerDato(0);
     }
 
     public void cargarUmbrales() {
@@ -79,16 +82,15 @@ public class ControladorUmbral {
 
     public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception {
         ListaEnlazada<Umbral> umbrales = obtenerUmbral(id_valor);
-        String[] resultado = {"OK", "Tipo 1", "Tipo 2", "Tipo 3"};
+        System.out.println(umbrales.getSize());
         for (int i = 0; i < umbrales.getSize(); i++) {
             Umbral umbral = umbrales.obtenerDato(i);
             RangoAnio ra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
             if (anio >= ra.getAnioMin() && anio < ra.getAnioMax()
                     && (umbral != null)?(umbral.getValorMin() <= valor && umbral.getValorMax() > valor):false) {
-                System.out.println("(" + umbral.getValorMin() + " <= " + valor + " < " + umbral.getValorMax() + ")" + " = " + umbral.getTipo());
                 return umbral.getTipo();
             }
         }
-        return "Error no se encuentra dentro de los rangos de los umbrales";
+        return "Error";
     }
 }

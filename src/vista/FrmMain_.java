@@ -31,7 +31,7 @@ public class FrmMain_ extends javax.swing.JFrame {
      */
     public FrmMain_() {
         initComponents();
-        this.setSize(1155, 600);
+        this.setSize(1155, 610);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -121,14 +121,15 @@ public class FrmMain_ extends javax.swing.JFrame {
                                 valor = Double.valueOf(String.valueOf(value));
                             }
                             resultados.insertar(controladorUmbral.comprobarUmbral(key, aniov, valor));
+                            System.out.println("Key = " + key + ", Valor = " + valor + ", Error : " + resultados.obtenerDato(resultados.getSize()-1));
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
-                for (int k = 0; k < resultados.getSize(); k++) {
+                /*for (int k = 0; k < resultados.getSize(); k++) {
                     System.out.println(resultados.obtenerDato(k));
-                }
+                }*/
                 br.close();
             } catch (Exception e) {
                 System.out.println("Error al leer el archivo");
