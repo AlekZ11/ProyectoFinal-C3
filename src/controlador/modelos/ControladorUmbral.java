@@ -89,10 +89,10 @@ public class ControladorUmbral {
                     && umbral.getCategoria().toLowerCase().equals(tipo.toLowerCase())
                     && umbral.getValorMin() <= valor 
                     && valor < umbral.getValorMax()) {
-                System.out.println("Clave : " + id_valor + "( ValorMin : " + umbral.getValorMin() + " <= Valor : " +valor + " < ValorMax : " + umbral.getValorMax() + " ) ERROR : " + umbral.getTipo());
+                //System.out.println("Clave : " + id_valor + "( ValorMin : " + umbral.getValorMin() + " <= Valor : " +valor + " < ValorMax : " + umbral.getValorMax() + " ) ERROR : " + umbral.getTipo());
                 return umbral.getTipo();
             }
         }
-        return "Error";
+        return "Tipo 0";
     }
 }

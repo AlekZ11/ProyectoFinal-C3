@@ -11,6 +11,8 @@ import controlador.tda.lista.ListaEnlazada;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelo.TipoCombustible;
@@ -25,20 +27,110 @@ public class FrmMain_ extends javax.swing.JFrame {
     ControladorClientes controladorClientes = new ControladorClientes();
     ControladorAutomoviles controladorAutomoviles = new ControladorAutomoviles();
     ControladorUmbral controladorUmbral = new ControladorUmbral();
+    ListaEnlazada<Object> valores = new ListaEnlazada<>();
+    ListaEnlazada<String> resultado = new ListaEnlazada<>();
+    Integer aniov = 0;
+    String tipov = "";
 
     /**
      * Creates new form FrmMain_
      */
     public FrmMain_() {
         initComponents();
-        this.setSize(1155, 610);
+        this.setSize(1045, 610);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
 
+    public void cargarResultados(Integer id, Integer tipo0, Integer tipo1, Integer tipo2, Integer tipo3) {
+        switch (id) {
+            case 0:
+                txt_Prueba1.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 1:
+                txt_Prueba2.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 2:
+                txt_Prueba3.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 3:
+                txt_Prueba4.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 4:
+                txt_Prueba5.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 5:
+                txt_Prueba6.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 6:
+                txt_Prueba7.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 7:
+                txt_Prueba8.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            case 8:
+                txt_Prueba9.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+            default:
+                txt_Prueba10.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                break;
+        }
+
+    }
+
+    public void calificarValores() throws Exception {
+        for (int k = 0; k < valores.getSize(); k++) {
+            if (String.valueOf(valores.obtenerDato(k)).charAt(0) == ' ') {
+                resultados.insertar(String.valueOf(valores.obtenerDato(k)).substring(1));
+            } else {
+                Integer key = Integer.parseInt(String.valueOf(valores.obtenerDato(k)).split("=")[0]);
+                String value = String.valueOf(valores.obtenerDato(k)).split("=")[1];
+                try {
+                    if (String.valueOf(value).matches("^-?\\d+(?:,\\d+)?$")) {
+                        Double valor;
+                        if (String.valueOf(value).contains(",")) {
+                            valor = Double.valueOf(String.valueOf(value).replace(",", "."));
+                        } else {
+                            valor = Double.valueOf(String.valueOf(value));
+                        }
+                        resultados.insertar(controladorUmbral.comprobarUmbral((Integer) key, aniov, valor, tipov));
+                    } else {
+                        resultados.insertar(String.valueOf(key));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        resultado.insertar("Fin");
+        Integer id_txt = 0;
+        Integer tipo0 = 0;
+        Integer tipo1 = 0;
+        Integer tipo2 = 0;
+        Integer tipo3 = 0;
+        for (int k = 0; k < resultados.getSize(); k++) {
+            if (resultados.obtenerDato(k).toLowerCase().startsWith("tipo")) {
+                if (resultados.obtenerDato(k).endsWith("0")) {
+                    tipo0++;
+                } else if (resultados.obtenerDato(k).endsWith("1")) {
+                    tipo1++;
+                } else if (resultados.obtenerDato(k).endsWith("2")) {
+                    tipo2++;
+                } else if (resultados.obtenerDato(k).endsWith("3")) {
+                    tipo3++;
+                }
+            } else if (k != 0) {
+                cargarResultados(id_txt, tipo0, tipo1, tipo2, tipo3);
+                id_txt++;
+                tipo0 = 0;
+                tipo1 = 0;
+                tipo2 = 0;
+                tipo3 = 0;
+            }
+        }
+    }
+
     public void cargarDatos() {
-        ListaEnlazada<String> resultado = new ListaEnlazada<>();
-        HashMap<Integer, Object> map = new HashMap<>();
         Boolean error = false;
         String linea;
         String[] lineaSeparada;
@@ -75,10 +167,12 @@ public class FrmMain_ extends javax.swing.JFrame {
                         propietario = false;
                         saltar = false;
                         vehiculo = true;
-                    } else if (linea.contains("Dato") || linea.contains("Resultado") || linea.contains("Prueba") || linea.contains("Inspección") || linea.contains("Neumaticos") || linea.contains("Parametros")) {
+                    } else if (linea.contains("Dato") || linea.contains("Resultado") || linea.contains("Prueba") || linea.contains("Visual") || linea.contains("Neumaticos") || linea.contains("Parametros")) {
                         saltar = false;
                         propietario = false;
                         vehiculo = false;
+                        lineaSeparada = linea.split(";");
+                        valores.insertar(lineaSeparada[1]);
                     }
                     if (linea.contains("=") && !linea.endsWith("=") && !saltar) {
                         lineaSeparada = linea.split("=");
@@ -90,7 +184,9 @@ public class FrmMain_ extends javax.swing.JFrame {
                                 atributosV[j] = lineaSeparada[1];
                                 j++;
                             } else {
-                                map.put(Integer.parseInt(lineaSeparada[0]), lineaSeparada[1]);
+                                if (lineaSeparada[1].matches("^-?\\d+(?:,\\d+)?$")) {
+                                    valores.insertar(linea);
+                                }
                             }
                         }
                     }
@@ -109,28 +205,9 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtPlaca.setText(atributosV[0].toString());
                 txtTipo.setText(atributosV[9].toString());
                 txtCombustible.setText(atributosV[8].toString());
-                controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), String.valueOf(atributosV[1]), String.valueOf(atributosV[2]),String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
-                Integer aniov = Integer.parseInt(atributosV[4].toString());
-                String tipov = String.valueOf(atributosV[9]);
-                map.forEach((key, value) -> {
-                    try {
-                        if (String.valueOf(value).matches("^-?\\d+(?:,\\d+)?$")) {
-                            Double valor;
-                            if (String.valueOf(value).contains(",")) {
-                                valor = Double.valueOf(String.valueOf(value).replace(",", "."));
-                            } else {
-                                valor = Double.valueOf(String.valueOf(value));
-                            }
-                            resultados.insertar(controladorUmbral.comprobarUmbral(key, aniov, valor, tipov));
-                            //System.out.println("Key = " + key + ", Valor = " + valor + ", Error : " + resultados.obtenerDato(resultados.getSize()-1));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                /*for (int k = 0; k < resultados.getSize(); k++) {
-                    System.out.println(resultados.obtenerDato(k));
-                }*/
+                controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), String.valueOf(atributosV[1]), String.valueOf(atributosV[2]), String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
+                aniov = Integer.parseInt(atributosV[4].toString());
+                tipov = String.valueOf(atributosV[9]);
                 br.close();
             } catch (Exception e) {
                 System.out.println("Error al leer el archivo");
@@ -185,11 +262,11 @@ public class FrmMain_ extends javax.swing.JFrame {
         txt_Prueba3 = new javax.swing.JTextField();
         txt_Prueba4 = new javax.swing.JTextField();
         txt_Prueba5 = new javax.swing.JTextField();
-        txt_Prueba6 = new javax.swing.JTextField();
         txt_Prueba7 = new javax.swing.JTextField();
         txt_Prueba8 = new javax.swing.JTextField();
         txt_Prueba9 = new javax.swing.JTextField();
         txt_Prueba10 = new javax.swing.JTextField();
+        txt_Prueba6 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -277,63 +354,63 @@ public class FrmMain_ extends javax.swing.JFrame {
 
         jLabel15.setText("Tipo 3");
         jPanel3.add(jLabel15);
-        jLabel15.setBounds(460, 30, 50, 16);
+        jLabel15.setBounds(380, 30, 50, 16);
 
-        jLabel16.setText("OK");
+        jLabel16.setText("Tipo 0");
         jPanel3.add(jLabel16);
-        jLabel16.setBounds(170, 30, 50, 16);
+        jLabel16.setBounds(120, 30, 50, 16);
 
         jLabel17.setText("Tipo 1");
         jPanel3.add(jLabel17);
-        jLabel17.setBounds(260, 30, 50, 16);
+        jLabel17.setBounds(210, 30, 50, 16);
 
         jLabel18.setText("Tipo 2");
         jPanel3.add(jLabel18);
-        jLabel18.setBounds(360, 30, 50, 16);
+        jLabel18.setBounds(290, 30, 50, 16);
 
         jLabel19.setText("Holguras :");
         jPanel3.add(jLabel19);
-        jLabel19.setBounds(40, 60, 90, 20);
+        jLabel19.setBounds(30, 60, 90, 20);
 
         jLabel20.setText("Luxometro :");
         jPanel3.add(jLabel20);
-        jLabel20.setBounds(40, 100, 90, 20);
+        jLabel20.setBounds(30, 100, 90, 20);
 
         jLabel21.setText("Sonometro :");
         jPanel3.add(jLabel21);
-        jLabel21.setBounds(40, 140, 90, 20);
+        jLabel21.setBounds(30, 140, 90, 20);
 
         jLabel22.setText("Gases :");
         jPanel3.add(jLabel22);
-        jLabel22.setBounds(40, 180, 90, 20);
+        jLabel22.setBounds(30, 180, 90, 20);
 
         jLabel23.setText("Opacimetro :");
         jPanel3.add(jLabel23);
-        jLabel23.setBounds(40, 220, 90, 20);
+        jLabel23.setBounds(30, 220, 90, 20);
 
         jLabel24.setText("Alineador :");
         jPanel3.add(jLabel24);
-        jLabel24.setBounds(40, 260, 90, 20);
+        jLabel24.setBounds(30, 260, 90, 20);
 
         jLabel25.setText("Suspension :");
         jPanel3.add(jLabel25);
-        jLabel25.setBounds(40, 300, 90, 20);
+        jLabel25.setBounds(30, 300, 90, 20);
 
         jLabel26.setText("Frenos :");
         jPanel3.add(jLabel26);
-        jLabel26.setBounds(40, 340, 90, 20);
+        jLabel26.setBounds(30, 340, 90, 20);
 
         jLabel27.setText("Rodadura :");
         jPanel3.add(jLabel27);
-        jLabel27.setBounds(40, 380, 90, 20);
+        jLabel27.setBounds(30, 380, 90, 20);
 
         jLabel28.setText("Neumaticos");
         jPanel3.add(jLabel28);
-        jLabel28.setBounds(40, 420, 90, 20);
+        jLabel28.setBounds(30, 420, 90, 20);
 
         jLabel29.setText("Pruebas");
         jPanel3.add(jLabel29);
-        jLabel29.setBounds(50, 30, 42, 16);
+        jLabel29.setBounds(40, 30, 60, 16);
 
         txt_Prueba1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,7 +418,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba1);
-        txt_Prueba1.setBounds(160, 60, 330, 22);
+        txt_Prueba1.setBounds(130, 60, 280, 22);
 
         txt_Prueba2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,7 +426,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba2);
-        txt_Prueba2.setBounds(160, 100, 330, 22);
+        txt_Prueba2.setBounds(130, 100, 280, 22);
 
         txt_Prueba3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +434,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba3);
-        txt_Prueba3.setBounds(160, 140, 330, 22);
+        txt_Prueba3.setBounds(130, 140, 280, 22);
 
         txt_Prueba4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,7 +442,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba4);
-        txt_Prueba4.setBounds(160, 180, 330, 22);
+        txt_Prueba4.setBounds(130, 180, 280, 22);
 
         txt_Prueba5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,15 +450,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba5);
-        txt_Prueba5.setBounds(160, 220, 330, 22);
-
-        txt_Prueba6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_Prueba6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txt_Prueba6);
-        txt_Prueba6.setBounds(160, 260, 330, 20);
+        txt_Prueba5.setBounds(130, 220, 280, 22);
 
         txt_Prueba7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,7 +458,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba7);
-        txt_Prueba7.setBounds(160, 300, 330, 22);
+        txt_Prueba7.setBounds(130, 300, 280, 22);
 
         txt_Prueba8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,7 +466,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba8);
-        txt_Prueba8.setBounds(160, 340, 330, 22);
+        txt_Prueba8.setBounds(130, 340, 280, 22);
 
         txt_Prueba9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +474,7 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba9);
-        txt_Prueba9.setBounds(160, 380, 330, 22);
+        txt_Prueba9.setBounds(130, 380, 280, 22);
 
         txt_Prueba10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,10 +482,18 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txt_Prueba10);
-        txt_Prueba10.setBounds(160, 420, 330, 22);
+        txt_Prueba10.setBounds(130, 420, 280, 22);
+
+        txt_Prueba6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Prueba6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_Prueba6);
+        txt_Prueba6.setBounds(130, 260, 280, 22);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(560, 60, 550, 460);
+        jPanel3.setBounds(560, 60, 440, 460);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Vehiculo"));
         jPanel4.setLayout(null);
@@ -491,14 +568,19 @@ public class FrmMain_ extends javax.swing.JFrame {
 
         btnInforme.setText("Generar Informe");
         jPanel1.add(btnInforme);
-        btnInforme.setBounds(850, 20, 220, 30);
+        btnInforme.setBounds(800, 20, 180, 30);
 
         btnVerificar.setText("Verificar Valores Obtenidos");
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnVerificar);
-        btnVerificar.setBounds(600, 20, 220, 30);
+        btnVerificar.setBounds(600, 20, 180, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 10, 1120, 530);
+        jPanel1.setBounds(10, 10, 1010, 530);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -508,7 +590,7 @@ public class FrmMain_ extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setBounds(0, 0, 1154, 581);
+        setBounds(0, 0, 1048, 581);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
@@ -535,10 +617,6 @@ public class FrmMain_ extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Prueba5ActionPerformed
 
-    private void txt_Prueba6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_Prueba6ActionPerformed
-
     private void txt_Prueba7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Prueba7ActionPerformed
@@ -554,6 +632,18 @@ public class FrmMain_ extends javax.swing.JFrame {
     private void txt_Prueba10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Prueba10ActionPerformed
+
+    private void txt_Prueba6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Prueba6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Prueba6ActionPerformed
+
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
+        try {
+            calificarValores();        // TODO add your handling code here:
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se ha cargado el archivo correctamente, vuelva a seleccionarlo", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVerificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -572,13 +662,17 @@ public class FrmMain_ extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMain_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMain_.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMain_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMain_.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMain_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMain_.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMain_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMain_.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
