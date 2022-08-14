@@ -4,13 +4,18 @@
  */
 package controlador.modelos;
 
+import controlador.dao.AutomovilDao;
 import controlador.dao.CiudadDao;
+import controlador.dao.ClienteDao;
 import controlador.dao.MarcaDao;
 import controlador.dao.ProvinciaDao;
 import controlador.dao.TipoCombustibleDao;
+import controlador.dao.TipoVehiculoDao;
 import controlador.dao.UbicacionDao;
 import controlador.dao.VehiculoDao;
 import controlador.tda.lista.ListaEnlazada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Automovil;
 import modelo.Ciudad;
 import modelo.Cliente;
@@ -46,8 +51,23 @@ public class ControladorReporte {
         this.l = ObtenerUbicacion();
         this.cd = ObtenerCiudad();
         this.p = ObtenerProvincia();
-        this.t_c = obtenerTipocombustible();
+        //this.t_c = obtenerTipocombustible();
         //this.t_v = obtenerTipoVehiculo();
+
+        this.resultados = resultados;
+    }
+    
+    public ControladorReporte(ListaEnlazada<String> resultados) throws Exception {
+        
+        this.a = ObtenerAutomovil();
+        this.c = ObtenerCliente();
+        this.v = ObtenerVehiculo();
+        this.m = ObtenerMarca();
+        this.l = ObtenerUbicacion();
+        this.cd = ObtenerCiudad();
+        this.p = ObtenerProvincia();
+        //this.t_c = ObtenerTipocombustible();
+        //this.t_v = ObtenerTipoVehiculo();
 
         this.resultados = resultados;
     }
@@ -201,6 +221,7 @@ public class ControladorReporte {
         VehiculoDao vehiculo = new VehiculoDao();
         //ListaEnlazada<Vehiculo> vehiculos = vehiculo.listar();
         //vehiculos = vehiculos.buscar("ID_Vehiculo", a.getID_Vehiculo());
+        System.out.println("\nVehiculo " + vehiculo.obtener(a.getID_Vehiculo() + "").getModelo() + "\n");
         
         return vehiculo.obtener(a.getID_Vehiculo() + "");
         
@@ -211,6 +232,7 @@ public class ControladorReporte {
         MarcaDao marca = new MarcaDao();
         //ListaEnlazada<Marca> marcas = marca.listar();
         //marcas = marcas.buscar("ID_Marca", v.getID_Marca());
+        System.out.println("\nMarca " + marca.obtener(v.getID_Marca() + "").getMarca() + "\n");
         
         return marca.obtener(v.getID_Marca() + "");
         
@@ -221,6 +243,7 @@ public class ControladorReporte {
         UbicacionDao ubicacion = new UbicacionDao();
         //ListaEnlazada<Ubicacion> ubicaciones = ubicacion.listar();
         //ubicaciones = ubicaciones.buscar("ID_Ubicacion", c.getID_Ubicacion());
+        System.out.println("\nUbicacion " + ubicacion.obtener(c.getID_Ubicacion() + "").getDireccion() + "\n");
         
         return ubicacion.obtener(c.getID_Ubicacion() + "");
         
@@ -231,6 +254,7 @@ public class ControladorReporte {
         CiudadDao ciudad = new CiudadDao();
         //ListaEnlazada<Ciudad> ciudades = ciudad.listar();
         //ciudades = ciudades.buscar("ID_Ciudad", l.getID_Ciudad());
+        System.out.println("\nCiudad " + ciudad.obtener(l.getID_Ciudad() + "").getNombre() + "\n");
         
         return ciudad.obtener(l.getID_Ciudad() + "");
         
@@ -241,20 +265,64 @@ public class ControladorReporte {
         ProvinciaDao provincia = new ProvinciaDao();
         //ListaEnlazada<Provincia> provincias = provincia.listar();
         //provincias = provincias.buscar("ID_Provincia", cd.getID_Provincia());
+        System.out.println("\nProvincia " + provincia.obtener(cd.getID_Provincia() + "").getNombre() + "\n");
         
         return provincia.obtener(cd.getID_Provincia() + "");
         
         //return provincias.obtenerDato(0);
     }
     
-    private TipoCombustible obtenerTipocombustible() throws Exception{
+    private TipoCombustible ObtenerTipocombustible() throws Exception{
         TipoCombustibleDao tipocombustible = new TipoCombustibleDao();
-        return tipocombustible.obtener(v.getID_TipoCombustible());
+        //System.out.println("\nCombustible " + tipocombustible.obtener(v.getID_TipoCombustible()).getTipo() + "\n");
+        System.out.println("\nCombustible " + tipocombustible.obtener("Gasolina").getTipo() + "\n");
+        
+        return tipocombustible.obtener("Gasolina");
+        //return tipocombustible.obtener(v.getID_TipoCombustible());
     }
     
-    /*private TipoVehiculo obtenerTipoVehiculo(){
+    private TipoVehiculo ObtenerTipoVehiculo() throws Exception{
         TipoVehiculoDao tipovehiculo = new TipoVehiculoDao();
-        return tipovehiculo.obtener(v.getID_TipoVehiculo());
-    }*/
+        //System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener(v.getID_TipoVehiculo()).getTipo() + "\n");
+        System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener("Coupe").getTipo() + "\n");
+        
+        return tipovehiculo.obtener("Coupe");
+        //return tipovehiculo.obtener(v.getID_TipoVehiculo());
+    }
+    
+    private Automovil ObtenerAutomovil() throws Exception{
+        AutomovilDao auto = new AutomovilDao();
+        System.out.println("AUTO" + auto.obtener("GLS1960").getAnio());
+        System.out.println("\nAUTO " + auto.obtener("GLS1960").getPlaca() + "\n");
+        return auto.obtener("GLS1960");
+    }
+    
+    private Cliente ObtenerCliente() throws Exception{
+        ClienteDao cliente = new ClienteDao();
+        System.out.println("\nCliente " + cliente.obtener(a.getID_Cliente() + "").getNombre() + "\n");
+        
+        return cliente.obtener(a.getID_Cliente() + "");
+    }
+
+    public static void main(String[] args) {
+        
+        ListaEnlazada<String> lista = new ListaEnlazada<>();
+        lista.insertarCabecera("NO PASA");
+        lista.insertarCabecera("DE NADA MASTER");
+        lista.insertarCabecera("AMOR");
+        lista.insertarCabecera("SANDIA");
+        
+        try {
+            ControladorReporte cr = new ControladorReporte(lista);
+            System.err.println(cr.toString());
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ControladorReporte{" + "c=" + c + ", a=" + a + ", v=" + v + ", m=" + m + ", l=" + l + ", cd=" + cd + ", p=" + p + ", t_v=" + t_v + ", t_c=" + t_c + ", resultados=" + resultados + '}';
+    }
 
 }
