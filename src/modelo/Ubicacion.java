@@ -20,8 +20,7 @@ public class Ubicacion {
     
     public Ubicacion(){}
 
-    public Ubicacion(Integer ID_Ubicacion, Integer ID_Ciudad, String Direccion) {
-        this.ID_Ubicacion = ID_Ubicacion;
+    public Ubicacion( Integer ID_Ciudad, String Direccion) {
         this.ID_Ciudad = ID_Ciudad;
         this.Direccion = Direccion;
     }

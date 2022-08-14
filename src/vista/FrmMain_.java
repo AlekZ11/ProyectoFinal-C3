@@ -45,34 +45,34 @@ public class FrmMain_ extends javax.swing.JFrame {
     public void cargarResultados(Integer id, Integer tipo0, Integer tipo1, Integer tipo2, Integer tipo3) {
         switch (id) {
             case 0:
-                txt_Prueba1.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba1.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 1:
-                txt_Prueba2.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba2.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 2:
-                txt_Prueba3.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba3.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 3:
-                txt_Prueba4.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba4.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 4:
-                txt_Prueba5.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba5.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 5:
-                txt_Prueba6.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba6.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 6:
-                txt_Prueba7.setText(" " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba7.setText("  " + tipo0 + " \t " + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 7:
-                txt_Prueba8.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba8.setText("  " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             case 8:
-                txt_Prueba9.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba9.setText("  " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
             default:
-                txt_Prueba10.setText(" " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
+                txt_Prueba10.setText("  " + tipo0 + " \t" + tipo1 + " \t" + tipo2 + " \t" + tipo3);
                 break;
         }
 
@@ -205,7 +205,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtPlaca.setText(atributosV[0].toString());
                 txtTipo.setText(atributosV[9].toString());
                 txtCombustible.setText(atributosV[8].toString());
-                controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), String.valueOf(atributosV[1]), String.valueOf(atributosV[2]), String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
+                controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), txtMarca.getText(), String.valueOf(atributosV[2]), String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
                 aniov = Integer.parseInt(atributosV[4].toString());
                 tipov = String.valueOf(atributosV[9]);
                 br.close();

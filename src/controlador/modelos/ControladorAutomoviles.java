@@ -80,6 +80,7 @@ public class ControladorAutomoviles {
         Automovil automovil = adao.obtener(placa);
         if (automovil == null){
             Integer id_Vehiculo = existeVehiculo(marca, modelo, tipoVehiculo, tipoCombustible);
+            //System.out.println(placa + " , " + anio + " , " + id_Vehiculo + " , " + id_cliente);
             adao.setAutomovil(new Automovil(placa, anio, id_Vehiculo, id_cliente));
             adao.guardar();
         }
@@ -95,7 +96,7 @@ public class ControladorAutomoviles {
         if(resultado4.getSize() > 0){
             return resultado4.obtenerDato(0).getID_Vehiculo();
         }else {
-            vdao.setVehiculo(new Vehiculo(vdao.getNextValue(), id_marca, modelo, tipoVehiculo, tipoCombustible));
+            vdao.setVehiculo(new Vehiculo( id_marca, modelo, tipoVehiculo, tipoCombustible));
             vdao.guardar();
             return vdao.getVehiculo().getID_Vehiculo();
         }
@@ -103,11 +104,11 @@ public class ControladorAutomoviles {
 
     public Integer existeMarca(String marca) throws Exception{
         ListaEnlazada<Marca> listaMarcas = mdao.listar();
-        ListaEnlazada <Marca> resultado = listaMarcas.buscar("Marca", marca);
+        ListaEnlazada <Marca> resultado = listaMarcas.buscar("Nombre", marca);
         if(resultado.getSize() > 0 ){
             return resultado.obtenerDato(0).getID_Marca();
         }
-        mdao.setMarca(new Marca(mdao.getNextValue(), marca));
+        mdao.setMarca(new Marca(marca));
         mdao.guardar();
         return mdao.getMarca().getID_Marca();
     }

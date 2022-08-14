@@ -17,8 +17,7 @@ public class Umbral {
 
     public Umbral(){   }
 
-    public Umbral(Integer ID, String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
-        this.ID_Umbral = ID;
+    public Umbral(String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
         this.ID_RangoAnio = ID_RangoAnio;
         this.tipo = tipo;
         this.valorMin = valoresMin;

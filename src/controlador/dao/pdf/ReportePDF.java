@@ -68,6 +68,8 @@ public class ReportePDF {
             documento.add(new Paragraph("\n"));
 
             documento.add(new Paragraph("Observaciones", font));
+            
+            documento.add(new Paragraph("\n\nEstado: " + CR.getEstado()));
 
             StringBuffer resultados = new StringBuffer();
             for (int i = 0; i < CR.getResultados().getSize(); i++) {
@@ -106,7 +108,7 @@ public class ReportePDF {
         
         
         try {
-            ControladorReporte reportController = new ControladorReporte("GLS1960", lista);
+            ControladorReporte reportController = new ControladorReporte(true, "GLS1960", lista);
             ReportePDF pdf = new ReportePDF(reportController);
             pdf.generarPDF();
         } catch (Exception ex) {

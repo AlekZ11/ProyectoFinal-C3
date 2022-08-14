@@ -67,10 +67,6 @@ public class ControladorClientes {
         this.listaClientes = listaClientes;
     }
 
-    public void insertarCliente(String nombre, String apellido, String identificacion, Integer ID_location, Date Created_At, Date Updated_At) throws Exception {
-        //listaClientes.insertar(new Cliente(listaClientes.getSize()+1, nombre, apellido, identificacion, ID_location, Created_At, Updated_At ));
-    }
-
     public Integer getSize() {
         return listaClientes.getSize();
     }
@@ -85,7 +81,7 @@ public class ControladorClientes {
         if (resultado.getSize() > 0) {
             return resultado.obtenerDato(0).getID_Provincia();
         }
-        pdao.setProvincia(new Provincia(pdao.getNextValue(), provincia));
+        pdao.setProvincia(new Provincia(provincia));
         pdao.guardar();
         return pdao.getCurrentValue();
     }
@@ -98,7 +94,7 @@ public class ControladorClientes {
         if (resultado2.getSize() > 0) {
             return resultado2.obtenerDato(0).getID_Ciudad();
         }
-        cidao.setCiudad(new Ciudad(cidao.getNextValue(), ciudad, id_provincia));
+        cidao.setCiudad(new Ciudad(ciudad, id_provincia));
         cidao.guardar();
         return cidao.getCurrentValue();
     }
@@ -110,7 +106,7 @@ public class ControladorClientes {
         if (resultado.getSize() > 0) {
             return resultado.obtenerDato(0).getID_Cliente();
         }
-        cldao.setCliente(new Cliente(cldao.getNextValue(), nombre, apellido, identificacion, id_Ubicacion));
+        cldao.setCliente(new Cliente(nombre, apellido, identificacion, id_Ubicacion));
         cldao.guardar();
         return cldao.getCurrentValue();
     }
@@ -123,7 +119,7 @@ public class ControladorClientes {
         if (resultado2.getSize() > 0) {
             return resultado.obtenerDato(0).getID_Ubicacion();
         }
-        udao.setUbicacion(new Ubicacion(udao.getNextValue(), id_ciudad, direccion));
+        udao.setUbicacion(new Ubicacion(id_ciudad, direccion));
         udao.guardar();
         return udao.getCurrentValue();
     }

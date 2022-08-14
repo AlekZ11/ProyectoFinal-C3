@@ -44,7 +44,7 @@ public class TablaUmbrales extends AbstractTableModel {
     @Override
     public Object getValueAt(int fila, int columna) {
         Umbral umbral;
-        RangoAnio rangoAnio = new RangoAnio(1000, 0, 9999);
+        RangoAnio rangoAnio = new RangoAnio(0, 9999);
         try{
             umbral = listaUmbrales.obtenerDato(fila);
             //rangoAnio = ControladorAnio.obtenerRango(umbral.getID_RangoAnio());

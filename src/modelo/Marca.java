@@ -18,8 +18,7 @@ public class Marca {
 
     public Marca(){}
     
-    public Marca(Integer ID_Marca, String marca) {
-        this.ID_Marca = ID_Marca;
+    public Marca( String marca) {
         this.nombre = marca;
     }
 

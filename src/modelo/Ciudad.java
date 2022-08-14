@@ -18,11 +18,9 @@ public class Ciudad {
     
     public Ciudad(){}
 
-    public Ciudad(Integer ID_Ciudad, String Nombre, Integer ID_Provincia) {
-        this.ID_Ciudad = ID_Ciudad;
+    public Ciudad(String Nombre, Integer ID_Provincia) {
         this.Nombre = Nombre;
         this.ID_Provincia = ID_Provincia;
-        this.Created_At = Created_At;
     }
 
     public Integer getID_Ciudad() {
