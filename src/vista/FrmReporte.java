@@ -52,7 +52,7 @@ public class FrmReporte extends javax.swing.JFrame {
         lista.insertarCabecera("CAPO ABOLLADO");
         
         try {
-            CR = new ControladorReporte(lista);
+            CR = new ControladorReporte(Placa, lista);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al obtener datos, podria deberse a un error de la base de datos", "DataBaseError", JOptionPane.ERROR_MESSAGE);
         }
@@ -326,12 +326,12 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel18.setText(CR.getL().getDireccion());
         jLabel19.setText(CR.getP().getNombre());
 
-        jLabel21.setText(CR.getM().getMarca());
+        jLabel21.setText(CR.getM().getNombre());
         jLabel22.setText(CR.getV().getModelo());
         jLabel23.setText(String.valueOf(CR.getA().getAnio()));
-        jLabel24.setText(CR.getT_c().getTipo());
+        jLabel24.setText(CR.getT_c().getID_TIPOCOMBUSTIBLE());
         jLabel26.setText(CR.getA().getPlaca());
-        jLabel27.setText(CR.getT_v().getTipo());
+        jLabel27.setText(CR.getT_v().getID_TIPOVEHICULO());
 
         StringBuffer resultados = new StringBuffer();
         for (int i = 0; i < CR.getResultados().getSize(); i++) {
@@ -376,7 +376,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte(new String(),new ListaEnlazada<String>()).setVisible(true);
+                new FrmReporte("GLS1960",new ListaEnlazada<String>()).setVisible(true);
             }
         });
     }
