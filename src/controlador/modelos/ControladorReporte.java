@@ -66,8 +66,8 @@ public class ControladorReporte {
         this.l = ObtenerUbicacion();
         this.cd = ObtenerCiudad();
         this.p = ObtenerProvincia();
-        //this.t_c = ObtenerTipocombustible();
-        //this.t_v = ObtenerTipoVehiculo();
+        this.t_c = ObtenerTipocombustible();
+        this.t_v = ObtenerTipoVehiculo();
 
         this.resultados = resultados;
     }

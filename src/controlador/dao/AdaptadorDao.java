@@ -159,6 +159,9 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         if (id.matches("[a-zA-Z]{3}[\\d]{3,4}")) {
             id = "'"+id + "'";
             stmt = getConexion().prepareStatement("Select * from " + clazz.getSimpleName().toLowerCase() + " where placa = " + id);
+        }else if (id.matches("[a-zA-Z]+")){
+            id = "'"+id + "'";
+            stmt  = getConexion().prepareStatement(ALL_ID + id);
         }else{
             stmt  = getConexion().prepareStatement(ALL_ID + id);
         }
