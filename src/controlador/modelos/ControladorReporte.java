@@ -280,8 +280,8 @@ public class ControladorReporte {
         //System.out.println("\nCombustible " + tipocombustible.obtener(v.getID_TipoCombustible()).getTipo() + "\n");
         System.out.println("\nCombustible " + tipocombustible.obtener("Gasolina").getTipo() + "\n");
         
-        return tipocombustible.obtener("Gasolina");
-        //return tipocombustible.obtener(v.getID_TipoCombustible());
+        //return tipocombustible.obtener("Gasolina");
+        return tipocombustible.obtener(v.getID_TipoCombustible());
     }
     
     private TipoVehiculo ObtenerTipoVehiculo() throws Exception{
@@ -289,8 +289,8 @@ public class ControladorReporte {
         //System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener(v.getID_TipoVehiculo()).getTipo() + "\n");
         System.out.println("\nTipo Vehiculo " + tipovehiculo.obtener("Coupe").getTipo() + "\n");
         
-        return tipovehiculo.obtener("Coupe");
-        //return tipovehiculo.obtener(v.getID_TipoVehiculo());
+        //return tipovehiculo.obtener("Coupe");
+        return tipovehiculo.obtener(v.getID_TipoVehiculo());
     }
     
     private Automovil ObtenerAutomovil() throws Exception{

@@ -43,7 +43,7 @@ public class FrmReporte extends javax.swing.JFrame {
         cargar();
     }
 
-    public FrmReporte(ListaEnlazada<String> lista) {
+    public FrmReporte(String Placa, ListaEnlazada<String> lista) {
         initComponents();
         lista = new ListaEnlazada<>();
         lista.insertarCabecera("NO APRUEBA");
@@ -376,7 +376,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte(new ListaEnlazada<String>()).setVisible(true);
+                new FrmReporte(new String(),new ListaEnlazada<String>()).setVisible(true);
             }
         });
     }
