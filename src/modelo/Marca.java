@@ -51,7 +51,7 @@ public class Marca {
 
     @Override
     public String toString() {
-        return "{"+"ID="+ID_Marca+", nombre="+marca+", Created_At="+created_At+"}";
+        return "Marca{"+"ID="+ID_Marca+", marca="+marca+", Created_At="+created_At+"}";
     }
     
     
