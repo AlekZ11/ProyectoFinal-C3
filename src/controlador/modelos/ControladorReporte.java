@@ -21,6 +21,7 @@ import modelo.Ciudad;
 import modelo.Cliente;
 import modelo.Marca;
 import modelo.Provincia;
+import modelo.Reporte;
 import modelo.TipoCombustible;
 import modelo.TipoVehiculo;
 import modelo.Ubicacion;
@@ -42,6 +43,8 @@ public class ControladorReporte {
     private TipoVehiculo t_v;
     private TipoCombustible t_c;
     private ListaEnlazada<String> resultados;
+    
+    ListaEnlazada<Reporte> reporte;
 
     public ControladorReporte(Cliente c, Automovil a, ListaEnlazada<String> resultados) throws Exception {
         this.c = c;

@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.dao.pdf.ReportePDF;
 import controlador.modelos.ControladorReporte;
 import controlador.tda.lista.ListaEnlazada;
 import controlador.tda.lista.exception.PosicionException;
@@ -309,8 +310,8 @@ public class FrmReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //ReportePDF pdf = new ReportePDF(reporte);
-        //pdf.generarPDF();
+        ReportePDF pdf = new ReportePDF(CR);
+        pdf.generarPDF();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cargar() {
@@ -327,7 +328,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel21.setText(CR.getM().getMarca());
         jLabel22.setText(CR.getV().getModelo());
-        //jLabel23.setText(String.valueOf(a.getAnio()));
+        jLabel23.setText(String.valueOf(CR.getA().getAnio()));
         jLabel24.setText(CR.getT_c().getTipo());
         jLabel26.setText(CR.getA().getPlaca());
         jLabel27.setText(CR.getT_v().getTipo());
