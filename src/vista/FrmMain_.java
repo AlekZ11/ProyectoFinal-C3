@@ -111,6 +111,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 txtCombustible.setText(atributosV[8].toString());
                 controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), String.valueOf(atributosV[1]), String.valueOf(atributosV[2]),String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
                 Integer aniov = Integer.parseInt(atributosV[4].toString());
+                String tipov = String.valueOf(atributosV[9]);
                 map.forEach((key, value) -> {
                     try {
                         if (String.valueOf(value).matches("^-?\\d+(?:,\\d+)?$")) {
@@ -120,8 +121,8 @@ public class FrmMain_ extends javax.swing.JFrame {
                             } else {
                                 valor = Double.valueOf(String.valueOf(value));
                             }
-                            resultados.insertar(controladorUmbral.comprobarUmbral(key, aniov, valor));
-                            System.out.println("Key = " + key + ", Valor = " + valor + ", Error : " + resultados.obtenerDato(resultados.getSize()-1));
+                            resultados.insertar(controladorUmbral.comprobarUmbral(key, aniov, valor, tipov));
+                            //System.out.println("Key = " + key + ", Valor = " + valor + ", Error : " + resultados.obtenerDato(resultados.getSize()-1));
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

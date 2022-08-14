@@ -80,14 +80,16 @@ public class ControladorUmbral {
         }
     }
 
-    public String comprobarUmbral(Integer id_valor, Integer anio, Double valor) throws Exception {
+    public String comprobarUmbral(Integer id_valor, Integer anio, Double valor, String tipo) throws Exception {
         ListaEnlazada<Umbral> umbrales = obtenerUmbral(id_valor);
-        System.out.println(umbrales.getSize());
         for (int i = 0; i < umbrales.getSize(); i++) {
             Umbral umbral = umbrales.obtenerDato(i);
             RangoAnio ra = obtenerRangoAnio(umbrales.obtenerDato(i).getID_RangoAnio());
-            if (anio >= ra.getAnioMin() && anio < ra.getAnioMax()
-                    && (umbral != null)?(umbral.getValorMin() <= valor && umbral.getValorMax() > valor):false) {
+            if ((anio >= ra.getAnioMin() && anio < ra.getAnioMax())
+                    && umbral.getCategoria().toLowerCase().equals(tipo.toLowerCase())
+                    && umbral.getValorMin() <= valor 
+                    && valor < umbral.getValorMax()) {
+                System.out.println("Clave : " + id_valor + "( ValorMin : " + umbral.getValorMin() + " <= Valor : " +valor + " < ValorMax : " + umbral.getValorMax() + " ) ERROR : " + umbral.getTipo());
                 return umbral.getTipo();
             }
         }

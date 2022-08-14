@@ -6,6 +6,7 @@ import java.util.Date;
 public class Umbral {
     private Integer ID_Umbral;
     private String descripcion;
+    private String categoria;
     private Integer ID_RangoAnio;
     private String tipo;
     private Double valorMin;
@@ -40,6 +41,14 @@ public class Umbral {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public Integer getID_RangoAnio() {
