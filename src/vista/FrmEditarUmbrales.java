@@ -16,6 +16,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.multi.MultiLookAndFeel;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import modelo.Umbral;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -65,6 +66,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        modelo = new DefaultListModel();
         listaUmbrales = new javax.swing.JList<>();
         txtfBuscar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -189,12 +191,8 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(20, 50, 40, 30);
 
+        listaUmbrales.setModel(modelo);
         listaUmbrales.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        listaUmbrales.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "ALINEACIÓN 1ER EJE CONVERGENCIA", "ALINEACIÓN 1ER EJE DIVERGENCIA", "EFICACIA SUSPENSIÓN EN RUEDA DERECHA DEL 1ER EJE", "DESEQUILIBRIO DE SUSPENSIÓN DEL 1ER EJE", "EFICACIA SUSPENSIÓN EN RUEDA DERECHA DEL 2DO EJE", "DESEQUILIBRIO DE SUSPENSIÓN DEL 2DO EJE", "ALINEACIÓN HORIZONTAL FARO CONDUCTOR", "ALINEACIÓN VERTICAL FARO CONDUCTOR" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaUmbrales);
 
         getContentPane().add(jScrollPane1);
@@ -228,21 +226,24 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     private void txtfUmbralMinimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfUmbralMinimoKeyTyped
         char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
+        if ((car < '0' || car > '9') && (car < ',' || car > '.'))
+            evt.consume();
     }//GEN-LAST:event_txtfUmbralMinimoKeyTyped
 
     private void txtfUmbralMaximoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfUmbralMaximoKeyTyped
         char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
+        if ((car < '0' || car > '9') && (car < ',' || car > '.'))
+            evt.consume();
     }//GEN-LAST:event_txtfUmbralMaximoKeyTyped
 
     private void txtfClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfClaveKeyTyped
         char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();
+        if ((car < '0' || car > '9'))
+            evt.consume();
     }//GEN-LAST:event_txtfClaveKeyTyped
 
     private void txtfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyTyped
-        
+
     }//GEN-LAST:event_txtfBuscarKeyTyped
 
     private void txtfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyPressed
@@ -252,16 +253,25 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private void txtfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfBuscarKeyReleased
         cargarLista();
     }//GEN-LAST:event_txtfBuscarKeyReleased
-    private void cargarLista(){
-        listaUmbrales.removeAll();
+    private void cargarLista() {
+        modelo.clear();
         ListaEnlazada<Umbral> aux = new ListaEnlazada();
         UmbralDao umdao = new UmbralDao();
-        if(txtfBuscar.getText().trim().length()==0){
-            aux = umdao.consultarUmbrales(null);
-        }else{
-            aux = umdao.consultarUmbrales(txtfBuscar.getText());
+        try {
+        if (txtfBuscar.getText().trim().length() == 0) {
+            aux = umdao.buscar(null);
+        } else {
+            aux = umdao.buscar(txtfBuscar.getText());
+        }
+        
+            for (int i = 0; i < aux.getSize(); i++) {
+                modelo.addElement(aux.obtenerDato(i).getDescripcion() +" - Tipo "+ aux.obtenerDato(i).getTipo());
+            }
+        } catch (Exception e) {
+            System.out.println("Error en cargar lista");
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -322,6 +332,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JList<String> listaUmbrales;
+    private DefaultListModel modelo;
     private javax.swing.JTextField txtfBuscar;
     private javax.swing.JTextField txtfClave;
     private javax.swing.JTextField txtfDescripcion;

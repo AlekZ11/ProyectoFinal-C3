@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class UmbralDao extends AdaptadorDao<Umbral> {
+
     private Umbral umbral;
 
     public Umbral getUmbral() {
@@ -25,23 +26,29 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         super(Umbral.class);
     }
 
-    public void guardar() throws Exception{
+    public void guardar() throws Exception {
         super.guardar(umbral);
     }
 
-    public ListaEnlazada<Umbral> buscar(String Descripcion) throws Exception{
+    public ListaEnlazada<Umbral> buscar(String Descripcion) throws Exception {
         ListaEnlazada<Umbral> lista = new ListaEnlazada<>();
         try {
+            PreparedStatement stmt;
+            
+            if (Descripcion == null) {
+                stmt = getConexion().prepareStatement("Select * from Umbral");
+                System.out.println("Comando : Select * from Umbral");
+            } else {
+                stmt = getConexion().prepareStatement("Select * from Umbral where Descripcion like '%" + Descripcion.toUpperCase() + "%'");
+                System.out.println("Comando : " + "Select * from Umbral where Descripcion like '%" + Descripcion.toUpperCase() + "%'");
 
-            PreparedStatement stmt = getConexion().prepareStatement("Select * from Umbral where Descripcion = '" + Descripcion + "'");
-            System.out.println("Comando : " + "Select * from Umbral where Descripcion = '" + Descripcion + "'");
+            }
             ResultSet resultSet = stmt.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             String[] columna = new String[resultSetMetaData.getColumnCount()];
             for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
                 columna[i] = resultSetMetaData.getColumnLabel(i + 1);
             }
-
             while (resultSet.next()) {
                 Umbral umbral = new Umbral();
                 for (int i = 0; i < columna.length; i++) {
@@ -65,18 +72,25 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         }
         return lista;
     }
-    
-    public ListaEnlazada<Umbral> consultarUmbrales(String descripcion){
+
+    public ListaEnlazada<Umbral> consultarUmbrales(String descripcion) {
         ListaEnlazada<Umbral> aux = new ListaEnlazada<>();
         String sentencia = "";
-        if (descripcion==null) {
-            sentencia="SELECT * FROM UMBRAL";
+        if (descripcion == null) {
+            sentencia = "SELECT * FROM UMBRAL";
         } else {
-            sentencia="SELECT * FROM UMBRAL WHERE TIPO LIKE '"+descripcion+"%'";
-            
+            sentencia = "SELECT * FROM UMBRAL WHERE TIPO LIKE '%" + descripcion + "%'";
+
+        }
+        try {
+            PreparedStatement stmt = getConexion().prepareStatement(sentencia);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error en modificar " + e);
+            e.printStackTrace();
         }
         System.out.println(sentencia);
         return aux;
     }
-    
+
 }

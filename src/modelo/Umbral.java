@@ -4,6 +4,7 @@ package modelo;
 public class Umbral {
     private Integer ID_Umbral;
     private String descripcion;
+    private String categoria;
     private Integer ID_RangoAnio;
     private String tipo;
     private Double valorMin;
@@ -29,7 +30,15 @@ public class Umbral {
     public void setID_Umbral(Integer ID_Umbral) {
         this.ID_Umbral = ID_Umbral;
     }
+    
+    public String getCategoria() {
+        return categoria;
+    }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }
