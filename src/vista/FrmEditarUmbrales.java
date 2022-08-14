@@ -31,6 +31,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
      */
     public FrmEditarUmbrales() {
         initComponents();
+        this.setLocationRelativeTo(null);
         cargarLista();
     }
 
@@ -278,11 +279,11 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
     
     private void limpiarVista(){
+        cargarDatos();
         txtfClave.setText("");
         txtfDescripcion.setText("");
         txtfUmbralMaximo.setText("");
         txtfUmbralMinimo.setText("");
-        cargarDatos();
         btnAniadir.setEnabled(true);
         btnModificar.setEnabled(true);
     }
@@ -296,7 +297,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
             txtfUmbralMinimo.setText(umbralModificar.getValorMin()+"");
             txtfUmbralMaximo.setText(umbralModificar.getValorMax()+"");
             cbxCalificación.removeAllItems();
-            cbxCalificación.addItem("Tipo: "+umbralModificar.getTipo());
+            cbxCalificación.addItem("Tipo: "+umbralModificar.getTipo()); //revisar consulta tipos calificacion
         } catch (Exception e) {
         }
     }
