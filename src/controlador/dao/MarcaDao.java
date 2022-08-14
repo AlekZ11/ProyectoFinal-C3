@@ -35,6 +35,11 @@ public class MarcaDao extends AdaptadorDao<Marca> {
     public void modificar() throws Exception{
         super.modificar(marca);
     }
+    
+    @Override
+    public Marca obtener (String id) throws Exception{
+        return super.obtener(id);
+    }
 
     public static void main(String[] args) throws Exception {
     }
