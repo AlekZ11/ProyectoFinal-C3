@@ -6,6 +6,7 @@ package vista;
 
 import controlador.dao.RangoAnioDao;
 import controlador.tda.lista.ListaEnlazada;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.RangoAnio;
 import vista.tablas.TablaAnios;
@@ -110,6 +111,11 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         btnModificar.setText("Modificar");
 
         btnAniadir.setText("Añadir");
+        btnAniadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAniadirActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +235,16 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAniadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirActionPerformed
+        if (txtfId.getText().trim().length()==0||txtfAnioMin.getText().trim().length()==0||txtfAnioMax.getText().trim().length()==0) {
+            JOptionPane.showMessageDialog(null, "Llene los campos");
+        } else {
+            RangoAnioDao rdao = new RangoAnioDao();
+            String sentencia = "INSERT into rangoanio(id_rangoanio, aniomin, aniomax, created_at, updated_at)values("+txtfId.getText()+", "+txtfAnioMin.getText()+","+ txtfAnioMax.getText()+", SYSDATE, SYSDATE);";
+            rdao.ejecutarSentencias(sentencia);
+        }
+    }//GEN-LAST:event_btnAniadirActionPerformed
 
     /**
      * @param args the command line arguments

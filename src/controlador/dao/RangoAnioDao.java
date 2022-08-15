@@ -68,4 +68,18 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
         }
         return lista;
     }
+    
+    public void ejecutarSentencias(String sentencia) {
+        ListaEnlazada<RangoAnio> lista = new ListaEnlazada<>();
+        try {
+            PreparedStatement stmt;
+            stmt = getConexion().prepareStatement(sentencia);
+            System.out.println(sentencia);
+            stmt.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar " + e);
+            e.printStackTrace();
+        }
+    }
 }
