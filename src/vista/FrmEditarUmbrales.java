@@ -25,7 +25,7 @@ import javax.swing.DefaultListModel;
 public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     ListaEnlazada<Umbral> aux = new ListaEnlazada();
-
+    public static boolean abrio=false;
     /**
      * Creates new form FrmEditarUmbrales
      */
@@ -76,6 +76,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -161,6 +162,11 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         cbxAnio.setBounds(90, 120, 290, 30);
 
         btnGestionar.setText("Gestionar años");
+        btnGestionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGestionar);
         btnGestionar.setBounds(410, 120, 150, 30);
 
@@ -278,6 +284,16 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         limpiarVista();
     }//GEN-LAST:event_btnCancelarActionPerformed
     
+    
+    private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
+        if (abrio==false) {
+            FrmGestionarAnios vga = new FrmGestionarAnios();
+            vga.setVisible(true);
+            abrio=true;
+        }
+        
+    }//GEN-LAST:event_btnGestionarActionPerformed
+    
     private void limpiarVista(){
         cargarDatos();
         txtfClave.setText("");
@@ -286,6 +302,10 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         txtfUmbralMinimo.setText("");
         btnAniadir.setEnabled(true);
         btnModificar.setEnabled(true);
+        try {
+            listaUmbrales.setSelectedIndices(null);
+        } catch (Exception e) {
+        }
     }
     
     private void cargarDatos() {

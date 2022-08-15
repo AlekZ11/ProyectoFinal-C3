@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.dao.RangoAnioDao;
 import controlador.tda.lista.ListaEnlazada;
 import modelo.RangoAnio;
 import vista.tablas.TablaAnios;
@@ -19,8 +20,12 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
      */
     public FrmGestionarAnios() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTabla();
     }
     public void cargarTabla(){
+        RangoAnioDao radao = new RangoAnioDao();
+        aux=radao.consultarAnios();
         TablaAnios ta = new TablaAnios(aux);
         tablaAnios.setModel(ta);
         tablaAnios.updateUI();
@@ -43,11 +48,13 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         txtfAnioMin = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtfAnioMax = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnAniadir = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Gestión años");
@@ -78,16 +85,18 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar");
+        btnModificar.setText("Modificar");
 
-        jButton3.setText("Añadir");
+        btnAniadir.setText("Añadir");
+
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,11 +124,13 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
                                 .addComponent(txtfAnioMax, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnCerrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAniadir)
                         .addGap(13, 13, 13)))
                 .addContainerGap())
         );
@@ -140,9 +151,10 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnCerrar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnAniadir)
+                    .addComponent(btnCancelar))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -167,9 +179,10 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_txtfAnioMaxKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        FrmEditarUmbrales.abrio = false;
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,14 +215,16 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmGestionarAnios().setVisible(true);
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAniadir;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

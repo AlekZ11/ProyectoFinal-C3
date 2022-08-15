@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Timestamp;
 import java.util.Date;
+import modelo.RangoAnio;
 
 public class UmbralDao extends AdaptadorDao<Umbral> {
 
@@ -34,7 +35,7 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         ListaEnlazada<Umbral> lista = new ListaEnlazada<>();
         try {
             PreparedStatement stmt;
-            
+
             if (Descripcion == null) {
                 stmt = getConexion().prepareStatement("Select * from Umbral");
                 System.out.println("Comando : Select * from Umbral");
@@ -88,8 +89,8 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         } catch (Exception e) {
             System.out.println("Error en modificar " + e);
             e.printStackTrace();
-            sentencia="SELECT * FROM UMBRAL WHERE TIPO LIKE '%"+descripcion+"%'";
-            
+            sentencia = "SELECT * FROM UMBRAL WHERE TIPO LIKE '%" + descripcion + "%'";
+
         }
         try {
             PreparedStatement stmt = getConexion().prepareStatement(sentencia);
@@ -102,4 +103,5 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         return aux;
     }
 
+    
 }
