@@ -6,6 +6,7 @@ package vista;
 
 import controlador.dao.RangoAnioDao;
 import controlador.tda.lista.ListaEnlazada;
+import javax.swing.JTable;
 import modelo.RangoAnio;
 import vista.tablas.TablaAnios;
 
@@ -21,14 +22,15 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     public FrmGestionarAnios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        btnModificar.setEnabled(false);
         cargarTabla();
     }
     public void cargarTabla(){
         RangoAnioDao radao = new RangoAnioDao();
-        aux=radao.consultarAnios();
+        aux = radao.consultarAnios();
         TablaAnios ta = new TablaAnios(aux);
-        tablaAnios.setModel(ta);
-        tablaAnios.updateUI();
+        jtablaAnios.setModel(ta);
+        jtablaAnios.updateUI();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +43,7 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAnios = new javax.swing.JTable();
+        jtablaAnios = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtfId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -59,7 +61,20 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Gestión años");
 
-        jScrollPane1.setViewportView(tablaAnios);
+        jtablaAnios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jtablaAnios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtablaAniosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtablaAnios);
 
         jLabel2.setText("Id:");
 
@@ -97,6 +112,11 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         btnAniadir.setText("Añadir");
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,6 +203,32 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         this.dispose();
         FrmEditarUmbrales.abrio = false;
     }//GEN-LAST:event_btnCerrarActionPerformed
+    
+    private void limpiar(){
+        txtfId.setText("");
+        txtfAnioMin.setText("");
+        txtfAnioMax.setText("");
+        btnAniadir.setEnabled(true);
+        btnModificar.setEnabled(false);
+        cargarTabla();
+    }
+    
+    private void jtablaAniosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablaAniosMouseClicked
+        if (evt.getClickCount()==2) {
+            try {
+                btnAniadir.setEnabled(false);
+                btnModificar.setEnabled(true);
+                txtfId.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getID_RangoAnio()+"");
+                txtfAnioMin.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMin()+"");
+                txtfAnioMax.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMax()+"");
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_jtablaAniosMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,7 +276,7 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAnios;
+    private javax.swing.JTable jtablaAnios;
     private javax.swing.JTextField txtfAnioMax;
     private javax.swing.JTextField txtfAnioMin;
     private javax.swing.JTextField txtfId;

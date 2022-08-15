@@ -25,6 +25,7 @@ import javax.swing.DefaultListModel;
 public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     ListaEnlazada<Umbral> aux = new ListaEnlazada();
+    ListaEnlazada<String> cambios = new ListaEnlazada();
     public static boolean abrio=false;
     /**
      * Creates new form FrmEditarUmbrales
@@ -324,7 +325,6 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     private void cargarLista() {
         modelo.clear();
-
         UmbralDao umdao = new UmbralDao();
         try {
             if (txtfBuscar.getText().trim().length() == 0) {

@@ -10,7 +10,7 @@ import modelo.RangoAnio;
  * @author patob
  */
 public class TablaAnios extends AbstractTableModel{
-    private String[] columnas = {};
+    private String[] columnas = {"Id","Año mínimo","Año máximo"};
         ListaEnlazada<RangoAnio> listaAnios;
 
         public TablaAnios() {
@@ -52,13 +52,9 @@ public class TablaAnios extends AbstractTableModel{
                 case 2:
                     return anio.getAnioMax();
                 case 3:
-                    return anio.getCreated_At();
+                    //return anio.getCreated_At();
                 case 4:
-                    return anio.getUpdated_At();
-                case 5:
-                    //return anio.getCiudad();
-                case 6:
-                    //return anio.getDireccion();
+                    //return anio.getUpdated_At();
                 default:
                     return null;
             }

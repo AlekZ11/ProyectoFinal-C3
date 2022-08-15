@@ -36,8 +36,8 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
         ListaEnlazada<RangoAnio> lista = new ListaEnlazada<>();
         try {
             PreparedStatement stmt;
-            stmt = getConexion().prepareStatement("Select * from Rangoanio;");
-            System.out.println("Comando : Select * from Rangoanio;");
+            stmt = getConexion().prepareStatement("Select * from Rangoanio");
+            System.out.println("Comando : Select * from Rangoanio");
 
             ResultSet resultSet = stmt.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
