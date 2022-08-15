@@ -39,9 +39,6 @@ public class AdministradorDao extends AdaptadorDao<Administrador> {
         return super.listar();
     }
     
-    public Administrador obtener (String id) throws Exception{
-        return super.obtener(id);
-    }
 
     public static void main(String[] args) throws Exception {
         AdministradorDao adao = new AdministradorDao();

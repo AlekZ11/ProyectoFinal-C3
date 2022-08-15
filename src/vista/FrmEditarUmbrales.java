@@ -4,19 +4,17 @@
  */
 package vista;
 
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import controlador.dao.RangoAnioDao;
 import controlador.dao.UmbralDao;
 import controlador.tda.lista.ListaEnlazada;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.multi.MultiLookAndFeel;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import modelo.Umbral;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import modelo.RangoAnio;
+<<<<<<< HEAD
+import vista.tablas.TablaUmbrales;
+=======
+>>>>>>> d5734bf (Sentencias)
 
 /**
  *
@@ -25,8 +23,16 @@ import javax.swing.DefaultListModel;
 public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     ListaEnlazada<Umbral> aux = new ListaEnlazada();
+    ListaEnlazada<Umbral> modificaciones = new ListaEnlazada();
     ListaEnlazada<String> cambios = new ListaEnlazada();
-    public static boolean abrio=false;
+    ListaEnlazada<RangoAnio> listaAnios = new ListaEnlazada();
+    Umbral auxUmbral = new Umbral();
+<<<<<<< HEAD
+    int valor = 0;
+=======
+>>>>>>> d5734bf (Sentencias)
+    public static boolean abrio = false;
+
     /**
      * Creates new form FrmEditarUmbrales
      */
@@ -34,6 +40,12 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarLista();
+        btnModificar.setEnabled(false);
+        cargarcbx();
+<<<<<<< HEAD
+        cargarTabla();
+=======
+>>>>>>> d5734bf (Sentencias)
     }
 
     /**
@@ -74,7 +86,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         listaUmbrales = new javax.swing.JList<>();
         txtfBuscar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaC = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -97,7 +109,7 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         txtfUmbralMaximo.setBounds(350, 170, 103, 32);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("<= X <");
+        jLabel2.setText("<   X  <");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(250, 170, 93, 32);
 
@@ -172,10 +184,20 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         btnGestionar.setBounds(410, 120, 150, 30);
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnModificar);
         btnModificar.setBounds(340, 220, 105, 32);
 
         btnAniadir.setText("Añadir");
+        btnAniadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAniadirActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAniadir);
         btnAniadir.setBounds(460, 220, 105, 32);
 
@@ -184,11 +206,21 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
         btnCancelarM.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancelarM.setText("Cancelar");
+        btnCancelarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarMActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelarM);
         btnCancelarM.setBounds(640, 570, 114, 36);
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnGuardar);
         btnGuardar.setBounds(770, 570, 115, 36);
 
@@ -232,7 +264,15 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
         getContentPane().add(txtfBuscar);
         txtfBuscar.setBounds(60, 50, 260, 30);
 
-        jScrollPane2.setViewportView(jTable1);
+        tablaC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaC);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 320, 880, 240);
@@ -276,49 +316,264 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
     private void listaUmbralesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaUmbralesMouseClicked
         if (evt.getClickCount() == 2) {
-            cargarDatos();
             btnAniadir.setEnabled(false);
+            btnModificar.setEnabled(true);
+            cargarDatos();
         }
     }//GEN-LAST:event_listaUmbralesMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limpiarVista();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    
-    
+
+
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        if (abrio==false) {
+        if (abrio == false) {
             FrmGestionarAnios vga = new FrmGestionarAnios();
             vga.setVisible(true);
-            abrio=true;
+            abrio = true;
         }
-        
+
     }//GEN-LAST:event_btnGestionarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+<<<<<<< HEAD
+        if (comprobarValores()) {
+            modificaciones.insertar(new Umbral(auxUmbral.getID_Umbral(), txtfDescripcion.getText(), cbxCategoria.getSelectedItem().toString(), ConseguirAnio(), ConseguirTipo() + "", Double.valueOf(txtfUmbralMinimo.getText()), Double.valueOf(txtfUmbralMaximo.getText()), Integer.valueOf(txtfClave.getText())));
+            cambios.insertar("Editar");
+        } else {
+            JOptionPane.showMessageDialog(null, "Los valores de los humbrales ingresados son incorrectos");
+        }
+        cargarTabla();
+        limpiarVista();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnAniadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirActionPerformed
+        if (comprobarValores()) {
+            modificaciones.insertar(new Umbral(0, txtfDescripcion.getText(), cbxCategoria.getSelectedItem().toString(), ConseguirAnio(), ConseguirTipo() + "", Double.valueOf(txtfUmbralMinimo.getText()), Double.valueOf(txtfUmbralMaximo.getText()), Integer.valueOf(txtfClave.getText())));
+            cambios.insertar("Añadir");
+        } else {
+            JOptionPane.showMessageDialog(null, "Los valores de los humbrales ingresados son incorrectos");
+        }
+        cargarTabla();
+        limpiarVista();
+    }//GEN-LAST:event_btnAniadirActionPerformed
     
-    private void limpiarVista(){
+    private void limpiarListas(){
+        cambios = new ListaEnlazada();
+        modificaciones = new ListaEnlazada();
+    }
+    
+    private void btnCancelarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarMActionPerformed
+        limpiarListas();
+        cargarTabla();
+    }//GEN-LAST:event_btnCancelarMActionPerformed
+
+    private boolean Rangos(double a1, double a2, double b1, double b2) {
+        if (a1 >= b1 && a1 <= b2 || a2 >= b1 && a2 <= b2) {
+            return true;
+        }
+        return false;
+    }
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        boolean correcto = true;
+        limpiarVista();
+        cargarLista();
+        try {
+            for (int i = 0; i < cambios.getSize(); i++) {
+
+                Umbral uma = modificaciones.obtenerDato(i);
+                for (int j = 0; j < aux.getSize(); j++) {
+                    if (uma.getDescripcion().equals(aux.obtenerDato(j).getDescripcion()) && !uma.getID_Umbral().equals(aux.obtenerDato(j).getID_Umbral())) {
+                        double a1 = uma.getValorMin();
+                        double a2 = uma.getValorMax();
+                        double b1 = aux.obtenerDato(j).getValorMin();
+                        double b2 = aux.obtenerDato(j).getValorMax();
+                        if (Rangos(a1, a2, b1, b2)) {
+                            correcto = false;
+                            break;
+                        }
+                    }
+                }
+                
+                for (int j = 0; j < modificaciones.getSize(); j++) {
+                    Umbral comprueb = modificaciones.obtenerDato(j);
+                    if (uma.getDescripcion().equals(modificaciones.obtenerDato(j).getDescripcion()) && !comprueb.getID_Umbral().equals(aux.obtenerDato(j).getID_Umbral())) {
+                        double a1 = comprueb.getValorMin();
+                        double a2 = comprueb.getValorMax();
+                        double b1 = aux.obtenerDato(j).getValorMin();
+                        double b2 = aux.obtenerDato(j).getValorMax();
+                        if (Rangos(a1, a2, b1, b2)) {
+                            correcto = false;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!correcto) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+        }
+        if (correcto) {
+            ejecutarSentencias();
+            cargarLista();
+            limpiarListas();
+            cargarTabla();
+        }else{
+            JOptionPane.showMessageDialog(null, "Los umbrales creado o editados tienen interferencias en los rangos");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public int ConseguirAnio() {
+        try {
+            return listaAnios.obtenerDato(cbxAnio.getSelectedIndex()).getID_RangoAnio();
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int ConseguirTipo() {
+        return Integer.valueOf(cbxCalificación.getSelectedItem().toString().substring(5));
+    }
+
+    public void cargarTabla() {
+        TablaUmbrales tu = new TablaUmbrales(modificaciones, cambios);
+        tablaC.setModel(tu);
+        tablaC.updateUI();
+    }
+
+    public void cargarcbx() {
+        RangoAnioDao radao = new RangoAnioDao();
+
+        try {
+            listaAnios = radao.consultarAnios();
+            cbxAnio.removeAllItems();
+            for (int i = 0; i < listaAnios.getSize(); i++) {
+                cbxAnio.addItem(listaAnios.obtenerDato(i).getAnioMin() + " - " + listaAnios.obtenerDato(i).getAnioMax());
+            }
+            for (int i = 0; i <= 4; i++) {
+                cbxCalificación.addItem("Tipo " + i);
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+=======
+        UmbralDao udao = new UmbralDao();
+        try {
+            if (comprobarValores()) {
+                ListaEnlazada<Umbral> comprobador = new ListaEnlazada();
+                int valor = 0;
+                comprobador = udao.consultarUmbrales(null);
+
+                String sentencia = "Update umbral set id_rangoanio = " + ConseguirAnio() + ", tipo = '" + ConseguirTipo() + "', valormin = " + txtfUmbralMinimo.getText() + ", valormax=" + txtfUmbralMaximo.getText() + ", clave_umbral=" + txtfClave.getText()
+                        + ", Updated_at = sysdate, descripcion = '" + txtfDescripcion.getText() + "', categoria='" + cbxCategoria.getSelectedItem().toString() + "' where id_umbral = " + auxUmbral.getID_Umbral();
+                udao.ejecutarSentencias(sentencia);
+            } else {
+                JOptionPane.showMessageDialog(null, "Los valores de los humbrales ingresados son incorrectos");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnAniadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirActionPerformed
+        UmbralDao udao = new UmbralDao();
+        try {
+            if (comprobarValores()) {
+                ListaEnlazada<Umbral> comprobador = new ListaEnlazada();
+                int valor = 0;
+                comprobador = udao.consultarUmbrales(null);
+                for (int i = 0; i < comprobador.getSize(); i++) {
+                    if (comprobador.obtenerDato(i).getID_Umbral() > valor) {
+                        valor = comprobador.obtenerDato(i).getID_Umbral();
+                    }
+                }
+                String sentencia = "Insert into umbral (Id_umbral, Id_rangoanio, Tipo, Valormin, valormax, clave_umbral, created_at, updated_at, descripcion, categoria)values("
+                        + valor + 1 + ", " + ConseguirAnio() + ", '" + ConseguirTipo() + "', " + txtfUmbralMinimo.getText() + ", " + txtfUmbralMaximo.getText() + ", " + txtfClave.getText() + ", SYSDATE, SYSDATE, '" + txtfDescripcion + "', '" + cbxCategoria.getSelectedItem().toString() + "'";
+                udao.ejecutarSentencias(sentencia);
+            } else {
+                JOptionPane.showMessageDialog(null, "Los valores de los humbrales ingresados son incorrectos");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnAniadirActionPerformed
+
+    public int ConseguirAnio() {
+        try {
+            return listaAnios.obtenerDato(cbxAnio.getSelectedIndex()).getID_RangoAnio();
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int ConseguirTipo() {
+        return Integer.valueOf(cbxCalificación.getSelectedItem().toString().trim().substring(4));
+    }
+
+    public void cargarcbx() {
+        RangoAnioDao radao = new RangoAnioDao();
+        
+        try {
+            listaAnios = radao.consultarAnios();
+            cbxAnio.removeAllItems();
+            for (int i = 0; i < listaAnios.getSize(); i++) {
+                cbxAnio.addItem(listaAnios.obtenerDato(i).getAnioMin() + " - " + listaAnios.obtenerDato(i).getAnioMax());
+            }
+                for (int i = 0; i <= 4; i++) {
+                    cbxCalificación.addItem("Tipo "+i);
+                }
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    
+>>>>>>> d5734bf (Sentencias)
+    public boolean comprobarValores() {
+        if (Double.valueOf(txtfUmbralMinimo.getText()) >= Double.valueOf(txtfUmbralMaximo.getText())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void limpiarVista() {
         cargarDatos();
         txtfClave.setText("");
         txtfDescripcion.setText("");
         txtfUmbralMaximo.setText("");
         txtfUmbralMinimo.setText("");
+        txtfBuscar.setText("");
         btnAniadir.setEnabled(true);
-        btnModificar.setEnabled(true);
+        btnModificar.setEnabled(false);
         try {
             listaUmbrales.setSelectedIndices(null);
         } catch (Exception e) {
         }
     }
-    
+
     private void cargarDatos() {
         try {
             int seleccion = listaUmbrales.getSelectedIndex();
-            Umbral umbralModificar = aux.obtenerDato(seleccion);
-            txtfClave.setText(umbralModificar.getClave_Umbral()+"");
-            txtfDescripcion.setText(umbralModificar.getDescripcion());
-            txtfUmbralMinimo.setText(umbralModificar.getValorMin()+"");
-            txtfUmbralMaximo.setText(umbralModificar.getValorMax()+"");
+            auxUmbral = aux.obtenerDato(seleccion);
+            txtfClave.setText(auxUmbral.getClave_Umbral() + "");
+            txtfDescripcion.setText(auxUmbral.getDescripcion());
+            txtfUmbralMinimo.setText(auxUmbral.getValorMin() + "");
+            txtfUmbralMaximo.setText(auxUmbral.getValorMax() + "");
             cbxCalificación.removeAllItems();
-            cbxCalificación.addItem("Tipo: "+umbralModificar.getTipo()); //revisar consulta tipos calificacion
+            cargarcbx();
+<<<<<<< HEAD
+            cbxCalificación.setSelectedItem("Tipo " + auxUmbral.getTipo());
+
+=======
+            cbxCalificación.setSelectedItem("Tipo "+auxUmbral.getTipo());
+           
+>>>>>>> d5734bf (Sentencias)
         } catch (Exception e) {
         }
     }
@@ -335,9 +590,34 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
 
             for (int i = 0; i < aux.getSize(); i++) {
                 modelo.addElement(aux.obtenerDato(i).getDescripcion() + " - Tipo " + aux.obtenerDato(i).getTipo());
+                if (aux.obtenerDato(i).getID_Umbral() > valor) {
+                    valor = aux.obtenerDato(i).getID_Umbral();
+                }
             }
         } catch (Exception e) {
             System.out.println("Error en cargar lista");
+        }
+    }
+
+    private void ejecutarSentencias() {
+        try {
+            UmbralDao umbdao = new UmbralDao();
+            for (int i = 0; i < modificaciones.getSize(); i++) {
+                Umbral u = new Umbral();
+                u = modificaciones.obtenerDato(i);
+                if (cambios.obtenerDato(i) == "Editar") {
+                    String sentencia = "Update umbral set id_rangoanio = " + u.getID_RangoAnio() + ", tipo = '" + u.getTipo() + "', valormin = " + u.getValorMin() + ", valormax=" + u.getValorMax() + ", clave_umbral=" + u.getClave_Umbral()
+                            + ", Updated_at = sysdate, descripcion = '" + u.getDescripcion().toUpperCase() + "', categoria='" + u.getCategoria().toUpperCase() + "' where id_umbral = " + u.getID_Umbral();
+                    umbdao.ejecutarSentencias(sentencia);
+                } else {
+                    cargarLista();
+                    String sentencia = "Insert into umbral (Id_umbral, Id_rangoanio, Tipo, Valormin, valormax, clave_umbral, created_at, updated_at, descripcion, categoria)values("
+                            + "Umbral_ID_Seq.NextVal" + ", " + u.getID_RangoAnio() + ", '" + u.getTipo() + "', " + u.getValorMin() + ", " + u.getValorMax() + ", " + u.getClave_Umbral() + ", SYSDATE, SYSDATE, '" + u.getDescripcion().toUpperCase() + "', '" + u.getCategoria().toUpperCase() + "')";
+                    umbdao.ejecutarSentencias(sentencia);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -399,9 +679,9 @@ public class FrmEditarUmbrales extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JList<String> listaUmbrales;
     private DefaultListModel modelo;
+    private javax.swing.JTable tablaC;
     private javax.swing.JTextField txtfBuscar;
     private javax.swing.JTextField txtfClave;
     private javax.swing.JTextField txtfDescripcion;

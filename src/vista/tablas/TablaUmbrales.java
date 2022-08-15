@@ -8,9 +8,11 @@ import modelo.RangoAnio;
 
 public class TablaUmbrales extends AbstractTableModel {
     private ListaEnlazada<Umbral> listaUmbrales;
-
-    public TablaUmbrales(ListaEnlazada<Umbral> listaUmbrales){
+    ListaEnlazada<String> operacion = new ListaEnlazada();
+    
+    public TablaUmbrales(ListaEnlazada<Umbral> listaUmbrales, ListaEnlazada<String> operacion){
         this.listaUmbrales = listaUmbrales;
+        this.operacion = operacion;
     }
 
     @Override
@@ -20,22 +22,28 @@ public class TablaUmbrales extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 8;
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column){
             case 0:
-                return "ID";
+                return "Descripcion";
             case 1:
-                return "Año Min";
+                return "Categoria";
             case 2:
-                return "Año Max";
+                return "Id año";
             case 3:
-                return "Valor Min";
+                return "Tipo";
             case 4:
-                return "Valor Max";
+                return "Valor minimo";
+            case 5:
+                return "Valor maximo";
+            case 6:
+                return "Clave del umbral";
+            case 7:
+                return "Operación";
             default:
                 return "";
         }
@@ -53,15 +61,25 @@ public class TablaUmbrales extends AbstractTableModel {
         }
         switch (columna) {
             case 0:
-                return umbral.getID_Umbral();
+                return umbral.getDescripcion();
             case 1:
-                return rangoAnio.getAnioMin();
+                return umbral.getCategoria();
             case 2:
-                return rangoAnio.getAnioMax();
+                return umbral.getID_RangoAnio();
             case 3:
-                return umbral.getValorMin();
+                return umbral.getTipo();
             case 4:
+                return umbral.getValorMin();
+            case 5:
                 return umbral.getValorMax();
+            case 6:
+                return umbral.getClave_Umbral();
+            case 7:
+                try {
+                return operacion.obtenerDato(fila);
+            } catch (Exception e) {
+                    System.out.println(e);
+            }
             default:
                 return null;
         }

@@ -5,12 +5,13 @@
  */
 package vista;
 
-import controlador.modelos.ControladorClientes;
+import controlador.dao.AdministradorDao;
 import controlador.tda.lista.ListaEnlazada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelo.Cliente;
+import modelo.Administrador;
 
 /**
  *
@@ -18,18 +19,17 @@ import modelo.Cliente;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
-    private Integer numClientes = 0;
-    private final ControladorClientes cc = new ControladorClientes();
-    private final ListaEnlazada<Cliente> listaClientes = new ListaEnlazada<>();
-    
     //Para Obtener la lista de personas de la base de datos
     //private ListaEnlazada<Cliente> listaClientes = new ClienteDao().listar();
-
     /**
      * Creates new form FrmRegistarCliente
      */
     public FrmLogin() {
         initComponents();
+        this.setSize(465, 350);
+        logo.setIcon(new ImageIcon("./Imagenes/Logo.png"));
+        text.setVisible(false);
+        passF.setVisible(true);
     }
 
     /**
@@ -41,177 +41,113 @@ public class FrmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        btnCancelarP = new javax.swing.JButton();
-        btnModificarP = new javax.swing.JButton();
-        txtProvincia = new javax.swing.JTextField();
-        txtIdentificacion = new javax.swing.JTextField();
-        txtCiudad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        passF = new javax.swing.JPasswordField();
+        text = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        userText = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        logo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Propietario"));
-        jPanel2.setLayout(null);
-
-        jLabel3.setText("Nombre :");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(50, 40, 60, 16);
-        jPanel2.add(txtNombre);
-        txtNombre.setBounds(120, 40, 130, 30);
-
-        jLabel4.setText("Apellido :");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(280, 40, 60, 16);
-        jPanel2.add(txtApellido);
-        txtApellido.setBounds(350, 40, 130, 30);
-
-        jLabel5.setText("Identificacion :");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 90, 80, 16);
-        jPanel2.add(txtDireccion);
-        txtDireccion.setBounds(350, 90, 130, 30);
-
-        jLabel6.setText("Direccion:");
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(280, 90, 60, 16);
-
-        jLabel7.setText("Ciudad :");
-        jPanel2.add(jLabel7);
-        jLabel7.setBounds(50, 140, 60, 16);
-
-        jLabel8.setText("Provincia :");
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(280, 140, 60, 16);
-
-        btnCancelarP.setText("Limpiar");
-        btnCancelarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarPActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnCancelarP);
-        btnCancelarP.setBounds(360, 200, 130, 30);
-
-        btnModificarP.setText("REGISTRAR");
-        btnModificarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarPActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnModificarP);
-        btnModificarP.setBounds(40, 200, 130, 30);
-        jPanel2.add(txtProvincia);
-        txtProvincia.setBounds(350, 140, 130, 30);
-        jPanel2.add(txtIdentificacion);
-        txtIdentificacion.setBounds(120, 90, 130, 30);
-        jPanel2.add(txtCiudad);
-        txtCiudad.setBounds(120, 140, 130, 30);
+        setMinimumSize(new java.awt.Dimension(500, 300));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Formulario de Registro");
+        jLabel1.setText("Usuario:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(50, 140, 215, 24);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        passF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passFActionPerformed(evt);
+            }
+        });
+        passF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passFKeyReleased(evt);
+            }
+        });
+        getContentPane().add(passF);
+        passF.setBounds(200, 190, 220, 30);
+
+        text.setEditable(false);
+        text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textActionPerformed(evt);
+            }
+        });
+        getContentPane().add(text);
+        text.setBounds(200, 190, 220, 30);
+
+        jCheckBox1.setText("Ver Contraseña");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox1);
+        jCheckBox1.setBounds(170, 230, 120, 20);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Inicio Sesión");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(180, 100, 110, 24);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Contraseña:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(50, 190, 215, 24);
+        getContentPane().add(userText);
+        userText.setBounds(200, 140, 220, 30);
+
+        jButton1.setText("Ingresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(170, 260, 120, 30);
+        getContentPane().add(logo);
+        logo.setBounds(120, 20, 240, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnModificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPActionPerformed
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        if (txtApellido.getText().equals("") || txtCiudad.getText().equals("") || txtDireccion.getText().equals("") || txtIdentificacion.getText().equals("") || txtNombre.getText().equals("") || txtProvincia.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Porfavor rellene todos los datos", "Info", JOptionPane.INFORMATION_MESSAGE);
+        if (jCheckBox1.isSelected()) {
+            text.setVisible(true);
+            passF.setVisible(false);
         } else {
-            numClientes++;
-            try {
-                Integer.valueOf(txtIdentificacion.getText());
-                //registrar();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "La identificacion solo puede contener numeros", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            limpiar();
+            text.setVisible(false);
+            passF.setVisible(true);
         }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    }//GEN-LAST:event_btnModificarPActionPerformed
-
-    private void btnCancelarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPActionPerformed
-        // TODO add your handling code here:
-        limpiar();
-    }//GEN-LAST:event_btnCancelarPActionPerformed
-
-    private void limpiar() {
-        txtApellido.setText("");
-        txtCiudad.setText("");
-        txtDireccion.setText("");
-        txtIdentificacion.setText("");
-        txtNombre.setText("");
-        txtProvincia.setText("");
-    }
-
-    /*private void registrar() {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Cliente c = new Cliente();
-            c.setID_Cliente(numClientes);
-            c.setNombre(txtNombre.getText());
-            c.setApellido(txtApellido.getText());
-            //c.setCiudad(txtCiudad.getText());
-            //c.setDireccion(txtDireccion.getText());
-            c.setIdentificacion(txtIdentificacion.getText());
-            //c.setProvincia(txtProvincia.getText());
-            
-            if (!estaRegistrado()) {
-                listaClientes.insertar(c);
-                cc.setListaClientes(listaClientes);
-                cc.guardarClientes();
-            }
-            //Para guardar en la base de datos
-            //new ClienteDao().guardar(c);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar en base de datos: \n" + ex, "DataBaseError", JOptionPane.ERROR_MESSAGE);
-        }
-    }*/
-
-    public Boolean estaRegistrado() {
-        try {
-            if (listaClientes.buscar("identificacion", txtIdentificacion.getText()).getSize() > 0) {
-                JOptionPane.showMessageDialog(null, "Cliente ya existe", "Info", JOptionPane.INFORMATION_MESSAGE);
-                limpiar();
-                return true;
-            }
+            // TODO add your handling code here:
+            iniciarSesion();
         } catch (Exception ex) {
             Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void passFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passFKeyReleased
+        // TODO add your handling code here:
+        text.setText(passF.getText());
+    }//GEN-LAST:event_passFKeyReleased
+
+    private void passFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passFActionPerformed
+
+    private void textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,23 +185,30 @@ public class FrmLogin extends javax.swing.JFrame {
         });
     }
 
+    private void iniciarSesion() throws Exception {
+        ListaEnlazada <Administrador> listado = new AdministradorDao().listar();
+        if (listado.buscar("Usuario", userText.getText()).getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "Usuario No encontrado, por favor intentelo nuevamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+        } else if (listado.buscar("Usuario", userText.getText()).obtenerDato(0).getPassword().equals(passF.getText())) {
+            JOptionPane.showMessageDialog(null, "Sesión Iniciada Correectamente\nBienvenido!!! " + userText.getText(), "Info", JOptionPane.INFORMATION_MESSAGE);
+            new FrmEditarUmbrales().setVisible(true);
+            this.setVisible(false);
+        } else{
+            JOptionPane.showMessageDialog(null, "Contraseña no coincide, por favor intentelo nuevamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarP;
-    private javax.swing.JButton btnModificarP;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCiudad;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtIdentificacion;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtProvincia;
+    private javax.swing.JLabel logo;
+    private javax.swing.JPasswordField passF;
+    private javax.swing.JTextField text;
+    private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
 
 }

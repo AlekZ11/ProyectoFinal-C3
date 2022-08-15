@@ -7,7 +7,6 @@ package vista;
 import controlador.dao.RangoAnioDao;
 import controlador.tda.lista.ListaEnlazada;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import modelo.RangoAnio;
 import vista.tablas.TablaAnios;
 
@@ -146,18 +145,19 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtfId, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addGap(27, 27, 27)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtfAnioMin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtfAnioMax, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtfAnioMax, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabel1)))
                         .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCerrar)
@@ -252,9 +252,13 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         if (txtfId.getText().trim().length() == 0 || txtfAnioMin.getText().trim().length() == 0 || txtfAnioMax.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Llene los campos");
         } else {
-            String sentencia = "INSERT into rangoanio(id_rangoanio, aniomin, aniomax, created_at, updated_at)values(" + txtfId.getText() + ", " + txtfAnioMin.getText() + "," + txtfAnioMax.getText() + ", SYSDATE, SYSDATE)";
-            rdao.ejecutarSentencias(sentencia);
-            cargarTabla();
+            if (comprobarValores()) {
+                String sentencia = "INSERT into rangoanio(id_rangoanio, aniomin, aniomax, created_at, updated_at)values(" + txtfId.getText() + ", " + txtfAnioMin.getText() + "," + txtfAnioMax.getText() + ", SYSDATE, SYSDATE)";
+                rdao.ejecutarSentencias(sentencia);
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Los rangos no son correctos");
+            }
         }
     }//GEN-LAST:event_btnAniadirActionPerformed
 
@@ -262,12 +266,25 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         if (txtfId.getText().trim().length() == 0 || txtfAnioMin.getText().trim().length() == 0 || txtfAnioMax.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Llene los campos");
         } else {
-            String sentencia = "UPDATE rangoanio set aniomin = "+txtfAnioMin.getText()+", aniomax = "+txtfAnioMax.getText()+", updated_at=SYSDATE WHERE id_rangoanio = "+txtfId.getText()+";";
-            System.out.println("esta: "+sentencia);
-            rdao.ejecutarSentencias(sentencia);
-            cargarTabla();
+            if (comprobarValores()) {
+                String sentencia = "UPDATE rangoanio set aniomin = " + txtfAnioMin.getText() + ", aniomax = " + txtfAnioMax.getText() + ", updated_at=SYSDATE WHERE id_rangoanio = " + txtfId.getText();
+                System.out.println("esta: " + sentencia);
+                rdao.ejecutarSentencias(sentencia);
+                limpiar();
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Los rangos no son correctos");
+            }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    public boolean comprobarValores() {
+        if (Integer.valueOf(txtfAnioMin.getText()) >= Integer.valueOf(txtfAnioMax.getText())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     /**
      * @param args the command line arguments

@@ -89,8 +89,13 @@ public class ControladorUmbral {
                     && umbral.getCategoria().toLowerCase().equals(tipo.toLowerCase())
                     && umbral.getValorMin() <= valor 
                     && valor < umbral.getValorMax()) {
-                //System.out.println("Clave : " + id_valor + "( ValorMin : " + umbral.getValorMin() + " <= Valor : " +valor + " < ValorMax : " + umbral.getValorMax() + " ) ERROR : " + umbral.getTipo());
-                return umbral.getTipo();
+                if(umbral.getCategoria().toLowerCase() == "todos"){
+                    return umbral.getTipo();
+                }else if (umbral.getCategoria().toLowerCase() == "todos excepto motos" && tipo.toLowerCase().contains("ruedas")){
+                    return umbral.getTipo();
+                }else{
+                    return umbral.getTipo();
+                }
             }
         }
         return "Tipo 0";

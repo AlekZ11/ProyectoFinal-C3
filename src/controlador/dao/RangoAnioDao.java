@@ -13,7 +13,8 @@ import modelo.RangoAnio;
  *
  * @author patob
  */
-public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
+public class RangoAnioDao extends AdaptadorDao<RangoAnio> {
+
     RangoAnio rangoAnio;
 
     public RangoAnioDao(RangoAnio rangoAnio) {
@@ -28,10 +29,11 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
     public void setRangoValores(RangoAnio rangoAnio) {
         this.rangoAnio = rangoAnio;
     }
-    
+
     public RangoAnioDao() {
         super(RangoAnio.class);
     }
+
     public ListaEnlazada<RangoAnio> consultarAnios() {
         ListaEnlazada<RangoAnio> lista = new ListaEnlazada<>();
         try {
@@ -68,13 +70,13 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
         }
         return lista;
     }
-    
+
     public void ejecutarSentencias(String sentencia) {
         try {
             PreparedStatement stmt;
             System.out.println(sentencia);
             stmt = getConexion().prepareStatement(sentencia);
-            
+
             stmt.executeQuery();
 
         } catch (Exception e) {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador.dao;
 
 import controlador.tda.lista.ListaEnlazada;
@@ -28,7 +24,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         this.clazz = clazz;
         this.conexion = Conexion.getConexion();
         ALL += clazz.getSimpleName().toUpperCase() + " ";
-        ALL_ID = ALL + "Where id_"+clazz.getSimpleName().toLowerCase()+" = ";
+        ALL_ID = ALL + "Where id_" + clazz.getSimpleName().toLowerCase() + " = ";
     }
 
     public Connection getConexion() {
@@ -90,14 +86,14 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         String comando = "call Insert_" + clazz.getSimpleName().toUpperCase();
         String datos = "";
         for (int i = 0; i < columnas.length; i++) {
-            if(!"null".equals(String.valueOf(tipoDato(columnas[i], dato)))){
-                datos += tipoDato(columnas[i], dato) + 
-                        ((i != columnas.length-1 )?" , ":"");
+            if (!"null".equals(String.valueOf(tipoDato(columnas[i], dato)))) {
+                datos += tipoDato(columnas[i], dato)
+                        + ((i != columnas.length - 1) ? " , " : "");
             }
         }
         comando += " (" + datos;
-        if(comando.charAt(comando.length()-2) == ','){
-            comando = comando.substring(0, comando.length()-3);
+        if (comando.charAt(comando.length() - 2) == ',') {
+            comando = comando.substring(0, comando.length() - 3);
         }
         comando += ")";
         try {
@@ -137,7 +133,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
             }
 
         }
-        comando += datos + " where id"+clazz.getSimpleName().toLowerCase()+" = " + id.toString();
+        comando += datos + " where id" + clazz.getSimpleName().toLowerCase() + " = " + id.toString();
         try {
             PreparedStatement stmt = getConexion().prepareStatement(comando);
             stmt.executeUpdate();
@@ -152,16 +148,16 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
 
     @Override
     public T obtener(String id) throws Exception {
-        
+
         PreparedStatement stmt;
         if (id.matches("[A-Z]{3}[\\d]{3,4}")) {
-            id = "'"+id + "'";
+            id = "'" + id + "'";
             stmt = getConexion().prepareStatement("Select * from " + clazz.getSimpleName().toLowerCase() + " where placa = " + id);
-        }else if (id.matches("[a-zA-Z]+")){
-            id = "'"+id + "'";
-            stmt  = getConexion().prepareStatement(ALL_ID + id);
-        }else{
-            stmt  = getConexion().prepareStatement(ALL_ID + id);
+        } else if (id.matches("[a-zA-Z]+")) {
+            id = "'" + id + "'";
+            stmt = getConexion().prepareStatement(ALL_ID + id);
+        } else {
+            stmt = getConexion().prepareStatement(ALL_ID + id);
         }
         T obj = null;
         String[] columna = columnas();
@@ -228,10 +224,10 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         return aux;
     }
 
-    public Integer getCurrentValue(){
+    public Integer getCurrentValue() {
         Integer value = 0;
         try {
-            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id_seq.currval from dual";
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase() + "_id_seq.currval from dual";
             PreparedStatement stmt = getConexion().prepareStatement(seleccion);
             ResultSet resultSet = stmt.executeQuery();
             resultSet.next();
@@ -242,10 +238,10 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         return value;
     }
 
-    public Integer getNextValue(){
+    public Integer getNextValue() {
         Integer value = 0;
         try {
-            String seleccion = "select " + clazz.getSimpleName().toLowerCase()+"_id_seq.nextval from dual";
+            String seleccion = "select " + clazz.getSimpleName().toLowerCase() + "_id_seq.nextval from dual";
             PreparedStatement stmt = getConexion().prepareStatement(seleccion);
             ResultSet resultSet = stmt.executeQuery();
             resultSet.next();

@@ -17,13 +17,15 @@ public class Umbral {
 
     public Umbral(){   }
 
-    public Umbral(String descripcion, Integer ID_RangoAnio, String tipo, Double valoresMin, Double valoresMax, Integer claveUmbral) {
+    public Umbral(Integer ID_Umbral, String descripcion, String categoria, Integer ID_RangoAnio, String tipo, Double valorMin, Double valorMax, Integer clave_Umbral) {
+        this.ID_Umbral = ID_Umbral;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
         this.ID_RangoAnio = ID_RangoAnio;
         this.tipo = tipo;
-        this.valorMin = valoresMin;
-        this.valorMax = valoresMax;
-        this.clave_Umbral = claveUmbral;
-        this.descripcion = descripcion;
+        this.valorMin = valorMin;
+        this.valorMax = valorMax;
+        this.clave_Umbral = clave_Umbral;
     }
 
     public Integer getID_Umbral() {

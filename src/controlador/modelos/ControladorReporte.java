@@ -72,6 +72,7 @@ public class ControladorReporte {
         this.p = ObtenerProvincia();
         this.t_c = ObtenerTipocombustible();
         this.t_v = ObtenerTipoVehiculo();
+        this.estado = obtenerEstado(estado);
 
         this.resultados = resultados;
     }
@@ -318,33 +319,11 @@ public class ControladorReporte {
         return cliente.obtener(a.getID_Cliente() + "");
     }
     
-    public String obtenerEstado(Boolean estado){
+    public static String obtenerEstado(Boolean estado){
         if (estado) {
             return "APROBADO";
         } else{
             return "REPROBADO";
         }
     }
-
-    public static void main(String[] args) {
-        
-        ListaEnlazada<String> lista = new ListaEnlazada<>();
-        lista.insertarCabecera("NO PASA");
-        lista.insertarCabecera("DE NADA MASTER");
-        lista.insertarCabecera("AMOR");
-        lista.insertarCabecera("SANDIA");
-        
-        try {
-            ControladorReporte cr = new ControladorReporte(true,"GLS1960", lista);
-            System.err.println(cr.toString());
-        } catch (Exception ex) {
-            Logger.getLogger(ControladorReporte.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "ControladorReporte{" + "c=" + c + ", a=" + a + ", v=" + v + ", m=" + m + ", l=" + l + ", cd=" + cd + ", p=" + p + ", t_v=" + t_v + ", t_c=" + t_c + ", resultados=" + resultados + '}';
-    }
-
 }

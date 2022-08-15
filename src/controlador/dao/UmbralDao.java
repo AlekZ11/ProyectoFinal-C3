@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Timestamp;
 import java.util.Date;
-import modelo.RangoAnio;
 
 public class UmbralDao extends AdaptadorDao<Umbral> {
 
@@ -103,5 +102,17 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         return aux;
     }
 
-    
+    public void ejecutarSentencias(String sentencia) {
+        try {
+            PreparedStatement stmt;
+            System.out.println(sentencia);
+            stmt = getConexion().prepareStatement(sentencia);
+
+            stmt.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar " + e);
+            e.printStackTrace();
+        }
+    }
 }

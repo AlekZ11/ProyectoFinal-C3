@@ -9,6 +9,9 @@ import controlador.dao.pdf.ReportePDF;
 import controlador.modelos.ControladorReporte;
 import controlador.tda.lista.ListaEnlazada;
 import controlador.tda.lista.exception.PosicionException;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,28 +36,25 @@ public class FrmReporte extends javax.swing.JFrame {
      * @param auto
      * @param lista
      */
-    public FrmReporte(Cliente cliente, Automovil auto, ListaEnlazada<String> lista) {
+    public FrmReporte() {
         initComponents();
-        try {
-            CR = new ControladorReporte(cliente, auto, lista);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener datos, podria deberse a un error de la base de datos", "DataBaseError", JOptionPane.ERROR_MESSAGE);
-        }
-        cargar();
     }
 
     public FrmReporte(Boolean estado, String Placa, ListaEnlazada<String> lista) {
         initComponents();
-        lista = new ListaEnlazada<>();
-        lista.insertarCabecera("NO APRUEBA");
-        lista.insertarCabecera("RINES DAÑADOS");
-        lista.insertarCabecera("LLANTAS DESGASTADAS");
-        lista.insertarCabecera("CAPO ABOLLADO");
         
         try {
             CR = new ControladorReporte(true, Placa, lista);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener datos, podria deberse a un error de la base de datos", "DataBaseError", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Aun no carga ningun archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        for (int i = 0; i < lista.getSize(); i++) {
+            try {
+                System.out.println(lista.obtenerDato(i));
+            } catch (PosicionException ex) {
+                Logger.getLogger(FrmReporte.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         cargar();
     }
@@ -106,8 +106,6 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jButton1.setText("Generar PDF");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,102 +121,102 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel3.setText("Marca:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(20, 30, 60, 14);
+        jLabel3.setBounds(20, 30, 60, 16);
 
         jLabel5.setText("Modelo:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(20, 60, 50, 14);
+        jLabel5.setBounds(20, 60, 50, 16);
 
         jLabel6.setText("Placa:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(240, 60, 60, 14);
+        jLabel6.setBounds(240, 60, 60, 16);
 
         jLabel7.setText("Año:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(20, 90, 30, 14);
+        jLabel7.setBounds(20, 90, 30, 16);
 
         jLabel8.setText("Tipo Vehiculo:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(240, 90, 80, 14);
+        jLabel8.setBounds(240, 90, 80, 16);
 
         jLabel20.setText("Combustible:");
         jPanel2.add(jLabel20);
-        jLabel20.setBounds(240, 30, 70, 14);
+        jLabel20.setBounds(240, 30, 70, 16);
 
         jLabel21.setText("jLabel21");
         jPanel2.add(jLabel21);
-        jLabel21.setBounds(100, 30, 130, 14);
+        jLabel21.setBounds(100, 30, 130, 16);
 
         jLabel22.setText("jLabel22");
         jPanel2.add(jLabel22);
-        jLabel22.setBounds(100, 60, 130, 14);
+        jLabel22.setBounds(100, 60, 130, 16);
 
         jLabel23.setText("jLabel23");
         jPanel2.add(jLabel23);
-        jLabel23.setBounds(100, 90, 130, 14);
+        jLabel23.setBounds(100, 90, 130, 16);
 
         jLabel24.setText("jLabel24");
         jPanel2.add(jLabel24);
-        jLabel24.setBounds(330, 30, 130, 14);
+        jLabel24.setBounds(330, 30, 130, 16);
 
         jLabel26.setText("jLabel26");
         jPanel2.add(jLabel26);
-        jLabel26.setBounds(330, 60, 130, 14);
+        jLabel26.setBounds(330, 60, 130, 16);
 
         jLabel27.setText("jLabel27");
         jPanel2.add(jLabel27);
-        jLabel27.setBounds(330, 90, 130, 14);
+        jLabel27.setBounds(330, 90, 130, 16);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Cliente"));
         jPanel3.setLayout(null);
 
         jLabel9.setText("Nombre :");
         jPanel3.add(jLabel9);
-        jLabel9.setBounds(30, 30, 60, 14);
+        jLabel9.setBounds(30, 30, 60, 16);
 
         jLabel10.setText("Apellido :");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(250, 30, 60, 14);
+        jLabel10.setBounds(250, 30, 60, 16);
 
         jLabel11.setText("Identificacion :");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(30, 60, 80, 14);
+        jLabel11.setBounds(30, 60, 80, 16);
 
         jLabel12.setText("Direccion:");
         jPanel3.add(jLabel12);
-        jLabel12.setBounds(250, 60, 60, 14);
+        jLabel12.setBounds(250, 60, 60, 16);
 
         jLabel13.setText("Ciudad :");
         jPanel3.add(jLabel13);
-        jLabel13.setBounds(30, 90, 60, 14);
+        jLabel13.setBounds(30, 90, 60, 16);
 
         jLabel14.setText("Provincia :");
         jPanel3.add(jLabel14);
-        jLabel14.setBounds(250, 90, 60, 14);
+        jLabel14.setBounds(250, 90, 60, 16);
 
         jLabel2.setText("jLabel2");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(120, 30, 120, 14);
+        jLabel2.setBounds(120, 30, 120, 16);
 
         jLabel15.setText("jLabel15");
         jPanel3.add(jLabel15);
-        jLabel15.setBounds(120, 60, 120, 14);
+        jLabel15.setBounds(120, 60, 120, 16);
 
         jLabel16.setText("jLabel16");
         jPanel3.add(jLabel16);
-        jLabel16.setBounds(120, 90, 120, 14);
+        jLabel16.setBounds(120, 90, 120, 16);
 
         jLabel17.setText("jLabel17");
         jPanel3.add(jLabel17);
-        jLabel17.setBounds(320, 30, 120, 14);
+        jLabel17.setBounds(320, 30, 120, 16);
 
         jLabel18.setText("jLabel18");
         jPanel3.add(jLabel18);
-        jLabel18.setBounds(320, 60, 130, 14);
+        jLabel18.setBounds(320, 60, 130, 16);
 
         jLabel19.setText("jLabel19");
         jPanel3.add(jLabel19);
-        jLabel19.setBounds(320, 90, 130, 14);
+        jLabel19.setBounds(320, 90, 130, 16);
 
         jLabel28.setText("Fecha:");
 
@@ -228,7 +226,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jLabel31.setText("0");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Observaciones"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultados"));
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -326,8 +324,19 @@ public class FrmReporte extends javax.swing.JFrame {
         // TODO add your handling code here:
         ReportePDF pdf = new ReportePDF(CR);
         pdf.generarPDF();
+        abrirPdf();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void abrirPdf(){
+        try {
+            String ruta = System.getProperty("user.home");
+            File path = new File(ruta + "/Desktop/Reporte_UmbralesAqui_ID.pdf");
+            Desktop.getDesktop().open(path);
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void cargar() {
 
         jLabel29.setText(String.valueOf(LocalDate.now()));
@@ -391,7 +400,7 @@ public class FrmReporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmReporte(true, "GLS1960",new ListaEnlazada<String>()).setVisible(true);
+                new FrmReporte().setVisible(true);
             }
         });
     }

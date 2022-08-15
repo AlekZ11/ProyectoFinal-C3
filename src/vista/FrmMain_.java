@@ -10,12 +10,9 @@ import controlador.modelos.ControladorAutomoviles;
 import controlador.tda.lista.ListaEnlazada;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import modelo.TipoCombustible;
 
 /**
  *
@@ -31,12 +28,15 @@ public class FrmMain_ extends javax.swing.JFrame {
     ListaEnlazada<String> resultado = new ListaEnlazada<>();
     Integer aniov = 0;
     String tipov = "";
+    Boolean seleccionado = false;
+    Boolean estado = true;
 
     /**
      * Creates new form FrmMain_
      */
     public FrmMain_() {
         initComponents();
+        logo.setIcon(new ImageIcon("./Imagenes/Logo.png"));
         this.setSize(1045, 610);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -102,6 +102,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 }
             }
         }
+        Integer contadorT2 = 0;
         resultado.insertar("Fin");
         Integer id_txt = 0;
         Integer tipo0 = 0;
@@ -116,8 +117,10 @@ public class FrmMain_ extends javax.swing.JFrame {
                     tipo1++;
                 } else if (resultados.obtenerDato(k).endsWith("2")) {
                     tipo2++;
+                    contadorT2++;
                 } else if (resultados.obtenerDato(k).endsWith("3")) {
                     tipo3++;
+                    estado = false;
                 }
             } else if (k != 0) {
                 cargarResultados(id_txt, tipo0, tipo1, tipo2, tipo3);
@@ -128,6 +131,9 @@ public class FrmMain_ extends javax.swing.JFrame {
                 tipo3 = 0;
             }
         }
+        if(contadorT2 >= 10){
+            estado = false;
+        }
     }
 
     public void cargarDatos() {
@@ -135,10 +141,10 @@ public class FrmMain_ extends javax.swing.JFrame {
         String linea;
         String[] lineaSeparada;
         while (!error) {
+            seleccionado = false;
             String archivo = String.valueOf(JOptionPane.showInputDialog(null, "Ingrese la PLACA :"));
             //si le dio a cancelar me salgo del while
             if (archivo == null || archivo.toLowerCase() == "null") {
-                error = true;
                 break;
             }
             error = true;
@@ -155,7 +161,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                 Object[] atributosV = new Object[12];
                 int j = 0;
                 while ((linea = br.readLine()) != null) {
-                    if (linea.contains("Generales") || linea.contains("Documentos") || linea.contains("Datos de Prueba") || linea.contains("Conductor")) {
+                    if (linea.contains("Generales") || linea.contains("Documentos") || linea.contains("Datos de Prueba") || linea.contains("Conductor") || linea.contains("Parametros")) {
                         saltar = true;
                         propietario = false;
                         vehiculo = false;
@@ -167,7 +173,7 @@ public class FrmMain_ extends javax.swing.JFrame {
                         propietario = false;
                         saltar = false;
                         vehiculo = true;
-                    } else if (linea.contains("Dato") || linea.contains("Resultado") || linea.contains("Prueba") || linea.contains("Visual") || linea.contains("Neumaticos") || linea.contains("Parametros")) {
+                    } else if (linea.contains("Dato") || linea.contains("Resultado") || linea.contains("Prueba") || linea.contains("Visual") || linea.contains("Neumaticos")) {
                         saltar = false;
                         propietario = false;
                         vehiculo = false;
@@ -208,10 +214,9 @@ public class FrmMain_ extends javax.swing.JFrame {
                 controladorAutomoviles.guardarAutomovil(String.valueOf(atributosV[0]), Integer.valueOf(String.valueOf(atributosV[4])), txtMarca.getText(), String.valueOf(atributosV[2]), String.valueOf(atributosV[9]), String.valueOf(atributosV[8]), id_cliente);
                 aniov = Integer.parseInt(atributosV[4].toString());
                 tipov = String.valueOf(atributosV[9]);
+                seleccionado = true;
                 br.close();
             } catch (Exception e) {
-                System.out.println("Error al leer el archivo");
-                e.printStackTrace();
                 error = false;
             }
         }
@@ -285,17 +290,23 @@ public class FrmMain_ extends javax.swing.JFrame {
         lblNombreArchivo = new javax.swing.JLabel();
         btnInforme = new javax.swing.JButton();
         btnVerificar = new javax.swing.JButton();
+        icon = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Propietario"));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
         jLabel3.setText("Nombre :");
@@ -314,9 +325,9 @@ public class FrmMain_ extends javax.swing.JFrame {
         jPanel2.add(txtApellido);
         txtApellido.setBounds(350, 40, 130, 22);
 
-        jLabel5.setText("Identificacion :");
+        jLabel5.setText("Celular :");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 90, 80, 16);
+        jLabel5.setBounds(50, 90, 50, 16);
 
         txtDireccion.setEditable(false);
         jPanel2.add(txtDireccion);
@@ -349,21 +360,26 @@ public class FrmMain_ extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 80, 540, 190);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Resultados Obtenidos"));
         jPanel3.setLayout(null);
 
+        jLabel15.setBackground(new java.awt.Color(204, 0, 0));
         jLabel15.setText("Tipo 3");
         jPanel3.add(jLabel15);
         jLabel15.setBounds(380, 30, 50, 16);
 
+        jLabel16.setBackground(new java.awt.Color(51, 102, 255));
         jLabel16.setText("Tipo 0");
         jPanel3.add(jLabel16);
         jLabel16.setBounds(120, 30, 50, 16);
 
+        jLabel17.setBackground(new java.awt.Color(102, 255, 102));
         jLabel17.setText("Tipo 1");
         jPanel3.add(jLabel17);
         jLabel17.setBounds(210, 30, 50, 16);
 
+        jLabel18.setBackground(new java.awt.Color(255, 255, 102));
         jLabel18.setText("Tipo 2");
         jPanel3.add(jLabel18);
         jLabel18.setBounds(290, 30, 50, 16);
@@ -495,6 +511,7 @@ public class FrmMain_ extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(560, 60, 440, 460);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Vehiculo"));
         jPanel4.setLayout(null);
 
@@ -556,17 +573,22 @@ public class FrmMain_ extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCargarDatos);
-        btnCargarDatos.setBounds(20, 20, 220, 30);
+        btnCargarDatos.setBounds(20, 20, 180, 30);
 
-        jLabel1.setText("Archivo Seleccionado :");
+        jLabel1.setText("Archivo:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(260, 30, 120, 16);
+        jLabel1.setBounds(50, 60, 50, 16);
 
         lblNombreArchivo.setText("Ejemplo.txt");
         jPanel1.add(lblNombreArchivo);
-        lblNombreArchivo.setBounds(400, 30, 90, 16);
+        lblNombreArchivo.setBounds(100, 60, 90, 16);
 
         btnInforme.setText("Generar Informe");
+        btnInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformeActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnInforme);
         btnInforme.setBounds(800, 20, 180, 30);
 
@@ -578,15 +600,40 @@ public class FrmMain_ extends javax.swing.JFrame {
         });
         jPanel1.add(btnVerificar);
         btnVerificar.setBounds(600, 20, 180, 30);
+        jPanel1.add(icon);
+        icon.setBounds(490, 30, 0, 0);
+        jPanel1.add(logo);
+        logo.setBounds(260, 10, 270, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 10, 1010, 530);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Vista");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuItem1.setText("Gestionar");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -638,12 +685,45 @@ public class FrmMain_ extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_Prueba6ActionPerformed
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-        try {
-            calificarValores();        // TODO add your handling code here:
-        } catch (Exception ex) {
+        if(seleccionado) {
+            try {
+            calificarValores();  
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se ha podido verificar los valores", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }      // TODO add your handling code here:
+        }else{
             JOptionPane.showMessageDialog(null, "No se ha cargado el archivo correctamente, vuelva a seleccionarlo", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnVerificarActionPerformed
+
+    private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
+        // TODO add your handling code here:
+        try{
+            FrmReporte fr = new FrmReporte(estado, txtPlaca.getText(), resultado);
+            fr.setVisible(true);
+            fr.setLocationRelativeTo(null);
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_btnInformeActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+         // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -688,6 +768,7 @@ public class FrmMain_ extends javax.swing.JFrame {
     private javax.swing.JButton btnCargarDatos;
     private javax.swing.JButton btnInforme;
     private javax.swing.JButton btnVerificar;
+    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -717,13 +798,14 @@ public class FrmMain_ extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblNombreArchivo;
+    private javax.swing.JLabel logo;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCiudad;
