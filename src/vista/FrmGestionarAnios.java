@@ -4,6 +4,10 @@
  */
 package vista;
 
+import controlador.tda.lista.ListaEnlazada;
+import modelo.RangoAnio;
+import vista.tablas.TablaAnios;
+
 /**
  *
  * @author patob
@@ -16,7 +20,11 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     public FrmGestionarAnios() {
         initComponents();
     }
-
+    public void cargarTabla(ListaEnlazada<RangoAnio> aux){
+        TablaAnios ta = new TablaAnios(aux);
+        tablaAnios.setModel(ta);
+        tablaAnios.updateUI();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,14 +36,14 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaAnios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Gestión años");
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaAnios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,6 +109,6 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaAnios;
     // End of variables declaration//GEN-END:variables
 }
