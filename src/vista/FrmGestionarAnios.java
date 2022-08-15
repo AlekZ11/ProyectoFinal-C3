@@ -16,7 +16,10 @@ import vista.tablas.TablaAnios;
  * @author patob
  */
 public class FrmGestionarAnios extends javax.swing.JFrame {
+
     ListaEnlazada<RangoAnio> aux = new ListaEnlazada();
+    RangoAnioDao rdao = new RangoAnioDao();
+
     /**
      * Creates new form FrmGestionarAnios
      */
@@ -26,13 +29,15 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         btnModificar.setEnabled(false);
         cargarTabla();
     }
-    public void cargarTabla(){
+
+    public void cargarTabla() {
         RangoAnioDao radao = new RangoAnioDao();
         aux = radao.consultarAnios();
         TablaAnios ta = new TablaAnios(aux);
         jtablaAnios.setModel(ta);
         jtablaAnios.updateUI();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +114,11 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnAniadir.setText("Añadir");
         btnAniadir.addActionListener(new java.awt.event.ActionListener() {
@@ -209,24 +219,26 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         this.dispose();
         FrmEditarUmbrales.abrio = false;
     }//GEN-LAST:event_btnCerrarActionPerformed
-    
-    private void limpiar(){
+
+    private void limpiar() {
         txtfId.setText("");
         txtfAnioMin.setText("");
         txtfAnioMax.setText("");
         btnAniadir.setEnabled(true);
         btnModificar.setEnabled(false);
+        txtfId.setEnabled(true);
         cargarTabla();
     }
-    
+
     private void jtablaAniosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablaAniosMouseClicked
-        if (evt.getClickCount()==2) {
+        if (evt.getClickCount() == 2) {
             try {
                 btnAniadir.setEnabled(false);
                 btnModificar.setEnabled(true);
-                txtfId.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getID_RangoAnio()+"");
-                txtfAnioMin.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMin()+"");
-                txtfAnioMax.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMax()+"");
+                txtfId.setEnabled(false);
+                txtfId.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getID_RangoAnio() + "");
+                txtfAnioMin.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMin() + "");
+                txtfAnioMax.setText(aux.obtenerDato(jtablaAnios.getSelectedRow()).getAnioMax() + "");
             } catch (Exception e) {
             }
         }
@@ -237,14 +249,25 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAniadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirActionPerformed
-        if (txtfId.getText().trim().length()==0||txtfAnioMin.getText().trim().length()==0||txtfAnioMax.getText().trim().length()==0) {
+        if (txtfId.getText().trim().length() == 0 || txtfAnioMin.getText().trim().length() == 0 || txtfAnioMax.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Llene los campos");
         } else {
-            RangoAnioDao rdao = new RangoAnioDao();
-            String sentencia = "INSERT into rangoanio(id_rangoanio, aniomin, aniomax, created_at, updated_at)values("+txtfId.getText()+", "+txtfAnioMin.getText()+","+ txtfAnioMax.getText()+", SYSDATE, SYSDATE);";
+            String sentencia = "INSERT into rangoanio(id_rangoanio, aniomin, aniomax, created_at, updated_at)values(" + txtfId.getText() + ", " + txtfAnioMin.getText() + "," + txtfAnioMax.getText() + ", SYSDATE, SYSDATE)";
             rdao.ejecutarSentencias(sentencia);
+            cargarTabla();
         }
     }//GEN-LAST:event_btnAniadirActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtfId.getText().trim().length() == 0 || txtfAnioMin.getText().trim().length() == 0 || txtfAnioMax.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Llene los campos");
+        } else {
+            String sentencia = "UPDATE rangoanio set aniomin = "+txtfAnioMin.getText()+", aniomax = "+txtfAnioMax+", updated_at=SYSDATE, WHERE id_randoanio = "+txtfId.getText()+";";
+            System.out.println("esta: "+sentencia);
+            rdao.ejecutarSentencias(sentencia);
+            cargarTabla();
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,7 +300,7 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmGestionarAnios().setVisible(true);
-               
+
             }
         });
     }

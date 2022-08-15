@@ -70,11 +70,11 @@ public class RangoAnioDao extends AdaptadorDao<RangoAnio>{
     }
     
     public void ejecutarSentencias(String sentencia) {
-        ListaEnlazada<RangoAnio> lista = new ListaEnlazada<>();
         try {
             PreparedStatement stmt;
-            stmt = getConexion().prepareStatement(sentencia);
             System.out.println(sentencia);
+            stmt = getConexion().prepareStatement(sentencia);
+            
             stmt.executeQuery();
 
         } catch (Exception e) {
