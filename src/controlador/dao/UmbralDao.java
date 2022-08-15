@@ -88,6 +88,15 @@ public class UmbralDao extends AdaptadorDao<Umbral> {
         } catch (Exception e) {
             System.out.println("Error en modificar " + e);
             e.printStackTrace();
+            sentencia="SELECT * FROM UMBRAL WHERE TIPO LIKE '%"+descripcion+"%'";
+            
+        }
+        try {
+            PreparedStatement stmt = getConexion().prepareStatement(sentencia);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error en modificar " + e);
+            e.printStackTrace();
         }
         System.out.println(sentencia);
         return aux;
