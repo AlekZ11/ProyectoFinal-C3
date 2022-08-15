@@ -262,7 +262,7 @@ public class FrmGestionarAnios extends javax.swing.JFrame {
         if (txtfId.getText().trim().length() == 0 || txtfAnioMin.getText().trim().length() == 0 || txtfAnioMax.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Llene los campos");
         } else {
-            String sentencia = "UPDATE rangoanio set aniomin = "+txtfAnioMin.getText()+", aniomax = "+txtfAnioMax+", updated_at=SYSDATE, WHERE id_randoanio = "+txtfId.getText()+";";
+            String sentencia = "UPDATE rangoanio set aniomin = "+txtfAnioMin.getText()+", aniomax = "+txtfAnioMax.getText()+", updated_at=SYSDATE WHERE id_rangoanio = "+txtfId.getText()+";";
             System.out.println("esta: "+sentencia);
             rdao.ejecutarSentencias(sentencia);
             cargarTabla();
